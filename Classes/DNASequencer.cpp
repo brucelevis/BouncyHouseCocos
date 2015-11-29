@@ -6,4 +6,4 @@
 //
 //
 
-#include "DNASequencer.hpp"
+#include "DNASequencer.h"
