@@ -7,8 +7,11 @@
 //
 #include <vector>
 
+#include "ComponentSystem.h"
+#include "DEFINES.h"
 #include "EntitySystem.h"
 #include "RenderComponent.h"
+#include "RenderSystem.h"
 
 std::vector<EntityHandle> EntitySystem::m_markedForDelete;
 std::map<EntityHandle, Entity*> EntitySystem::m_entities;
@@ -25,6 +28,19 @@ Entity* EntitySystem::CreateEntity()
     EntitySystem::m_entities.insert( std::make_pair( pEntity->m_entityHandle, pEntity ) );
     
     return pEntity;
+}
+
+Component* EntitySystem::AttachComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject )
+{
+    Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
+    Component* pComponent = ComponentSystem::CreateComponent( i_componentType );
+    ASSERTS( pComponent, "Newly created component is null!" );
+    if ( pComponent )
+    {
+        pComponent->Init( i_entityHandle, i_dnaObject );
+        pEntity->m_components.insert( std::make_pair( i_componentType, pComponent ) );
+    }
+    return pComponent;
 }
 
 void EntitySystem::MarkForDelete( EntityHandle i_entityHandle )
@@ -69,3 +85,16 @@ void EntitySystem::Update( float i_dt )
         m_markedForDelete.clear();
     }
 }
+
+#ifdef DEBUG
+std::string EntitySystem::GetNameDoNotUseInCode( EntityHandle i_entityHandle )
+{
+    Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
+    if ( pEntity )
+    {
+        return pEntity->GetName();
+    }
+    
+    return std::string( "NULL Entity" );
+}
+#endif

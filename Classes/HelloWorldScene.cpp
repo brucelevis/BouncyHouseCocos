@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
-
+#include "ComponentSystem.h"
+#include "DNASequencer.h"
 #include "EntitySystem.h"
 #include "PhysicsComponent.h"
 #include "PhysicsSystem.h"
@@ -10,17 +11,24 @@ USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
+    ComponentSystem::Init();
+    
+    
     // 'scene' is an autorelease object
     auto scene = Scene::createWithPhysics();
     scene->getPhysicsWorld()->setGravity( Vec2( 0.0f, -1500.0f ) );
     scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     
-    // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
-    layer->scheduleUpdate();
+    RenderSystem::m_layer = HelloWorld::create();
+    RenderSystem::m_layer->scheduleUpdate();
 
     // add layer as a child to scene
-    scene->addChild(layer);
+    scene->addChild( RenderSystem::m_layer );
+    
+    Entity* pPlayer = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
+    Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
+    
+    std::string pTemp = EntitySystem::GetNameDoNotUseInCode( pPlayer->m_entityHandle );
 
     // return the scene
     return scene;
@@ -33,17 +41,6 @@ bool HelloWorld::init()
     {
         return false;
     }
-
-    Entity* pPlayer = EntitySystem::CreateEntity();
-    
-    RenderComponent* pRenderComponent = new RenderComponent( pPlayer->m_entityHandle );
-    pRenderComponent->Init( this );
-    pPlayer->m_components.insert( std::make_pair( pRenderComponent->s_componentType, pRenderComponent ) );
-    
-    PhysicsComponent* pPhysicsComponent = new PhysicsComponent( pPlayer->m_entityHandle );
-    pPhysicsComponent->Init();
-    pPlayer->m_components.insert( std::make_pair( pPhysicsComponent->s_componentType, pPhysicsComponent ) );
-    
     
     return true;
 }

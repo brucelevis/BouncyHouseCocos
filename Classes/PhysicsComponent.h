@@ -22,13 +22,13 @@ public:
     static std::string s_componentType;
     
     PhysicsComponent() {};
-    PhysicsComponent( EntityHandle i_entityHandle );
     virtual ~PhysicsComponent();
     
-    void Init();
+    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
     
     cocos2d::PhysicsBody* m_physicsBody;
+    cocos2d::Node* m_node;
     
 };
 

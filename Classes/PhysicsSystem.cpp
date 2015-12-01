@@ -9,6 +9,7 @@
 #include "EntitySystem.h"
 #include "PhysicsSystem.h"
 #include "PhysicsComponent.h"
+#include "RenderSystem.h"
 
 std::map<EntityHandle, Component*> PhysicsSystem::m_components;
 
@@ -29,6 +30,13 @@ void PhysicsSystem::Update( float i_dt )
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;
         if ( pComponent && pComponent->m_physicsBody )
         {
+#ifdef DEBUG
+            cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
+            pDrawNode->drawPoint( pComponent->m_node->getPosition(), 5.0f, cocos2d::Color4F( 0.0f, 1.0f, 0.0f, 1.0f ) );
+            RenderSystem::DebugDraw( pDrawNode, i_dt );
+#endif
+            
+            
             if ( pComponent->m_physicsBody->getPosition().y < 100.0f )
             {
                 EntitySystem::MarkForDelete( pComponent->m_entityHandle );

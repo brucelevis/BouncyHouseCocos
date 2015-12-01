@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#include "rapidjson/document.h"
+
 #include "TypeDefs.h"
 
 class Component
@@ -21,10 +23,9 @@ public:
     EntityHandle m_entityHandle;
     
     Component() {};
-    Component( EntityHandle i_entityHandle ) {};
     virtual ~Component() {};
     
-    virtual void Init() {};
+    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) {};
 };
 
 #endif /* Component_hpp */

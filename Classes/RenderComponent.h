@@ -22,10 +22,9 @@ public:
     static std::string s_componentType;
     
     RenderComponent() {};
-    RenderComponent( EntityHandle i_entityHandle );
     virtual ~RenderComponent();
     
-    void Init( cocos2d::Layer* i_layer );
+    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
     cocos2d::Sprite* m_sprite;
 };

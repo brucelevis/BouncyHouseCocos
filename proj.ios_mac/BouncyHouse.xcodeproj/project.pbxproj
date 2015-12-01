@@ -14,12 +14,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
-		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
-		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
@@ -63,6 +57,10 @@
 		652780921C0A61FF00A7B2C1 /* PhysicsSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780861C0A61C000A7B2C1 /* PhysicsSystem.cpp */; };
 		652780981C0B6B2D00A7B2C1 /* DNASequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780961C0B6B2D00A7B2C1 /* DNASequencer.cpp */; };
 		652780991C0B6B2D00A7B2C1 /* DNASequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780961C0B6B2D00A7B2C1 /* DNASequencer.cpp */; };
+		652780D61C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */; };
+		652780D71C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */; };
+		652F73431C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
+		652F73441C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
 		6548C5651C0A39A100D2FA21 /* EntitySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */; };
 		6548C5661C0A39A100D2FA21 /* EntitySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */; };
 		6548C5691C0A3A5300D2FA21 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5671C0A3A5300D2FA21 /* Entity.cpp */; };
@@ -75,8 +73,6 @@
 		6548C5811C0A424900D2FA21 /* RenderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C57E1C0A424900D2FA21 /* RenderSystem.cpp */; };
 		6548C5841C0A425900D2FA21 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5821C0A425900D2FA21 /* System.cpp */; };
 		6548C5851C0A425900D2FA21 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5821C0A425900D2FA21 /* System.cpp */; };
-		6548C58B1C0A52D600D2FA21 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 6548C58A1C0A52D600D2FA21 /* player.png */; };
-		6548C58C1C0A52D600D2FA21 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 6548C58A1C0A52D600D2FA21 /* player.png */; };
 		6548C58F1C0A54DD00D2FA21 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C58D1C0A54DD00D2FA21 /* PhysicsComponent.cpp */; };
 		6548C5901C0A54DD00D2FA21 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C58D1C0A54DD00D2FA21 /* PhysicsComponent.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
@@ -130,9 +126,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
-		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
-		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
-		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
@@ -177,6 +170,14 @@
 		652780871C0A61C000A7B2C1 /* PhysicsSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsSystem.h; sourceTree = "<group>"; };
 		652780961C0B6B2D00A7B2C1 /* DNASequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DNASequencer.cpp; sourceTree = "<group>"; };
 		652780971C0B6B2D00A7B2C1 /* DNASequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNASequencer.h; sourceTree = "<group>"; };
+		652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentSystem.cpp; sourceTree = "<group>"; };
+		652780D51C0BD2FA00A7B2C1 /* ComponentSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSystem.h; sourceTree = "<group>"; };
+		652780D91C0BDCAD00A7B2C1 /* DEFINES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFINES.h; sourceTree = "<group>"; };
+		652F733D1C0D446100F7ECAC /* floor.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = floor.dna; sourceTree = "<group>"; };
+		652F733E1C0D446100F7ECAC /* floor.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = floor.psd; sourceTree = "<group>"; };
+		652F73401C0D446100F7ECAC /* player.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = player.dna; sourceTree = "<group>"; };
+		652F73411C0D446100F7ECAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
+		652F73421C0D477400F7ECAC /* Baked */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Baked; sourceTree = "<group>"; };
 		6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntitySystem.cpp; sourceTree = "<group>"; };
 		6548C5641C0A39A100D2FA21 /* EntitySystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntitySystem.h; sourceTree = "<group>"; };
 		6548C5671C0A3A5300D2FA21 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
@@ -190,7 +191,6 @@
 		6548C5821C0A425900D2FA21 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
 		6548C5831C0A425900D2FA21 /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
 		6548C5871C0A466E00D2FA21 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
-		6548C58A1C0A52D600D2FA21 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		6548C58D1C0A54DD00D2FA21 /* PhysicsComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsComponent.cpp; sourceTree = "<group>"; };
 		6548C58E1C0A54DD00D2FA21 /* PhysicsComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsComponent.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -324,12 +324,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6548C58A1C0A52D600D2FA21 /* player.png */,
+				652F733A1C0D446100F7ECAC /* Raw */,
+				652F73421C0D477400F7ECAC /* Baked */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
-				46880B7619C43A67006E1F66 /* CloseNormal.png */,
-				46880B7719C43A67006E1F66 /* CloseSelected.png */,
-				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -347,6 +345,7 @@
 				6548C5771C0A40EC00D2FA21 /* Systems */,
 				6548C5871C0A466E00D2FA21 /* TypeDefs.h */,
 				652780951C0B6B1100A7B2C1 /* Helpers */,
+				652780D91C0BDCAD00A7B2C1 /* DEFINES.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -408,9 +407,46 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		652F733A1C0D446100F7ECAC /* Raw */ = {
+			isa = PBXGroup;
+			children = (
+				652F733B1C0D446100F7ECAC /* Characters */,
+			);
+			path = Raw;
+			sourceTree = "<group>";
+		};
+		652F733B1C0D446100F7ECAC /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				652F733C1C0D446100F7ECAC /* Floor */,
+				652F733F1C0D446100F7ECAC /* Player */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		652F733C1C0D446100F7ECAC /* Floor */ = {
+			isa = PBXGroup;
+			children = (
+				652F733D1C0D446100F7ECAC /* floor.dna */,
+				652F733E1C0D446100F7ECAC /* floor.psd */,
+			);
+			path = Floor;
+			sourceTree = "<group>";
+		};
+		652F733F1C0D446100F7ECAC /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				652F73401C0D446100F7ECAC /* player.dna */,
+				652F73411C0D446100F7ECAC /* player.psd */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		6548C5771C0A40EC00D2FA21 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
+				652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */,
+				652780D51C0BD2FA00A7B2C1 /* ComponentSystem.h */,
 				6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */,
 				6548C5641C0A39A100D2FA21 /* EntitySystem.h */,
 				6548C57E1C0A424900D2FA21 /* RenderSystem.cpp */,
@@ -544,10 +580,7 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
-				6548C58B1C0A52D600D2FA21 /* player.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
-				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
-				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
@@ -558,11 +591,11 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				652F73431C0D477400F7ECAC /* Baked in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
-				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,13 +604,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
+				652F73441C0D477400F7ECAC /* Baked in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
-				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
-				6548C58C1C0A52D600D2FA21 /* player.png in Resources */,
-				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +621,7 @@
 				6548C58F1C0A54DD00D2FA21 /* PhysicsComponent.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6548C56D1C0A3C4000D2FA21 /* Component.cpp in Sources */,
+				652780D61C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				652780881C0A61C000A7B2C1 /* PhysicsSystem.cpp in Sources */,
 				6548C5841C0A425900D2FA21 /* System.cpp in Sources */,
@@ -609,6 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652780D71C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */,
 				652780921C0A61FF00A7B2C1 /* PhysicsSystem.cpp in Sources */,
 				6548C5811C0A424900D2FA21 /* RenderSystem.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
@@ -736,6 +768,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/../include/**",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
@@ -768,6 +801,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/../include/**",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";

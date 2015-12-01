@@ -1,0 +1,11 @@
+{
+    "Name": "Floor",
+    "Components": {
+        "RenderComponent": {
+            "Sprite": "Characters/Floor/floor.png"
+        },
+        "PhysicsComponent": {
+
+        }
+    }
+}

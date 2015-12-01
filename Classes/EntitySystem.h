@@ -14,11 +14,15 @@
 #include <stdio.h>
 #include <vector>
 
+#include "rapidjson/document.h"
+
 #include "Entity.h"
+#include "DEFINES.h"
+#include "System.h"
 
 typedef int EntityHandle;
 
-class EntitySystem
+class EntitySystem : public System
 {
 private:
     static std::vector<EntityHandle> m_markedForDelete;
@@ -40,7 +44,7 @@ public:
         for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
         {
             ComponentType* pComponent = dynamic_cast<ComponentType*>( it->second );
-
+            
             if ( pComponent )
             {
                 return pComponent;
@@ -48,6 +52,12 @@ public:
         }
         return NULL;
     }
+    
+    static Component* AttachComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject );
+    
+#if DEBUG
+    static std::string GetNameDoNotUseInCode( EntityHandle i_entityHandle );
+#endif
 };
 
 #endif /* EntitySystem_hpp */
