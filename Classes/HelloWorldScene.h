@@ -17,6 +17,8 @@ public:
     CREATE_FUNC(HelloWorld);
     
     virtual void update( float i_dt ) override;
+    
+    void inputCallback( cocos2d::Ref* i_ref );
 };
 
 #endif // __HELLOWORLD_SCENE_H__

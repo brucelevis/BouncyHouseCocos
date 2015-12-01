@@ -24,12 +24,6 @@ void RenderSystem::UnregisterComponent( Component* i_component )
 
 void RenderSystem::Update( float i_dt )
 {
-    for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
-    {
-        Component* pComponent = it->second;
-        //std::cout << "Updating render system for handle: " << pComponent->m_entityHandle << std::endl;
-    }
-    
 #ifdef DEBUG
     DebugUpdate( i_dt );
 #endif

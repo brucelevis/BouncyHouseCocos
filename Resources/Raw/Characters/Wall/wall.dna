@@ -1,8 +1,8 @@
 {
-    "Name": "Floor",
+    "Name": "Wall",
     "Components": {
         "RenderComponent": {
-            "Sprite": "Characters/Floor/floor.png"
+            "Sprite": "Characters/Wall/wall.png"
         },
         "PhysicsComponent": {
             "Density": 1000.0,

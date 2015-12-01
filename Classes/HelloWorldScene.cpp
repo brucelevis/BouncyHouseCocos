@@ -13,7 +13,6 @@ Scene* HelloWorld::createScene()
 {
     ComponentSystem::Init();
     
-    
     // 'scene' is an autorelease object
     auto scene = Scene::createWithPhysics();
     scene->getPhysicsWorld()->setGravity( Vec2( 0.0f, -1500.0f ) );
@@ -26,9 +25,17 @@ Scene* HelloWorld::createScene()
     scene->addChild( RenderSystem::m_layer );
     
     Entity* pPlayer = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
+    PhysicsSystem::SetPosition( pPlayer->m_entityHandle, cocos2d::Vec2( 100, 500.0f ) );
     Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
+    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( 960.0f, 0.0f ) );
     
-    std::string pTemp = EntitySystem::GetNameDoNotUseInCode( pPlayer->m_entityHandle );
+    Entity* pLeftWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
+    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 0.0f, 0.0f ) );
+    Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
+    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( 1920.0f, 0.0f ) );
+    
+    
+    
 
     // return the scene
     return scene;

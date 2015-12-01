@@ -173,11 +173,13 @@
 		652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentSystem.cpp; sourceTree = "<group>"; };
 		652780D51C0BD2FA00A7B2C1 /* ComponentSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSystem.h; sourceTree = "<group>"; };
 		652780D91C0BDCAD00A7B2C1 /* DEFINES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFINES.h; sourceTree = "<group>"; };
-		652F733D1C0D446100F7ECAC /* floor.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = floor.dna; sourceTree = "<group>"; };
-		652F733E1C0D446100F7ECAC /* floor.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = floor.psd; sourceTree = "<group>"; };
-		652F73401C0D446100F7ECAC /* player.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = player.dna; sourceTree = "<group>"; };
-		652F73411C0D446100F7ECAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
 		652F73421C0D477400F7ECAC /* Baked */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Baked; sourceTree = "<group>"; };
+		652F734E1C0D550F00F7ECAC /* floor.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = floor.dna; sourceTree = "<group>"; };
+		652F734F1C0D550F00F7ECAC /* floor.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = floor.psd; sourceTree = "<group>"; };
+		652F73511C0D550F00F7ECAC /* player.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = player.dna; sourceTree = "<group>"; };
+		652F73521C0D550F00F7ECAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
+		652F73541C0D550F00F7ECAC /* wall.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = wall.psd; sourceTree = "<group>"; };
+		652F73551C0D553100F7ECAC /* wall.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = wall.dna; sourceTree = "<group>"; };
 		6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntitySystem.cpp; sourceTree = "<group>"; };
 		6548C5641C0A39A100D2FA21 /* EntitySystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntitySystem.h; sourceTree = "<group>"; };
 		6548C5671C0A3A5300D2FA21 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
@@ -324,7 +326,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				652F733A1C0D446100F7ECAC /* Raw */,
+				652F734B1C0D550F00F7ECAC /* Raw */,
 				652F73421C0D477400F7ECAC /* Baked */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
@@ -407,39 +409,49 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		652F733A1C0D446100F7ECAC /* Raw */ = {
+		652F734B1C0D550F00F7ECAC /* Raw */ = {
 			isa = PBXGroup;
 			children = (
-				652F733B1C0D446100F7ECAC /* Characters */,
+				652F734C1C0D550F00F7ECAC /* Characters */,
 			);
 			path = Raw;
 			sourceTree = "<group>";
 		};
-		652F733B1C0D446100F7ECAC /* Characters */ = {
+		652F734C1C0D550F00F7ECAC /* Characters */ = {
 			isa = PBXGroup;
 			children = (
-				652F733C1C0D446100F7ECAC /* Floor */,
-				652F733F1C0D446100F7ECAC /* Player */,
+				652F734D1C0D550F00F7ECAC /* Floor */,
+				652F73501C0D550F00F7ECAC /* Player */,
+				652F73531C0D550F00F7ECAC /* Wall */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
 		};
-		652F733C1C0D446100F7ECAC /* Floor */ = {
+		652F734D1C0D550F00F7ECAC /* Floor */ = {
 			isa = PBXGroup;
 			children = (
-				652F733D1C0D446100F7ECAC /* floor.dna */,
-				652F733E1C0D446100F7ECAC /* floor.psd */,
+				652F734E1C0D550F00F7ECAC /* floor.dna */,
+				652F734F1C0D550F00F7ECAC /* floor.psd */,
 			);
 			path = Floor;
 			sourceTree = "<group>";
 		};
-		652F733F1C0D446100F7ECAC /* Player */ = {
+		652F73501C0D550F00F7ECAC /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				652F73401C0D446100F7ECAC /* player.dna */,
-				652F73411C0D446100F7ECAC /* player.psd */,
+				652F73511C0D550F00F7ECAC /* player.dna */,
+				652F73521C0D550F00F7ECAC /* player.psd */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		652F73531C0D550F00F7ECAC /* Wall */ = {
+			isa = PBXGroup;
+			children = (
+				652F73551C0D553100F7ECAC /* wall.dna */,
+				652F73541C0D550F00F7ECAC /* wall.psd */,
+			);
+			path = Wall;
 			sourceTree = "<group>";
 		};
 		6548C5771C0A40EC00D2FA21 /* Systems */ = {

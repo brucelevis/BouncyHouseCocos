@@ -21,6 +21,8 @@ public:
     static std::map<EntityHandle, Component*> m_components;
     static void RegisterComponent( Component* i_component );
     static void UnregisterComponent( Component* i_component );
+    
+    static bool SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position );
 };
 
 #endif /* PhysicsSystem_hpp */

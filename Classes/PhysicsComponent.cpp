@@ -29,12 +29,13 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     
     if ( m_node )
     {
-        m_node->setAnchorPoint( cocos2d::Vec2( 0.5f, 0.0f ) );
+        m_node->setAnchorPoint( cocos2d::Vec2( i_dnaObject["AnchorPoint"][0].GetDouble(), i_dnaObject["AnchorPoint"][1].GetDouble() ) );
+        m_node->setPosition( cocos2d::Vec2( 0.0f, 0.0f ) );
         
-        
-        m_physicsBody = PhysicsBody::createBox( Size( pRenderComponent->m_sprite->getContentSize().width, pRenderComponent->m_sprite->getContentSize().height ), PhysicsMaterial( 0.1f, 1.0f, 0.0f ) );
-        m_physicsBody->setDynamic( false );
+        m_physicsBody = PhysicsBody::createBox( Size( pRenderComponent->m_sprite->getContentSize().width, pRenderComponent->m_sprite->getContentSize().height ), PhysicsMaterial( i_dnaObject["Density"].GetDouble(), i_dnaObject["Restitution"].GetDouble(), i_dnaObject["Friction"].GetDouble() ) );
+        m_physicsBody->setDynamic( i_dnaObject["Dynamic"].GetBool() );
         m_physicsBody->setMass( 10.0f );
+        m_physicsBody->setRotationEnable( false );
         m_node->setPhysicsBody( m_physicsBody );
     }
 }
