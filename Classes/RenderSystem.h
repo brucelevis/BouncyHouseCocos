@@ -27,7 +27,7 @@ public:
     static void RegisterComponent( Component* i_component );
     static void UnregisterComponent( Component* i_component );
     
-    static cocos2d::Layer* m_layer;
+    static cocos2d::Scene* m_activeScene;
     
 #ifdef DEBUG
     static void DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration );

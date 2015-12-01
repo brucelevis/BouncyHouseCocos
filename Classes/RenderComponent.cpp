@@ -24,7 +24,7 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
     pSpritePath.insert( 0, "Baked/" );
     
     m_sprite = Sprite::create( pSpritePath );
-    RenderSystem::m_layer->addChild( m_sprite );
+    RenderSystem::m_activeScene->addChild( m_sprite );
 }
 
 RenderComponent::~RenderComponent()

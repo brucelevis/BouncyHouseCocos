@@ -10,7 +10,7 @@
 #include "RenderSystem.h"
 
 std::map<EntityHandle, Component*> RenderSystem::m_components;
-cocos2d::Layer* RenderSystem::m_layer;
+cocos2d::Scene* RenderSystem::m_activeScene;
 
 void RenderSystem::RegisterComponent( Component* i_component )
 {
@@ -33,7 +33,7 @@ void RenderSystem::Update( float i_dt )
 void RenderSystem::DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration )
 {
     i_drawNode->runAction( cocos2d::Sequence::create( cocos2d::DelayTime::create( i_duration ), cocos2d::RemoveSelf::create(), nullptr ) );
-    RenderSystem::m_layer->addChild( i_drawNode );
+    RenderSystem::m_activeScene->addChild( i_drawNode );
 }
 
 void RenderSystem::DebugUpdate( float i_dt )

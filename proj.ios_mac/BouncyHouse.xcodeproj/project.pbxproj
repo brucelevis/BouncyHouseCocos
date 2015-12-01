@@ -16,8 +16,6 @@
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
-		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
-		46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		503AE10117EB989F00D1A890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FC17EB989F00D1A890 /* main.m */; };
@@ -61,6 +59,8 @@
 		652780D71C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652780D41C0BD2FA00A7B2C1 /* ComponentSystem.cpp */; };
 		652F73431C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
 		652F73441C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
+		652F735A1C0D67C400F7ECAC /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652F73581C0D67C400F7ECAC /* GameScene.cpp */; };
+		652F735B1C0D67C400F7ECAC /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 652F73581C0D67C400F7ECAC /* GameScene.cpp */; };
 		6548C5651C0A39A100D2FA21 /* EntitySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */; };
 		6548C5661C0A39A100D2FA21 /* EntitySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */; };
 		6548C5691C0A3A5300D2FA21 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6548C5671C0A3A5300D2FA21 /* Entity.cpp */; };
@@ -128,8 +128,6 @@
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
-		46880B8719C43A87006E1F66 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE0FA17EB989F00D1A890 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ios/AppController.h; sourceTree = SOURCE_ROOT; };
@@ -180,6 +178,8 @@
 		652F73521C0D550F00F7ECAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
 		652F73541C0D550F00F7ECAC /* wall.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = wall.psd; sourceTree = "<group>"; };
 		652F73551C0D553100F7ECAC /* wall.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = wall.dna; sourceTree = "<group>"; };
+		652F73581C0D67C400F7ECAC /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		652F73591C0D67C400F7ECAC /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntitySystem.cpp; sourceTree = "<group>"; };
 		6548C5641C0A39A100D2FA21 /* EntitySystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntitySystem.h; sourceTree = "<group>"; };
 		6548C5671C0A3A5300D2FA21 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
@@ -464,8 +464,8 @@
 			children = (
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				652F73581C0D67C400F7ECAC /* GameScene.cpp */,
+				652F73591C0D67C400F7ECAC /* GameScene.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -650,8 +650,8 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6548C56D1C0A3C4000D2FA21 /* Component.cpp in Sources */,
 				652780D61C0BD2FA00A7B2C1 /* ComponentSystem.cpp in Sources */,
-				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				652780881C0A61C000A7B2C1 /* PhysicsSystem.cpp in Sources */,
+				652F735A1C0D67C400F7ECAC /* GameScene.cpp in Sources */,
 				6548C5841C0A425900D2FA21 /* System.cpp in Sources */,
 				6548C5691C0A3A5300D2FA21 /* Entity.cpp in Sources */,
 				652780981C0B6B2D00A7B2C1 /* DNASequencer.cpp in Sources */,
@@ -672,9 +672,9 @@
 				652780921C0A61FF00A7B2C1 /* PhysicsSystem.cpp in Sources */,
 				6548C5811C0A424900D2FA21 /* RenderSystem.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				652F735B1C0D67C400F7ECAC /* GameScene.cpp in Sources */,
 				6548C56E1C0A3C4000D2FA21 /* Component.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				6548C5901C0A54DD00D2FA21 /* PhysicsComponent.cpp in Sources */,
 				6548C56A1C0A3A5300D2FA21 /* Entity.cpp in Sources */,
 				6548C5661C0A39A100D2FA21 /* EntitySystem.cpp in Sources */,
