@@ -338,16 +338,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
-				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
-				6548C5791C0A40FD00D2FA21 /* Entities */,
-				6548C5781C0A40F700D2FA21 /* Components */,
-				6548C5771C0A40EC00D2FA21 /* Systems */,
-				6548C5871C0A466E00D2FA21 /* TypeDefs.h */,
-				652780951C0B6B1100A7B2C1 /* Helpers */,
-				652780D91C0BDCAD00A7B2C1 /* DEFINES.h */,
+				652F73571C0D66C000F7ECAC /* Game */,
+				652F73561C0D66BA00F7ECAC /* Engine */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -452,6 +444,30 @@
 				652F73541C0D550F00F7ECAC /* wall.psd */,
 			);
 			path = Wall;
+			sourceTree = "<group>";
+		};
+		652F73561C0D66BA00F7ECAC /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				6548C5791C0A40FD00D2FA21 /* Entities */,
+				6548C5781C0A40F700D2FA21 /* Components */,
+				6548C5771C0A40EC00D2FA21 /* Systems */,
+				6548C5871C0A466E00D2FA21 /* TypeDefs.h */,
+				652780951C0B6B1100A7B2C1 /* Helpers */,
+				652780D91C0BDCAD00A7B2C1 /* DEFINES.h */,
+			);
+			name = Engine;
+			sourceTree = "<group>";
+		};
+		652F73571C0D66C000F7ECAC /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
+				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
+				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 		6548C5771C0A40EC00D2FA21 /* Systems */ = {
