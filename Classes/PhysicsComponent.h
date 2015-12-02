@@ -23,6 +23,7 @@ private:
     cocos2d::Node* m_node;
     
     cocos2d::Vec2 m_anchorPoint;
+    cocos2d::Vec2 m_offset;
     float m_width;
     float m_height;
     float m_density;
@@ -30,9 +31,9 @@ private:
     float m_friction;
     bool m_dynamic;
     
-    uint32_t m_category;
-    uint32_t m_collision;
-    uint32_t m_contact;
+    CollisionCategory m_category;
+    CollisionCategory m_collision;
+    CollisionCategory m_contact;
     
 public:
     static std::string s_componentType;
@@ -48,8 +49,17 @@ public:
     bool SetPosition( cocos2d::Vec2 i_position );
     
     cocos2d::Vec2 GetVelocity();
+    float GetWidth() { return m_width; };
+    float GetHeight() { return m_height; };
+    
+    cocos2d::Vec2 GetOffset() { return m_offset; };
+    
+    CollisionCategory GetCategoryMask() { return m_category; };
+    CollisionCategory GetCollisionMask() { return m_collision; };
+    CollisionCategory GetContactMask() { return m_contact; };
     
     void ApplyImpulse( cocos2d::Vec2 i_impulse );
+    bool RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info );
 };
 
 #endif /* PhysicsComponent_hpp */

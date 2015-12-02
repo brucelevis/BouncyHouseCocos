@@ -34,6 +34,8 @@ public:
     static LocomotionMode* CreateLocomotionMode( std::string i_locomotionModeType );
     
     static LocomotionModeMap m_locomotionModeTypes;
+    
+    static bool m_debug;
 };
 
 template<typename T>

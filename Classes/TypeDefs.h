@@ -17,9 +17,15 @@ typedef int EntityHandle;
 enum CollisionCategory : uint32_t
 {
     None = 0,
-    Ground = (1 << 0),
+    Solid = (1 << 0),
     Player = (1 << 1),
+    Enemy = (1 << 2),
     All = INT_MAX
+};
+
+enum ActionTag : int
+{
+    AnimationAction
 };
 
 

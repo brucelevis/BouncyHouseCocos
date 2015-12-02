@@ -30,6 +30,8 @@ public:
     static bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
     
     static std::map<std::string, CollisionCategory> m_collisionCategoryMap;
+    
+    static bool m_debug;
 };
 
 #endif /* PhysicsSystem_hpp */

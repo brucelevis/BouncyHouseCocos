@@ -15,10 +15,12 @@
 
 std::map<EntityHandle, Component*> LocomotionSystem::m_components;
 LocomotionModeMap LocomotionSystem::m_locomotionModeTypes;
+bool LocomotionSystem::m_debug;
 
 void LocomotionSystem::Init()
 {
     LocomotionModeRegister<RunLocomotionMode>( "RunLocomotionMode" );
+    m_debug = false;
 }
 
 void LocomotionSystem::RegisterComponent( Component* i_component )

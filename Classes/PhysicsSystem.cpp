@@ -15,6 +15,7 @@
 
 std::map<EntityHandle, Component*> PhysicsSystem::m_components;
 std::map<std::string, CollisionCategory> PhysicsSystem::m_collisionCategoryMap;
+bool PhysicsSystem::m_debug;
 
 void PhysicsSystem::RegisterComponent( Component* i_component )
 {
@@ -29,8 +30,9 @@ void PhysicsSystem::UnregisterComponent( Component* i_component )
 void PhysicsSystem::Init()
 {
     m_collisionCategoryMap.insert( std::make_pair( "None", CollisionCategory::None ) );
-    m_collisionCategoryMap.insert( std::make_pair( "Ground", CollisionCategory::Ground ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Solid", CollisionCategory::Solid ) );
     m_collisionCategoryMap.insert( std::make_pair( "Player", CollisionCategory::Player ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Enemy", CollisionCategory::Enemy ) );
     m_collisionCategoryMap.insert( std::make_pair( "All", CollisionCategory::All ) );
 }
 
@@ -41,11 +43,14 @@ void PhysicsSystem::Update( float i_dt )
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;
         if ( pComponent )
         {
-//#ifdef DEBUG
-//            cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
-//            pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::BLUE );
-//            RenderSystem::DebugDraw( pDrawNode, i_dt * 0.25f );
-//#endif
+#ifdef DEBUG
+            if ( m_debug )
+            {
+                cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
+                pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::BLUE );
+                RenderSystem::DebugDraw( pDrawNode, i_dt * 0.25f );
+            }
+#endif
             
             // Death plane at -100.0f y
             if ( pComponent->GetPosition().y < -100.0f )

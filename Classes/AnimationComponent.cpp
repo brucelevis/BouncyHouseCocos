@@ -23,22 +23,61 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
     RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
     if ( pRenderComponent )
     {
-        Vector<SpriteFrame*> pFrames( 18 );
-        for ( int i = 0; i < 17; i++ )
+        if ( i_dnaObject.HasMember( "Motions" ) )
         {
-            char pFrameName[100] = {0};
-            sprintf( pFrameName, "Vik1_Run_%02d.png", i );
-            pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
+            for ( int i = 0; i < i_dnaObject["Motions"].Capacity(); i++ )
+            {
+                std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
+                std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
+                float pFrameCount = i_dnaObject["Motions"][i]["Frames"].GetDouble();
+                
+                Vector<SpriteFrame*> pFrames( pFrameCount );
+                for ( int i = 0; i < pFrameCount; i++ )
+                {
+                    char pFrameName[100] = {0};
+                    sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
+                    pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
+                }
+                
+                Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
+                AnimationCache::getInstance()->addAnimation( pAnimation, pSpriteName );
+                
+                m_animationNames.insert( std::make_pair( pMotionName, pSpriteName ) );
+            }
         }
-        
-        auto animation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
-        animation->setLoops( -1 );
-        auto animate = Animate::create( animation );
-        m_currentAnimation = pRenderComponent->m_sprite->runAction( animate );
     }
+    
+    StartMotion( "Run", -1 );
 }
 
 AnimationComponent::~AnimationComponent()
 {
     AnimationSystem::UnregisterComponent( this );
+}
+
+void AnimationComponent::StartMotion( std::string i_motionName, float i_loops )
+{
+    std::string pAnimationName = m_animationNames.at( i_motionName );
+    Animation* pAnimation = AnimationCache::getInstance()->getAnimation( pAnimationName );
+    if ( pAnimation )
+    {
+        pAnimation->setLoops( i_loops );
+        Animate* pAnimate = Animate::create( pAnimation );
+        pAnimate->setTag( ActionTag::AnimationAction );
+        
+        RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+        if ( pRenderComponent )
+        {
+            Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
+            if ( strcmp( i_motionName.c_str(), m_currentMotion.c_str() ) != 0 || !pCurrentAnimation || pCurrentAnimation->isDone() )
+            {
+                if ( pCurrentAnimation && !pCurrentAnimation->isDone() )
+                {
+                    pRenderComponent->m_sprite->stopAction( pCurrentAnimation );
+                }
+                pRenderComponent->m_sprite->runAction( pAnimate );
+                m_currentMotion = i_motionName;
+            }
+        }
+    }
 }

@@ -36,7 +36,6 @@ public:
     
     static void Update( float i_dt );
     
-    
     template<typename ComponentType>
     static ComponentType* GetComponent( EntityHandle i_entityHandle )
     {

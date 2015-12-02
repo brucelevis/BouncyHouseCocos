@@ -41,6 +41,12 @@ bool GameScene::Start()
     Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
     PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( 1920.0f, 0.0f ) );
     
+    for ( int i = 0; i < 10; i++ )
+    {
+        Entity* pEnemy = DNASequencer::CreateEntity( "Baked/Characters/Enemy/enemy.dna" );
+        PhysicsSystem::SetPosition( pEnemy->m_entityHandle, cocos2d::Vec2( 100, 500.0f ) );
+    }
+    
     
     auto eventListener = EventListenerKeyboard::create();
     eventListener->onKeyPressed = [pPlayer](EventKeyboard::KeyCode keyCode, Event* event){

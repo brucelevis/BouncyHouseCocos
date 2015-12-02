@@ -12,6 +12,7 @@
 #include "PhysicsComponent.h"
 #include "PhysicsSystem.h"
 #include "RenderComponent.h"
+#include "RenderSystem.h"
 
 using namespace cocos2d;
 
@@ -25,6 +26,10 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     if ( i_dnaObject.HasMember( "AnchorPoint" ) )
     {
         m_anchorPoint = cocos2d::Vec2( i_dnaObject["AnchorPoint"][0].GetDouble(), i_dnaObject["AnchorPoint"][1].GetDouble() );
+    }
+    if ( i_dnaObject.HasMember( "YOffset" ) )
+    {
+        m_offset = cocos2d::Vec2( 0.0f, i_dnaObject["YOffset"].GetDouble() );
     }
     if ( i_dnaObject.HasMember( "Size" ) )
     {
@@ -49,15 +54,15 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     }
     if ( i_dnaObject.HasMember( "Category" ) )
     {
-        m_category = DNASequencer::CreateCollisionCategory( i_dnaObject["Category"] );
+        m_category = (CollisionCategory) DNASequencer::CreateCollisionCategory( i_dnaObject["Category"] );
     }
     if ( i_dnaObject.HasMember( "Collision" ) )
     {
-        m_collision = DNASequencer::CreateCollisionCategory( i_dnaObject["Collision"] );
+        m_collision = (CollisionCategory) DNASequencer::CreateCollisionCategory( i_dnaObject["Collision"] );
     }
     if ( i_dnaObject.HasMember( "Contact" ) )
     {
-        m_contact = DNASequencer::CreateCollisionCategory( i_dnaObject["Contact"] );
+        m_contact = (CollisionCategory) DNASequencer::CreateCollisionCategory( i_dnaObject["Contact"] );
     }
     
     
@@ -73,6 +78,7 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
         m_node->setPosition( cocos2d::Vec2( 0.0f, 0.0f ) );
         
         m_physicsBody = PhysicsBody::createBox( Size( m_width, m_height ), PhysicsMaterial( m_density, m_restitution, m_friction ) );
+        m_physicsBody->setPositionOffset( m_offset );
         m_physicsBody->setDynamic( m_dynamic );
         m_physicsBody->setMass( 10.0f );
         m_physicsBody->setRotationEnable( false );
@@ -134,4 +140,30 @@ void PhysicsComponent::ApplyImpulse( cocos2d::Vec2 i_impulse )
     {
         m_physicsBody->applyImpulse( i_impulse );
     }
+}
+
+bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info )
+{
+    EntityHandle pEntityHandle = m_entityHandle;
+    CollisionCategory pCollisionMask = GetCollisionMask();
+    bool pHit = false;
+    cocos2d::PhysicsRayCastCallbackFunc pFunc = [&pHit, &pEntityHandle, &pCollisionMask, &o_info](cocos2d::PhysicsWorld& i_world, const cocos2d::PhysicsRayCastInfo& i_info, void* i_data )->bool
+    {
+        if ( pHit == false )
+        {
+            if ( i_info.shape->getBody()->getNode()->getTag() != pEntityHandle && PhysicsSystem::IsInBitmask( pCollisionMask  , (CollisionCategory)i_info.shape->getBody()->getCategoryBitmask() ) )
+            {
+                pHit = true;
+                o_info.start = i_info.start;
+                o_info.end = i_info.end;
+                o_info.shape = i_info.shape;
+                o_info.contact = i_info.contact;
+                o_info.normal = i_info.normal;
+            }
+        }
+        return true;
+    };
+    RenderSystem::m_activeScene->getPhysicsWorld()->rayCast( pFunc, i_start, i_end, nullptr );
+
+    return pHit;
 }

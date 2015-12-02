@@ -1,5 +1,5 @@
 {
-    "Name": "Player",
+    "Name": "Enemy",
     "Components": {
         "RenderComponent": {
             "SpriteSheet": "Characters/Player/Motions/PlayerMotions"
@@ -34,9 +34,9 @@
             "YOffset": -20.0,
             "Size": [ 40, 40.0 ],
 
-            "Category": [ "Player" ],
-            "Collision": [ "Solid", "Enemy", "Player" ],
-            "Contact": [ "Solid", "Enemy", "Player" ]
+            "Category": [ "Enemy" ],
+            "Collision": [ "Solid", "Player" ],
+            "Contact": [ "Solid", "Player" ]
         }
     }
 }

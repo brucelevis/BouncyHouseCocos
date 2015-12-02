@@ -17,6 +17,9 @@
 
 class AnimationComponent : public Component
 {
+private:
+    std::map<std::string, std::string> m_animationNames;
+    std::string m_currentMotion;
 public:
     static std::string s_componentType;
     
@@ -25,7 +28,7 @@ public:
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
-    cocos2d::Action* m_currentAnimation;
+    void StartMotion( std::string i_motionName, float i_loops = 1 );
 };
 
 #endif /* AnimationComponent_hpp */
