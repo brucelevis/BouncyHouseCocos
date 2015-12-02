@@ -5,8 +5,21 @@
             "SpriteSheet": "Characters/Player/Motions/PlayerMotions"
         },
         "AnimationComponent": {
-
+            "Motions":
+            {
+                "Run":
+                {
+                    "Frames": 18,
+                    "Name": "Vik1_Run"
+                },
+                "Jump":
+                {
+                    "Frames": 21,
+                    "Name": "Vik1_Jump"
+                }
+            }
         },
+        "GroundDetectComponent": {},
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
             "RunSpeed": 400.0,
@@ -18,7 +31,11 @@
             "Friction": 0.0,
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
-            "Size": [ 80.0, 83.0 ]
+            "Size": [ 80.0, 83.0 ],
+
+            "Category": [ "Player" ],
+            "Collision": [ "Ground" ],
+            "Contact": [ "Ground" ]
         }
     }
 }

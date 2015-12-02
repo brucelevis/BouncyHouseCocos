@@ -87,6 +87,10 @@
 		65A27A401C0EE8F3008B569E /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A3D1C0EE8F3008B569E /* AnimationComponent.cpp */; };
 		65A27A431C0EE933008B569E /* AnimationSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A411C0EE933008B569E /* AnimationSystem.cpp */; };
 		65A27A441C0EE933008B569E /* AnimationSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A411C0EE933008B569E /* AnimationSystem.cpp */; };
+		65A27A471C0F4946008B569E /* GroundDetectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A451C0F4946008B569E /* GroundDetectComponent.cpp */; };
+		65A27A481C0F4946008B569E /* GroundDetectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A451C0F4946008B569E /* GroundDetectComponent.cpp */; };
+		65A27A4B1C0F49A8008B569E /* GroundDetectSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A491C0F49A8008B569E /* GroundDetectSystem.cpp */; };
+		65A27A4C1C0F49A8008B569E /* GroundDetectSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A27A491C0F49A8008B569E /* GroundDetectSystem.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -218,6 +222,10 @@
 		65A27A3E1C0EE8F3008B569E /* AnimationComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationComponent.h; sourceTree = "<group>"; };
 		65A27A411C0EE933008B569E /* AnimationSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationSystem.cpp; sourceTree = "<group>"; };
 		65A27A421C0EE933008B569E /* AnimationSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSystem.h; sourceTree = "<group>"; };
+		65A27A451C0F4946008B569E /* GroundDetectComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroundDetectComponent.cpp; sourceTree = "<group>"; };
+		65A27A461C0F4946008B569E /* GroundDetectComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroundDetectComponent.h; sourceTree = "<group>"; };
+		65A27A491C0F49A8008B569E /* GroundDetectSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroundDetectSystem.cpp; sourceTree = "<group>"; };
+		65A27A4A1C0F49A8008B569E /* GroundDetectSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroundDetectSystem.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -503,14 +511,16 @@
 				652780D51C0BD2FA00A7B2C1 /* ComponentSystem.h */,
 				6548C5631C0A39A100D2FA21 /* EntitySystem.cpp */,
 				6548C5641C0A39A100D2FA21 /* EntitySystem.h */,
+				65A27A491C0F49A8008B569E /* GroundDetectSystem.cpp */,
+				65A27A4A1C0F49A8008B569E /* GroundDetectSystem.h */,
+				652F73601C0E754F00F7ECAC /* LocomotionSystem.cpp */,
+				652F73611C0E754F00F7ECAC /* LocomotionSystem.h */,
+				652780861C0A61C000A7B2C1 /* PhysicsSystem.cpp */,
+				652780871C0A61C000A7B2C1 /* PhysicsSystem.h */,
 				6548C57E1C0A424900D2FA21 /* RenderSystem.cpp */,
 				6548C57F1C0A424900D2FA21 /* RenderSystem.h */,
 				6548C5821C0A425900D2FA21 /* System.cpp */,
 				6548C5831C0A425900D2FA21 /* System.h */,
-				652780861C0A61C000A7B2C1 /* PhysicsSystem.cpp */,
-				652780871C0A61C000A7B2C1 /* PhysicsSystem.h */,
-				652F73601C0E754F00F7ECAC /* LocomotionSystem.cpp */,
-				652F73611C0E754F00F7ECAC /* LocomotionSystem.h */,
 			);
 			name = Systems;
 			sourceTree = "<group>";
@@ -522,6 +532,8 @@
 				65A27A3E1C0EE8F3008B569E /* AnimationComponent.h */,
 				6548C56B1C0A3C4000D2FA21 /* Component.cpp */,
 				6548C56C1C0A3C4000D2FA21 /* Component.h */,
+				65A27A451C0F4946008B569E /* GroundDetectComponent.cpp */,
+				65A27A461C0F4946008B569E /* GroundDetectComponent.h */,
 				652F735C1C0E74E000F7ECAC /* LocomotionComponent.cpp */,
 				652F735D1C0E74E000F7ECAC /* LocomotionComponent.h */,
 				6548C58D1C0A54DD00D2FA21 /* PhysicsComponent.cpp */,
@@ -705,6 +717,7 @@
 				6548C5841C0A425900D2FA21 /* System.cpp in Sources */,
 				65A27A431C0EE933008B569E /* AnimationSystem.cpp in Sources */,
 				6548C5691C0A3A5300D2FA21 /* Entity.cpp in Sources */,
+				65A27A4B1C0F49A8008B569E /* GroundDetectSystem.cpp in Sources */,
 				652F73621C0E754F00F7ECAC /* LocomotionSystem.cpp in Sources */,
 				652780981C0B6B2D00A7B2C1 /* DNASequencer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -713,6 +726,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				65A27A351C0EDB46008B569E /* LocomotionMode.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				65A27A471C0F4946008B569E /* GroundDetectComponent.cpp in Sources */,
 				6548C5801C0A424900D2FA21 /* RenderSystem.cpp in Sources */,
 				652F735E1C0E74E000F7ECAC /* LocomotionComponent.cpp in Sources */,
 				65A27A3F1C0EE8F3008B569E /* AnimationComponent.cpp in Sources */,
@@ -737,8 +751,10 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				6548C5901C0A54DD00D2FA21 /* PhysicsComponent.cpp in Sources */,
 				6548C56A1C0A3A5300D2FA21 /* Entity.cpp in Sources */,
+				65A27A481C0F4946008B569E /* GroundDetectComponent.cpp in Sources */,
 				65A27A361C0EDB46008B569E /* LocomotionMode.cpp in Sources */,
 				65A27A3B1C0EDBD3008B569E /* RunLocomotionMode.cpp in Sources */,
+				65A27A4C1C0F49A8008B569E /* GroundDetectSystem.cpp in Sources */,
 				6548C5661C0A39A100D2FA21 /* EntitySystem.cpp in Sources */,
 				6548C5851C0A425900D2FA21 /* System.cpp in Sources */,
 				6548C5761C0A3D5700D2FA21 /* RenderComponent.cpp in Sources */,

@@ -11,6 +11,7 @@
 #include "DNASequencer.h"
 #include "EntitySystem.h"
 #include "GameScene.h"
+#include "GroundDetectSystem.h"
 #include "LocomotionSystem.h"
 #include "PhysicsSystem.h"
 #include "RenderSystem.h"
@@ -28,6 +29,7 @@ bool GameScene::Start()
     RenderSystem::m_activeScene->scheduleUpdate();
     ComponentSystem::Init();
     LocomotionSystem::Init();
+    PhysicsSystem::Init();
     
     Entity* pPlayer = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
     PhysicsSystem::SetPosition( pPlayer->m_entityHandle, cocos2d::Vec2( 100, 500.0f ) );
@@ -70,6 +72,7 @@ void GameScene::menuCloseCallback(Ref* pSender)
 
 void GameScene::update( float i_dt )
 {
+    GroundDetectSystem::Update( i_dt );
     AnimationSystem::Update( i_dt );
     LocomotionSystem::Update( i_dt );
     PhysicsSystem::Update( i_dt );

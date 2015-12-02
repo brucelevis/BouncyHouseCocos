@@ -40,3 +40,22 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
     
     return pEntity;
 }
+
+uint32_t DNASequencer::CreateCollisionCategory( const rapidjson::Value& i_dnaObject )
+{
+    uint32_t pCategory = 0;
+    bool first = true;
+    for ( rapidjson::Value::ConstValueIterator itr = i_dnaObject.Begin(); itr != i_dnaObject.End(); ++itr )
+    {
+        if ( first )
+        {
+            pCategory = PhysicsSystem::GetCollisionCategory( itr->GetString() );
+            first = false;
+        }
+        else
+        {
+            pCategory |= PhysicsSystem::GetCollisionCategory( itr->GetString() );
+        }
+    }
+    return pCategory;
+}

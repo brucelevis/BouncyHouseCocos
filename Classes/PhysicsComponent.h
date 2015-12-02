@@ -21,6 +21,19 @@ class PhysicsComponent : public Component
 private:
     cocos2d::PhysicsBody* m_physicsBody;
     cocos2d::Node* m_node;
+    
+    cocos2d::Vec2 m_anchorPoint;
+    float m_width;
+    float m_height;
+    float m_density;
+    float m_restitution;
+    float m_friction;
+    bool m_dynamic;
+    
+    uint32_t m_category;
+    uint32_t m_collision;
+    uint32_t m_contact;
+    
 public:
     static std::string s_componentType;
     
