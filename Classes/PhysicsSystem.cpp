@@ -43,7 +43,7 @@ void PhysicsSystem::Update( float i_dt )
         {
 //#ifdef DEBUG
 //            cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
-//            pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::GREEN );
+//            pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::BLUE );
 //            RenderSystem::DebugDraw( pDrawNode, i_dt * 0.25f );
 //#endif
             
@@ -81,6 +81,11 @@ CollisionCategory PhysicsSystem::GetCollisionCategory( std::string i_collisionCa
     ASSERTS( false, msg );
     
     return CollisionCategory::None;
+}
+
+bool PhysicsSystem::IsInBitmask( CollisionCategory i_collisionCategory, CollisionCategory i_mask )
+{
+    return ( i_mask & i_collisionCategory ) > 0;
 }
 
 bool PhysicsSystem::OnContactBegin( cocos2d::PhysicsContact& i_contact )

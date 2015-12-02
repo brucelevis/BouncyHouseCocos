@@ -34,7 +34,7 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
         auto animation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
         animation->setLoops( -1 );
         auto animate = Animate::create( animation );
-        pRenderComponent->m_sprite->runAction( animate );
+        m_currentAnimation = pRenderComponent->m_sprite->runAction( animate );
     }
 }
 

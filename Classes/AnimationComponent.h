@@ -24,6 +24,8 @@ public:
     virtual ~AnimationComponent();
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    
+    cocos2d::Action* m_currentAnimation;
 };
 
 #endif /* AnimationComponent_hpp */
