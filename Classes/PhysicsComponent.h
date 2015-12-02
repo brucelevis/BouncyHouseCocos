@@ -18,6 +18,9 @@
 
 class PhysicsComponent : public Component
 {
+private:
+    cocos2d::PhysicsBody* m_physicsBody;
+    cocos2d::Node* m_node;
 public:
     static std::string s_componentType;
     
@@ -26,10 +29,12 @@ public:
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
+    cocos2d::Vec2 GetPosition();
+    bool SetPosition( cocos2d::Vec2 i_position );
     
-    cocos2d::PhysicsBody* m_physicsBody;
-    cocos2d::Node* m_node;
+    cocos2d::Vec2 GetVelocity();
     
+    void ApplyImpulse( cocos2d::Vec2 i_impulse );
 };
 
 #endif /* PhysicsComponent_hpp */

@@ -6,8 +6,9 @@
 //
 //
 
+#include "AnimationComponent.h"
 #include "ComponentSystem.h"
-#include "EntitySystem.h"
+#include "LocomotionComponent.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
 
@@ -16,6 +17,8 @@ ComponentMap ComponentSystem::m_componentTypes;
 
 void ComponentSystem::Init()
 {
+    ComponentRegister<AnimationComponent>( "AnimationComponent" );
+    ComponentRegister<LocomotionComponent>( "LocomotionComponent" );
     ComponentRegister<PhysicsComponent>( "PhysicsComponent" );
     ComponentRegister<RenderComponent>( "RenderComponent" );
 }

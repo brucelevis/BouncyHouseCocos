@@ -2,16 +2,23 @@
     "Name": "Player",
     "Components": {
         "RenderComponent": {
-            "Sprite": "Characters/Player/player.png",
-            "Width": 64,
-            "Height": 64
+            "SpriteSheet": "Characters/Player/Motions/PlayerMotions"
+        },
+        "AnimationComponent": {
+
+        },
+        "LocomotionComponent": {
+            "LocomotionMode": "RunLocomotionMode",
+            "RunSpeed": 400.0,
+            "WalkSpeed": 100.0
         },
         "PhysicsComponent": {
             "Density": 1.0,
             "Restitution": 0.0,
             "Friction": 0.0,
             "Dynamic": true,
-            "AnchorPoint": [ 0.5, 0.0 ]
+            "AnchorPoint": [ 0.5, 0.0 ],
+            "Size": [ 80.0, 83.0 ]
         }
     }
 }
