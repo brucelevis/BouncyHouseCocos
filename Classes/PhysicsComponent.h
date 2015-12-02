@@ -42,6 +42,8 @@ public:
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
+    cocos2d::Node* GetNode() { return m_node; };
+    
     cocos2d::Vec2 GetPosition();
     bool SetPosition( cocos2d::Vec2 i_position );
     

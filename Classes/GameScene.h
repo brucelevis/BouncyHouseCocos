@@ -20,6 +20,8 @@ public:
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     virtual void update( float i_dt ) override;
+    
+    bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
 };
 
 #endif /* GameScene_hpp */

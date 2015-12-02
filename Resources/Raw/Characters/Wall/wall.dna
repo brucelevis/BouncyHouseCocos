@@ -13,8 +13,8 @@
             "Size": [ 30.0, 1920.0 ],
 
             "Category": [ "Ground" ],
-            "Collision": [ "All" "],
-            "Contact": [ ]
+            "Collision": [ "All" ],
+            "Contact": [ "All" ]
         }
     }
 }

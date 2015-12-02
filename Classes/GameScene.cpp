@@ -57,6 +57,10 @@ bool GameScene::Start()
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
     
+    auto contactListener = cocos2d::EventListenerPhysicsContact::create();
+    contactListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );
+    this->_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+    
     return true;
 }
 
@@ -78,4 +82,9 @@ void GameScene::update( float i_dt )
     PhysicsSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
     RenderSystem::Update( i_dt );
+}
+
+bool GameScene::OnContactBegin( cocos2d::PhysicsContact& i_contact )
+{
+    return PhysicsSystem::OnContactBegin( i_contact );
 }

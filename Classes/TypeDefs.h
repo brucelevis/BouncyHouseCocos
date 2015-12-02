@@ -13,6 +13,7 @@
 
 typedef int EntityHandle;
 
+// TODO: Somehow we need to be defining these up in game, not in the engine
 enum CollisionCategory : uint32_t
 {
     None = 0,

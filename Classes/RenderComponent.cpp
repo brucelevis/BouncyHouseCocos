@@ -46,6 +46,7 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
         
         RenderSystem::m_activeScene->addChild( m_spriteBatchNode );
     }
+    m_sprite->setTag( i_entityHandle );
 }
 
 RenderComponent::~RenderComponent()

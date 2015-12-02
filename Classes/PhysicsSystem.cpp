@@ -82,3 +82,14 @@ CollisionCategory PhysicsSystem::GetCollisionCategory( std::string i_collisionCa
     
     return CollisionCategory::None;
 }
+
+bool PhysicsSystem::OnContactBegin( cocos2d::PhysicsContact& i_contact )
+{
+//    cocos2d::PhysicsBody* bodyA = i_contact.getShapeA()->getBody();
+//    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
+//    
+//    EntityHandle pEntityHandleA = bodyA->getNode()->getTag();
+//    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
+    
+    return true;
+}

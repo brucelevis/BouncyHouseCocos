@@ -26,6 +26,7 @@ public:
     static bool SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position );
     
     static CollisionCategory GetCollisionCategory( std::string i_collisionCategory );
+    static bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
     
     static std::map<std::string, CollisionCategory> m_collisionCategoryMap;
 };
