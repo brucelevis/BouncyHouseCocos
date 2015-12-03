@@ -23,7 +23,7 @@ USING_NS_CC;
 bool GameScene::Start()
 {
     this->getPhysicsWorld()->setGravity( Vec2( 0.0f, -1500.0f ) );
-    //this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    this->getPhysicsWorld()->setAutoStep( false );
     
     RenderSystem::m_activeScene = this;
     RenderSystem::m_activeScene->scheduleUpdate();
@@ -41,11 +41,8 @@ bool GameScene::Start()
     Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
     PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( 1920.0f, 0.0f ) );
     
-    for ( int i = 0; i < 10; i++ )
-    {
-        Entity* pEnemy = DNASequencer::CreateEntity( "Baked/Characters/Enemy/enemy.dna" );
-        PhysicsSystem::SetPosition( pEnemy->m_entityHandle, cocos2d::Vec2( 100, 500.0f ) );
-    }
+    Entity* pEnemy = DNASequencer::CreateEntity( "Baked/Characters/Enemy/enemy.dna" );
+    PhysicsSystem::SetPosition( pEnemy->m_entityHandle, cocos2d::Vec2( 500, 500.0f ) );
     
     
     auto eventListener = EventListenerKeyboard::create();
@@ -53,15 +50,46 @@ bool GameScene::Start()
         Vec2 loc = event->getCurrentTarget()->getPosition();
         switch(keyCode){
             case EventKeyboard::KeyCode::KEY_SPACE:
+            {
                 LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( pPlayer->m_entityHandle );
                 if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
                 {
                     pLocomotionComponent->m_locomotionMode->Jump();
                 }
                 break;
+            }
+            case EventKeyboard::KeyCode::KEY_P:
+            {
+                PhysicsSystem::m_debug = !PhysicsSystem::m_debug;
+                if ( PhysicsSystem::m_debug )
+                {
+                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+                }
+                else
+                {
+                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_NONE);
+                }
+                break;
+            }
+            case EventKeyboard::KeyCode::KEY_L:
+            {
+                LocomotionSystem::m_debug = !LocomotionSystem::m_debug;
+                break;
+            }
         }
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+    
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->onTouchBegan = touchListener->onTouchBegan = [pPlayer](Touch* touch, Event* event){
+        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( pPlayer->m_entityHandle );
+        if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
+        {
+            pLocomotionComponent->m_locomotionMode->Jump();
+        }
+        return true;
+    };
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
     
     auto contactListener = cocos2d::EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );

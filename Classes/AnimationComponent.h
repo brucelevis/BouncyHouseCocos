@@ -27,6 +27,7 @@ public:
     virtual ~AnimationComponent();
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    void Activate();
     
     void StartMotion( std::string i_motionName, float i_loops = 1 );
 };

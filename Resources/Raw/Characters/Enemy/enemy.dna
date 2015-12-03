@@ -22,7 +22,7 @@
         "GroundDetectComponent": {},
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
-            "RunSpeed": 200,
+            "RunSpeed": 100.0,
             "WalkSpeed": 100.0
         },
         "PhysicsComponent": {
@@ -31,8 +31,8 @@
             "Friction": 0.0,
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
-            "YOffset": -20.0,
-            "Size": [ 40, 40.0 ],
+            "YOffset": 0.0,
+            "Size": [ 40, 70.0 ],
 
             "Category": [ "Enemy" ],
             "Collision": [ "Solid", "Player" ],

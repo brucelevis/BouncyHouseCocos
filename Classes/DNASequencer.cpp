@@ -16,11 +16,13 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
 {
     Entity* pEntity = EntitySystem::CreateEntity();
     
-    std::ifstream f( i_dnaPath );
-    std::string content( (std::istreambuf_iterator<char>(f) ),
-                        (std::istreambuf_iterator<char>()    ) );
+    std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename( i_dnaPath );
+    ssize_t bufferSize = 0;
+    const char* pFileData = (const char*) cocos2d::FileUtils::getInstance()->getFileData( fullPath.c_str(), "r", &bufferSize );
+
     rapidjson::Document pDocument;
-    pDocument.Parse( content.c_str() );
+    pDocument.Parse<rapidjson::kParseStopWhenDoneFlag>( pFileData );
+    ASSERTS(!pDocument.HasParseError(), "DNA parse error!");
     
     
     pEntity->SetName( pDocument["Name"].GetString() );
@@ -35,6 +37,13 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         {
             EntitySystem::AttachComponent( pEntity->m_entityHandle, itr->name.GetString(), itr->value );
         }
+    }
+    
+    for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
+    {
+        printf( "  Activating component %s\n", it->first.c_str() );
+        
+        it->second->Activate();
     }
     
     

@@ -46,6 +46,7 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
         
         RenderSystem::m_activeScene->addChild( m_spriteBatchNode );
     }
+    SetFacing( RenderComponent::FacingDirection::LEFT );
     m_sprite->setTag( i_entityHandle );
 }
 
@@ -76,7 +77,7 @@ RenderComponent::FacingDirection RenderComponent::GetFacing()
 
 bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
 {
-    float pScaleX = 0.0f;
+    float pScaleX = 1.0f;
     switch ( i_facingDirection )
     {
         case FacingDirection::LEFT:
@@ -90,7 +91,13 @@ bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
     }
     if ( m_sprite )
     {
-        m_sprite->setScaleX( pScaleX );
+        if ( m_sprite->getScaleX() != pScaleX )
+        {
+#ifdef DEBUG_NAN
+            ASSERTS( !isnan( pScaleX ), "NaN entering RenderSystem!" );
+#endif
+            m_sprite->setScaleX( pScaleX );
+        }
         return true;
     }
     return false;

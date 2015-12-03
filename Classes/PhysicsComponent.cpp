@@ -22,6 +22,17 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
 {
     m_entityHandle = i_entityHandle;
     PhysicsSystem::RegisterComponent( this );
+//    m_node = NULL;
+//    m_physicsBody = NULL;
+    
+    m_width = 0.0f;
+    m_height = 0.0f;
+    m_density = 0.0f;
+    m_restitution = 0.0f;
+    m_friction = 0.0f;
+    m_category = CollisionCategory::None;
+    m_collision = CollisionCategory::None;
+    m_contact = CollisionCategory::None;
     
     if ( i_dnaObject.HasMember( "AnchorPoint" ) )
     {
@@ -42,11 +53,11 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     }
     if ( i_dnaObject.HasMember( "Restitution" ) )
     {
-        m_density = i_dnaObject["Restitution"].GetDouble();
+        m_restitution = i_dnaObject["Restitution"].GetDouble();
     }
     if ( i_dnaObject.HasMember( "Friction" ) )
     {
-        m_density = i_dnaObject["Friction"].GetDouble();
+        m_friction = i_dnaObject["Friction"].GetDouble();
     }
     if ( i_dnaObject.HasMember( "Dynamic" ) )
     {
@@ -64,9 +75,12 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     {
         m_contact = (CollisionCategory) DNASequencer::CreateCollisionCategory( i_dnaObject["Contact"] );
     }
-    
-    
+}
+
+void PhysicsComponent::Activate()
+{
     RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+    ASSERTS( pRenderComponent, "PhysicsComponent depends on RenderComponent!" );
     if ( pRenderComponent && pRenderComponent->m_sprite )
     {
         m_node = pRenderComponent->m_sprite;
@@ -116,6 +130,10 @@ bool PhysicsComponent::SetPosition( cocos2d::Vec2 i_position )
 {
     if ( m_node )
     {
+#ifdef DEBUG_NAN
+        ASSERTS( !isnan( i_position.x ), "NaN entering PhysicsSystem!" );
+        ASSERTS( !isnan( i_position.y ), "NaN entering PhysicsSystem!" );
+#endif
         m_node->setPosition( i_position );
         return true;
     }
@@ -138,6 +156,10 @@ void PhysicsComponent::ApplyImpulse( cocos2d::Vec2 i_impulse )
 {
     if ( m_physicsBody )
     {
+#ifdef DEBUG_NAN
+        ASSERTS( !isnan( i_impulse.x ), "NaN entering PhysicsSystem!" );
+        ASSERTS( !isnan( i_impulse.y ), "NaN entering PhysicsSystem!" );
+#endif
         m_physicsBody->applyImpulse( i_impulse );
     }
 }
@@ -166,4 +188,9 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
     RenderSystem::m_activeScene->getPhysicsWorld()->rayCast( pFunc, i_start, i_end, nullptr );
 
     return pHit;
+}
+
+bool PhysicsComponent::OnContactBegin( cocos2d::PhysicsContact& i_contact )
+{
+    
 }

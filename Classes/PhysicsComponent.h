@@ -42,6 +42,7 @@ public:
     virtual ~PhysicsComponent();
     
     void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    void Activate();
     
     cocos2d::Node* GetNode() { return m_node; };
     
@@ -60,6 +61,8 @@ public:
     
     void ApplyImpulse( cocos2d::Vec2 i_impulse );
     bool RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info );
+    
+    bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
 };
 
 #endif /* PhysicsComponent_hpp */

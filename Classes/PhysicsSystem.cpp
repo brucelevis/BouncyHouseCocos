@@ -38,6 +38,7 @@ void PhysicsSystem::Init()
 
 void PhysicsSystem::Update( float i_dt )
 {
+    RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
     for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;
@@ -95,11 +96,22 @@ bool PhysicsSystem::IsInBitmask( CollisionCategory i_collisionCategory, Collisio
 
 bool PhysicsSystem::OnContactBegin( cocos2d::PhysicsContact& i_contact )
 {
-//    cocos2d::PhysicsBody* bodyA = i_contact.getShapeA()->getBody();
-//    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
-//    
-//    EntityHandle pEntityHandleA = bodyA->getNode()->getTag();
-//    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
+    cocos2d::PhysicsBody* bodyA = i_contact.getShapeA()->getBody();
+    EntityHandle pEntityHandleA = bodyA->getNode()->getTag();
+    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleA );
+    if ( pPhysicsComponentA )
+    {
+        pPhysicsComponentA->OnContactBegin( i_contact );
+    }
+    
+    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
+    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
+    
+    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleB );
+    if ( pPhysicsComponentB )
+    {
+        pPhysicsComponentB->OnContactBegin( i_contact );
+    }
     
     return true;
 }

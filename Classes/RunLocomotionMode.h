@@ -16,6 +16,7 @@ class RunLocomotionMode : public LocomotionMode
 {
 private:
     float m_runDir;
+    bool m_diving;
 public:
     RunLocomotionMode() {};
     virtual ~RunLocomotionMode() {};

@@ -1,4 +1,5 @@
 import os
+import json
 
 for root, dirs, files in os.walk('Raw'):
     for filename in files:
@@ -20,6 +21,14 @@ for root, dirs, files in os.walk('Raw'):
             os.system('convert %s -background transparent -flatten %s' % (path, baked_path))
             print '  Converted %s' % path
 
-        if ext in ['.dna', '.png', '.plist']:
+        if ext in ['.png', '.plist']:
             os.system('cp %s %s' % (path, baked_path))
             print '  Copied %s' % path
+
+        if ext == '.dna':
+            contents = open(path).read()
+            data = json.loads(contents)
+            f = open(baked_path, 'w')
+            f.write(json.dumps(data))
+            f.close()
+            print '  Baked %s' % path

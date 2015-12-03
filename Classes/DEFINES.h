@@ -11,7 +11,7 @@
 
 #define DEBUG 1
 #ifdef DEBUG
-    #define DEBUG_COLLISON
+    #define DEBUG_NAN 1
 
     #include <cassert>
     #include <iostream>

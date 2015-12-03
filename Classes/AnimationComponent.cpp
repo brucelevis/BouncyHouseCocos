@@ -20,37 +20,36 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
     m_entityHandle = i_entityHandle;
     AnimationSystem::RegisterComponent( this );
     
-    RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
-    if ( pRenderComponent )
+    if ( i_dnaObject.HasMember( "Motions" ) )
     {
-        if ( i_dnaObject.HasMember( "Motions" ) )
+        for ( int i = 0; i < i_dnaObject["Motions"].Capacity(); i++ )
         {
-            for ( int i = 0; i < i_dnaObject["Motions"].Capacity(); i++ )
+            std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
+            std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
+            float pFrameCount = i_dnaObject["Motions"][i]["Frames"].GetDouble();
+            
+            Vector<SpriteFrame*> pFrames( pFrameCount );
+            for ( int i = 0; i < pFrameCount; i++ )
             {
-                std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
-                std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
-                float pFrameCount = i_dnaObject["Motions"][i]["Frames"].GetDouble();
-                
-                Vector<SpriteFrame*> pFrames( pFrameCount );
-                for ( int i = 0; i < pFrameCount; i++ )
-                {
-                    char pFrameName[100] = {0};
-                    sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
-                    pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
-                }
-                
-                Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
-                AnimationCache::getInstance()->addAnimation( pAnimation, pSpriteName );
-                
-                m_animationNames.insert( std::make_pair( pMotionName, pSpriteName ) );
+                char pFrameName[100] = {0};
+                sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
+                pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
             }
+            
+            Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
+            AnimationCache::getInstance()->addAnimation( pAnimation, pSpriteName );
+            
+            m_animationNames.insert( std::make_pair( pMotionName, pSpriteName ) );
         }
     }
-    
+}
+
+void AnimationComponent::Activate()
+{
     StartMotion( "Run", -1 );
 }
 
-AnimationComponent::~AnimationComponent()
+AnimationComponent::~AnimationComponent() 
 {
     AnimationSystem::UnregisterComponent( this );
 }

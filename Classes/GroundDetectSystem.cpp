@@ -41,12 +41,35 @@ void GroundDetectSystem::Update( float i_dt )
             PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
             if ( pPhysicsComponent )
             {
-                pPosition = pPhysicsComponent->GetPosition() + cocos2d::Vec2( 0.0f, 1.0f );
-                pEnd = pPosition + cocos2d::Vec2( 0.0f, -9.0f );
-                
                 cocos2d::PhysicsRayCastInfo pInfo;
-                pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );
-                pHitPoint = pInfo.contact;
+                
+                for ( int i = -1; i <= 1; i++ )
+                {
+                    float pOffset = (float) i * 0.25f * pPhysicsComponent->GetWidth();
+                    pPosition = pPhysicsComponent->GetPosition() + cocos2d::Vec2( pOffset, 1.0f );
+                    pEnd = pPosition + cocos2d::Vec2( 0.0f, -9.0f );
+                    
+                    pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );
+                    
+#ifdef DEBUG
+                    if ( m_debug )
+                    {
+                        cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
+                        pDrawNode->drawSegment( pPosition, pEnd, 1, cocos2d::Color4F::RED );
+                        if ( pHit )
+                        {
+                            pDrawNode->drawPoint( pHitPoint, 3.0f, cocos2d::Color4F::GREEN );
+                        }
+                        RenderSystem::DebugDraw( pDrawNode, 0.0001f );
+                    }
+#endif
+                    
+                    if ( pHit )
+                    {
+                        pHitPoint = pInfo.contact;
+                        break;
+                    }
+                }
             }
             
             if ( pHit != pComponent->GetOnGround() )
@@ -62,19 +85,6 @@ void GroundDetectSystem::Update( float i_dt )
                 }
             }
             pComponent->SetOnGround( pHit );
-
-#ifdef DEBUG
-            if ( m_debug )
-            {
-                cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
-                pDrawNode->drawSegment( pPosition, pEnd, 1, cocos2d::Color4F::RED );
-                if ( pHit )
-                {
-                    pDrawNode->drawPoint( pHitPoint, 3.0f, cocos2d::Color4F::GREEN );
-                }
-                RenderSystem::DebugDraw( pDrawNode, 0.0001f );
-            }
-#endif
         }
     }
 }

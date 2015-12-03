@@ -26,6 +26,7 @@ public:
     virtual ~Component() {};
     
     virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) {};
+    virtual void Activate() {};
 };
 
 #endif /* Component_hpp */
