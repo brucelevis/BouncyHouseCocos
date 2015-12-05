@@ -24,8 +24,11 @@ public:
     virtual void Init( EntityHandle i_entityHandle );
     
     virtual void MoveToPoint( cocos2d::Vec2 i_point, float i_speed );
-    virtual void Jump();
+    virtual void Jump( bool i_force = false );
     virtual void Update( float i_dt );
+
+    void OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_event );
+    void OnGroundChangedEvent( cocos2d::EventCustom* i_event );
 };
 
 #endif /* RunLocomotionMode_hpp */

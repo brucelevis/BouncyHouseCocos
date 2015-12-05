@@ -10,7 +10,8 @@
                 {
                     "Motion": "Run",
                     "Frames": 18,
-                    "Name": "Vik1_Run"
+                    "Name": "Vik1_Run",
+                    "MotionRate": 275.0
                 },
                 {
                     "Motion": "Jump",
@@ -22,7 +23,7 @@
         "GroundDetectComponent": {},
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
-            "RunSpeed": 100.0,
+            "RunSpeed": 150.0,
             "WalkSpeed": 100.0
         },
         "PhysicsComponent": {
@@ -32,9 +33,9 @@
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
             "YOffset": 0.0,
-            "Size": [ 40, 70.0 ],
+            "Size": [ 50, 70.0 ],
 
-            "Category": [ "Enemy" ],
+            "Category": [ "Enemy", "Bouncy" ],
             "Collision": [ "Solid", "Player" ],
             "Contact": [ "Solid", "Player" ]
         }

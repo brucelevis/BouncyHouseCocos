@@ -33,6 +33,7 @@ void PhysicsSystem::Init()
     m_collisionCategoryMap.insert( std::make_pair( "Solid", CollisionCategory::Solid ) );
     m_collisionCategoryMap.insert( std::make_pair( "Player", CollisionCategory::Player ) );
     m_collisionCategoryMap.insert( std::make_pair( "Enemy", CollisionCategory::Enemy ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Bouncy", CollisionCategory::Bouncy ) );
     m_collisionCategoryMap.insert( std::make_pair( "All", CollisionCategory::All ) );
 }
 
@@ -98,19 +99,41 @@ bool PhysicsSystem::OnContactBegin( cocos2d::PhysicsContact& i_contact )
 {
     cocos2d::PhysicsBody* bodyA = i_contact.getShapeA()->getBody();
     EntityHandle pEntityHandleA = bodyA->getNode()->getTag();
+    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
+    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
+    
     PhysicsComponent* pPhysicsComponentA = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleA );
     if ( pPhysicsComponentA )
     {
-        pPhysicsComponentA->OnContactBegin( i_contact );
+        pPhysicsComponentA->OnContactBegin( PhysicsContactInfo( pEntityHandleA, pEntityHandleB, i_contact.getShapeA(), i_contact.getShapeB(), i_contact.getContactData()->normal ) );
     }
-    
-    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
-    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
     
     PhysicsComponent* pPhysicsComponentB = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleB );
     if ( pPhysicsComponentB )
     {
-        pPhysicsComponentB->OnContactBegin( i_contact );
+        pPhysicsComponentB->OnContactBegin( PhysicsContactInfo( pEntityHandleB, pEntityHandleA, i_contact.getShapeB(), i_contact.getShapeA(), i_contact.getContactData()->normal * -1.0f ) );
+    }
+    
+    return true;
+}
+
+bool PhysicsSystem::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
+{
+    cocos2d::PhysicsBody* bodyA = i_contact.getShapeA()->getBody();
+    EntityHandle pEntityHandleA = bodyA->getNode()->getTag();
+    cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
+    EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
+    
+    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleA );
+    if ( pPhysicsComponentA )
+    {
+        pPhysicsComponentA->OnContactPostSolve( PhysicsContactInfo( pEntityHandleA, pEntityHandleB, i_contact.getShapeA(), i_contact.getShapeB(), i_contact.getContactData()->normal ) );
+    }
+    
+    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleB );
+    if ( pPhysicsComponentB )
+    {
+        pPhysicsComponentB->OnContactPostSolve( PhysicsContactInfo( pEntityHandleB, pEntityHandleA, i_contact.getShapeB(), i_contact.getShapeA(), i_contact.getContactData()->normal * -1.0f ) );
     }
     
     return true;

@@ -10,7 +10,7 @@
 #include "RenderSystem.h"
 
 std::map<EntityHandle, Component*> RenderSystem::m_components;
-cocos2d::Scene* RenderSystem::m_activeScene;
+GameScene* RenderSystem::m_activeScene;
 
 void RenderSystem::RegisterComponent( Component* i_component )
 {
@@ -34,6 +34,17 @@ void RenderSystem::DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration )
 {
     i_drawNode->runAction( cocos2d::Sequence::create( cocos2d::DelayTime::create( i_duration ), cocos2d::RemoveSelf::create(), nullptr ) );
     RenderSystem::m_activeScene->addChild( i_drawNode );
+}
+
+void RenderSystem::DebugText( std::string i_text, cocos2d::Vec2 i_position, float i_duration, cocos2d::Color4F i_color, int i_fontSize )
+{
+    cocos2d::Label* pLabel = cocos2d::Label::createWithSystemFont( i_text, "Helvetica", i_fontSize );
+    pLabel->setPosition( i_position );
+    pLabel->setColor( cocos2d::Color3B( i_color ) );
+    pLabel->setAlignment( cocos2d::TextHAlignment:: CENTER );
+    pLabel->runAction( cocos2d::Sequence::create( cocos2d::DelayTime::create( i_duration ), cocos2d::RemoveSelf::create(), nullptr ) );
+    
+    m_activeScene->addChild( pLabel, 1000 );
 }
 
 void RenderSystem::DebugUpdate( float i_dt )

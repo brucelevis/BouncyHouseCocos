@@ -12,10 +12,12 @@
 #include "EntitySystem.h"
 #include "GameScene.h"
 #include "GroundDetectSystem.h"
+#include "Level.h"
+#include "LevelSystem.h"
+#include "LocomotionComponent.h"
 #include "LocomotionSystem.h"
 #include "PhysicsSystem.h"
 #include "RenderSystem.h"
-#include "LocomotionComponent.h"
 
 USING_NS_CC;
 
@@ -31,27 +33,15 @@ bool GameScene::Start()
     LocomotionSystem::Init();
     PhysicsSystem::Init();
     
-    Entity* pPlayer = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
-    PhysicsSystem::SetPosition( pPlayer->m_entityHandle, cocos2d::Vec2( 100, 500.0f ) );
-    Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
-    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( 960.0f, 0.0f ) );
-    
-    Entity* pLeftWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 0.0f, 0.0f ) );
-    Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( 1920.0f, 0.0f ) );
-    
-    Entity* pEnemy = DNASequencer::CreateEntity( "Baked/Characters/Enemy/enemy.dna" );
-    PhysicsSystem::SetPosition( pEnemy->m_entityHandle, cocos2d::Vec2( 500, 500.0f ) );
-    
-    
+    LevelSystem::m_level = new Level();
+
     auto eventListener = EventListenerKeyboard::create();
-    eventListener->onKeyPressed = [pPlayer](EventKeyboard::KeyCode keyCode, Event* event){
+    eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event){
         Vec2 loc = event->getCurrentTarget()->getPosition();
         switch(keyCode){
             case EventKeyboard::KeyCode::KEY_SPACE:
             {
-                LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( pPlayer->m_entityHandle );
+                LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
                 if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
                 {
                     pLocomotionComponent->m_locomotionMode->Jump();
@@ -76,13 +66,31 @@ bool GameScene::Start()
                 LocomotionSystem::m_debug = !LocomotionSystem::m_debug;
                 break;
             }
+            case EventKeyboard::KeyCode::KEY_A:
+            {
+                AnimationSystem::m_debug = !AnimationSystem::m_debug;
+                break;
+            }
+            case EventKeyboard::KeyCode::KEY_S:
+            {
+                RenderSystem::m_activeScene->m_slowMotion = !RenderSystem::m_activeScene->m_slowMotion;
+                if ( RenderSystem::m_activeScene->m_slowMotion )
+                {
+                    Director::getInstance()->getScheduler()->setTimeScale( 0.25f);
+                }
+                else
+                {
+                    Director::getInstance()->getScheduler()->setTimeScale( 1.0f);
+                }
+                break;
+            }
         }
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
     
     auto touchListener = EventListenerTouchOneByOne::create();
-    touchListener->onTouchBegan = touchListener->onTouchBegan = [pPlayer](Touch* touch, Event* event){
-        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( pPlayer->m_entityHandle );
+    touchListener->onTouchBegan = touchListener->onTouchBegan = [](Touch* touch, Event* event){
+        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
         if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
         {
             pLocomotionComponent->m_locomotionMode->Jump();
@@ -91,9 +99,13 @@ bool GameScene::Start()
     };
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
     
-    auto contactListener = cocos2d::EventListenerPhysicsContact::create();
-    contactListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );
-    this->_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+    auto contactBeginListener = cocos2d::EventListenerPhysicsContact::create();
+    contactBeginListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );
+    this->_eventDispatcher->addEventListenerWithSceneGraphPriority( contactBeginListener, this );
+    
+    auto contactPostSolveListener = cocos2d::EventListenerPhysicsContact::create();
+    contactPostSolveListener->onContactPostSolve = CC_CALLBACK_1( GameScene::OnContactPostSolve, this );
+    this->_eventDispatcher->addEventListenerWithSceneGraphPriority( contactPostSolveListener, this );
     
     return true;
 }
@@ -110,6 +122,8 @@ void GameScene::menuCloseCallback(Ref* pSender)
 
 void GameScene::update( float i_dt )
 {
+    LevelSystem::Update( i_dt );
+    
     GroundDetectSystem::Update( i_dt );
     AnimationSystem::Update( i_dt );
     LocomotionSystem::Update( i_dt );
@@ -121,4 +135,9 @@ void GameScene::update( float i_dt )
 bool GameScene::OnContactBegin( cocos2d::PhysicsContact& i_contact )
 {
     return PhysicsSystem::OnContactBegin( i_contact );
+}
+
+bool GameScene::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
+{
+    return PhysicsSystem::OnContactPostSolve( i_contact );
 }

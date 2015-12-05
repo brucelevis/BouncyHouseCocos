@@ -63,11 +63,11 @@ RenderComponent::FacingDirection RenderComponent::GetFacing()
     if ( m_sprite )
     {
         float pScaleX = m_sprite->getScaleX();
-        if ( pScaleX == -1.0f )
+        if ( pScaleX > 0.0f )
         {
             return FacingDirection::LEFT;
         }
-        else if ( pScaleX == 1.0f )
+        else if ( pScaleX < 0.0f )
         {
             return FacingDirection::RIGHT;
         }
@@ -77,14 +77,14 @@ RenderComponent::FacingDirection RenderComponent::GetFacing()
 
 bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
 {
-    float pScaleX = 1.0f;
+    float pScaleX = m_sprite->getScaleX();
     switch ( i_facingDirection )
     {
         case FacingDirection::LEFT:
-            pScaleX = 1.0f;
+            pScaleX = 1.0f * fabs( pScaleX );
             break;
         case FacingDirection::RIGHT:
-            pScaleX = -1.0f;
+            pScaleX = -1.0f * fabs( pScaleX );
             break;
         default:
             break;

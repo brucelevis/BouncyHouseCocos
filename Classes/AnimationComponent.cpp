@@ -9,6 +9,7 @@
 #include "AnimationComponent.h"
 #include "AnimationSystem.h"
 #include "EntitySystem.h"
+#include "PhysicsComponent.h"
 #include "RenderComponent.h"
 
 using namespace cocos2d;
@@ -27,6 +28,11 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
             std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
             std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
             float pFrameCount = i_dnaObject["Motions"][i]["Frames"].GetDouble();
+            float pMotionRate = -1.0f;
+            if ( i_dnaObject["Motions"][i].HasMember("MotionRate") )
+            {
+                pMotionRate = i_dnaObject["Motions"][i]["MotionRate"].GetDouble();
+            }
             
             Vector<SpriteFrame*> pFrames( pFrameCount );
             for ( int i = 0; i < pFrameCount; i++ )
@@ -39,7 +45,9 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
             Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
             AnimationCache::getInstance()->addAnimation( pAnimation, pSpriteName );
             
-            m_animationNames.insert( std::make_pair( pMotionName, pSpriteName ) );
+            MotionInfo pMotionInfo = MotionInfo( pSpriteName, pMotionRate );
+            
+            m_motions.insert( std::make_pair( pMotionName, pMotionInfo ) );
         }
     }
 }
@@ -56,26 +64,56 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::StartMotion( std::string i_motionName, float i_loops )
 {
-    std::string pAnimationName = m_animationNames.at( i_motionName );
-    Animation* pAnimation = AnimationCache::getInstance()->getAnimation( pAnimationName );
+    MotionInfo pMotionInfo = m_motions.at( i_motionName );
+    Animation* pAnimation = AnimationCache::getInstance()->getAnimation( pMotionInfo.m_animationName );
     if ( pAnimation )
     {
         pAnimation->setLoops( i_loops );
-        Animate* pAnimate = Animate::create( pAnimation );
-        pAnimate->setTag( ActionTag::AnimationAction );
+        Action* pAction;
+        if ( pMotionInfo.m_motionRate > 0.0f )
+        {
+            Animate* pAnimate = Animate::create( pAnimation );
+            pAction = Speed::create( pAnimate, 1.0f );
+        }
+        else
+        {
+            pAction = Animate::create( pAnimation );
+        }
+        pAction->setTag( ActionTag::AnimationAction );
         
         RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
         if ( pRenderComponent )
         {
             Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
-            if ( strcmp( i_motionName.c_str(), m_currentMotion.c_str() ) != 0 || !pCurrentAnimation || pCurrentAnimation->isDone() )
+            if ( strcmp( i_motionName.c_str(), m_currentMotionName.c_str() ) != 0 || !pCurrentAnimation || pCurrentAnimation->isDone() )
             {
                 if ( pCurrentAnimation && !pCurrentAnimation->isDone() )
                 {
                     pRenderComponent->m_sprite->stopAction( pCurrentAnimation );
                 }
-                pRenderComponent->m_sprite->runAction( pAnimate );
-                m_currentMotion = i_motionName;
+                pRenderComponent->m_sprite->runAction( pAction );
+                m_currentMotionName = i_motionName;
+            }
+        }
+    }
+}
+
+void AnimationComponent::SyncMotionRate()
+{
+    RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+    if ( pRenderComponent )
+    {
+        Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
+        Speed* pSpeedAction = dynamic_cast<Speed*>( pCurrentAnimation );
+        if ( pCurrentAnimation && pSpeedAction )
+        {
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+            if ( pPhysicsComponent )
+            {
+                float pMovementRate = fabs( pPhysicsComponent->GetVelocity().x );
+                float pMotionRate = m_motions.at( m_currentMotionName ).m_motionRate;
+                float pAdjustedRate = pMovementRate / pMotionRate;
+                pSpeedAction->setSpeed( pAdjustedRate );
             }
         }
     }

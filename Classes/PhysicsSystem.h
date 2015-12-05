@@ -28,10 +28,23 @@ public:
     static CollisionCategory GetCollisionCategory( std::string i_collisionCategory );
     static bool IsInBitmask( CollisionCategory i_collisionCategory, CollisionCategory i_mask );
     static bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
+    static bool OnContactPostSolve( cocos2d::PhysicsContact& i_contact );
     
     static std::map<std::string, CollisionCategory> m_collisionCategoryMap;
     
     static bool m_debug;
+};
+
+struct PhysicsContactInfo
+{
+    EntityHandle m_entityHandle;
+    EntityHandle m_otherEntityHandle;
+    cocos2d::PhysicsShape* m_shape;
+    cocos2d::PhysicsShape* m_otherShape;
+    cocos2d::Vec2 m_normal;
+    
+    PhysicsContactInfo( EntityHandle i_entityHandle, EntityHandle i_otherEntityHandle, cocos2d::PhysicsShape* i_shape, cocos2d::PhysicsShape* i_otherShape, const cocos2d::Vec2 i_normal )
+        : m_entityHandle( i_entityHandle ), m_otherEntityHandle( i_otherEntityHandle ), m_shape( i_shape ), m_otherShape( i_otherShape ), m_normal( i_normal ) { };
 };
 
 #endif /* PhysicsSystem_hpp */

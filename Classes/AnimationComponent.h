@@ -18,8 +18,8 @@
 class AnimationComponent : public Component
 {
 private:
-    std::map<std::string, std::string> m_animationNames;
-    std::string m_currentMotion;
+    std::map<std::string, MotionInfo> m_motions;
+    std::string m_currentMotionName;
 public:
     static std::string s_componentType;
     
@@ -30,6 +30,10 @@ public:
     void Activate();
     
     void StartMotion( std::string i_motionName, float i_loops = 1 );
+    void SyncMotionRate();
+    
+    MotionInfo GetCurrentMotion() { return m_motions.at( m_currentMotionName ); };
+    std::string GetCurrentMotionName() { return m_currentMotionName; };
 };
 
 #endif /* AnimationComponent_hpp */

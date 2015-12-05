@@ -20,12 +20,30 @@ enum CollisionCategory : uint32_t
     Solid = (1 << 0),
     Player = (1 << 1),
     Enemy = (1 << 2),
+    Bouncy = (1 << 3),
     All = INT_MAX
 };
 
 enum ActionTag : int
 {
     AnimationAction
+};
+
+enum JumpState
+{
+    NOT_JUMPING,
+    JUMPING,
+    FALLING
+};
+
+class MotionInfo
+{
+public:
+    std::string m_animationName;
+    float m_motionRate;
+    
+    MotionInfo( std::string i_animationName, float i_motionRate )
+    : m_animationName( i_animationName ), m_motionRate( i_motionRate ) { };
 };
 
 

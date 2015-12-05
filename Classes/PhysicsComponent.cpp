@@ -140,6 +140,20 @@ bool PhysicsComponent::SetPosition( cocos2d::Vec2 i_position )
     return false;
 }
 
+bool PhysicsComponent::SetVelocity( cocos2d::Vec2 i_velocity )
+{
+    if ( m_node )
+    {
+#ifdef DEBUG_NAN
+        ASSERTS( !isnan( i_velocity.x ), "NaN entering PhysicsSystem!" );
+        ASSERTS( !isnan( i_velocity.y ), "NaN entering PhysicsSystem!" );
+#endif
+        m_physicsBody->setVelocity( i_velocity );
+        return true;
+    }
+    return false;
+}
+
 cocos2d::Vec2 PhysicsComponent::GetVelocity()
 {
     if ( m_physicsBody )
@@ -190,7 +204,20 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
     return pHit;
 }
 
-bool PhysicsComponent::OnContactBegin( cocos2d::PhysicsContact& i_contact )
+bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )
 {
+    EventCustom event( "PhysicsContactBegin" );
+    event.setUserData( &i_contact );
+    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
     
+    return true;
+}
+
+bool PhysicsComponent::OnContactPostSolve( PhysicsContactInfo i_contact )
+{
+    EventCustom event( "PhysicsContactPostSolve" );
+    event.setUserData( &i_contact );
+    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+    
+    return true;
 }

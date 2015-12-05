@@ -18,7 +18,7 @@ void LocomotionMode::MoveToPoint( cocos2d::Vec2 i_point, float i_speed )
     
 }
 
-void LocomotionMode::Jump()
+void LocomotionMode::Jump( bool i_force )
 {
     
 }

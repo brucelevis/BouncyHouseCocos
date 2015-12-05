@@ -16,6 +16,7 @@
 
 #include "Component.h"
 #include "DEFINES.h"
+#include "GameScene.h"
 #include "System.h"
 
 class RenderSystem : public System
@@ -27,10 +28,11 @@ public:
     static void RegisterComponent( Component* i_component );
     static void UnregisterComponent( Component* i_component );
     
-    static cocos2d::Scene* m_activeScene;
+    static GameScene* m_activeScene;
     
 #ifdef DEBUG
     static void DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration );
+    static void DebugText( std::string i_text, cocos2d::Vec2 i_position, float i_duration, cocos2d::Color4F i_color = cocos2d::Color4F::WHITE, int i_fontSize = 14 );
     static void DebugUpdate( float i_dt );
 #endif
 };

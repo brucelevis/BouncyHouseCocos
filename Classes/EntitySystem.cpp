@@ -54,6 +54,10 @@ void EntitySystem::RemoveEntity( EntityHandle i_entityHandle )
     
     if ( pEntity )
     {
+        cocos2d::EventCustom event( "RemovingEntity" );
+        event.setUserData( &i_entityHandle );
+        RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+        
         for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
         {
             Component* pComponent = it->second;

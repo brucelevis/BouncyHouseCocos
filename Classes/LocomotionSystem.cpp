@@ -11,6 +11,7 @@
 #include "LocomotionSystem.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
+#include "RenderSystem.h"
 #include "RunLocomotionMode.h"
 
 std::map<EntityHandle, Component*> LocomotionSystem::m_components;
@@ -43,7 +44,34 @@ void LocomotionSystem::Update( float i_dt )
             if ( pComponent->m_locomotionMode )
             {
                 pComponent->m_locomotionMode->Update( i_dt );
-            }          
+            }
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
+            if ( pPhysicsComponent )
+            {
+                float yVel = pPhysicsComponent->GetVelocity().y;
+                JumpState pJumpState;
+                if ( yVel > 0.5f )
+                {
+                    pJumpState = JumpState::JUMPING;
+                }
+                else if ( yVel < 0.5f )
+                {
+                    pJumpState = JumpState::FALLING;
+                }
+                else if ( yVel == 0.0f )
+                {
+                    pJumpState = JumpState::NOT_JUMPING;
+                }
+                
+                if ( pJumpState == JumpState::FALLING && pComponent->m_jumpState == JumpState::JUMPING )
+                {
+                    cocos2d::EventCustom event( "VelocityApexReached" );
+                    event.setUserData( &pComponent->m_entityHandle );
+                    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+                }
+                
+                pComponent->m_jumpState = pJumpState;
+            }
         }
     }
 }

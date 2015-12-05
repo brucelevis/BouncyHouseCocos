@@ -45,9 +45,9 @@ void GroundDetectSystem::Update( float i_dt )
                 
                 for ( int i = -1; i <= 1; i++ )
                 {
-                    float pOffset = (float) i * 0.25f * pPhysicsComponent->GetWidth();
+                    float pOffset = (float) i * 0.25f * pPhysicsComponent->GetWidth() * fabs( pPhysicsComponent->GetNode()->getScaleX() );
                     pPosition = pPhysicsComponent->GetPosition() + cocos2d::Vec2( pOffset, 1.0f );
-                    pEnd = pPosition + cocos2d::Vec2( 0.0f, -9.0f );
+                    pEnd = pPosition + cocos2d::Vec2( 0.0f, -14.0f * pPhysicsComponent->GetNode()->getScaleY() );
                     
                     pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );
                     
@@ -72,19 +72,18 @@ void GroundDetectSystem::Update( float i_dt )
                 }
             }
             
-            if ( pHit != pComponent->GetOnGround() )
+            bool pOldOnGround = pComponent->GetOnGround();
+            pComponent->SetOnGround( pHit );
+            if ( pHit != pOldOnGround )
             {
-                // OnGroundChange
+                // OnGroundChanged
                 if ( pHit )
                 {
-                    AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( pComponent->m_entityHandle );
-                    if ( pAnimationComponent )
-                    {
-                        pAnimationComponent->StartMotion( "Run", -1 );
-                    }
+                    cocos2d::EventCustom event( "GroundChanged" );
+                    event.setUserData( &pComponent->m_entityHandle );
+                    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
                 }
             }
-            pComponent->SetOnGround( pHit );
         }
     }
 }
