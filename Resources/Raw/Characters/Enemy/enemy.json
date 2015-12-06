@@ -2,25 +2,43 @@
     "Name": "Enemy",
     "Components": {
         "RenderComponent": {
-            "SpriteSheet": "Characters/Player/Motions/PlayerMotions"
+            "SpriteSheet": "Characters/Player/Motions/PlayerMotions",
+            "FacingLeft": true
         },
         "AnimationComponent": {
             "Motions":
             [
                 {
                     "Motion": "Run",
-                    "Frames": 18,
+                    "StartFrame": 0,
+                    "EndFrame": 17,
                     "Name": "Vik1_Run",
                     "MotionRate": 275.0
                 },
                 {
                     "Motion": "Jump",
-                    "Frames": 21,
+                    "StartFrame": 0,
+                    "EndFrame": 20,
                     "Name": "Vik1_Jump"
+                },
+                {
+                    "Motion": "Dive",
+                    "StartFrame": 18,
+                    "EndFrame": 20,
+                    "Name": "Vik1_Jump"
+                },
+                {
+                    "Motion": "Smash",
+                    "StartFrame": 2,
+                    "EndFrame": 3,
+                    "Name": "Vik1_Smash"
                 }
             ]
         },
         "GroundDetectComponent": {},
+        "HealthComponent": {
+            "MaxHealth": 10.0
+        },
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
             "RunSpeed": 150.0,

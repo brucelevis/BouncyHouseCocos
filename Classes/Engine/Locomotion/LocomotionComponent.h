@@ -19,13 +19,16 @@ class LocomotionComponent : public Component
 {
     float m_runSpeed;
     float m_walkSpeed;
+    std::string m_locomotionModeName;
 public:
     static std::string s_componentType;
     
     LocomotionComponent() {};
-    virtual ~LocomotionComponent();
+    virtual ~LocomotionComponent() override;
     
-    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
+    virtual void OnActivate() override;
+    virtual void OnDeactivate() override;
     
     float GetRunSpeed() { return m_runSpeed; };
     void SetRunSpeed( float i_runSpeed ) { m_runSpeed = i_runSpeed; };

@@ -25,8 +25,9 @@ for root, dirs, files in os.walk('Raw'):
             print '  Copying %s' % path
             os.system('cp %s %s' % (path, baked_path))
 
-        if ext == '.dna':
+        if ext == '.json':
             print '  Baking %s' % path
+            baked_path = baked_path.replace(ext, '.dna')
             contents = open(path).read()
             data = json.loads(contents)
             f = open(baked_path, 'w')

@@ -22,7 +22,7 @@ public:
     virtual void Init( EntityHandle i_entityHandle );
     
     virtual void MoveToPoint( cocos2d::Vec2 i_point, float i_speed );
-    virtual void Jump( bool i_force = false );
+    virtual void Jump( bool i_force = false, bool i_playAnim = true );
     virtual void Update( float i_dt );
     
     EntityHandle m_entityHandle;

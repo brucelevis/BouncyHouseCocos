@@ -7,7 +7,7 @@
         "PhysicsComponent": {
             "Density": 1000.0,
             "Restitution": 0.1,
-            "Friction": 0.0,
+            "Friction": 1.0,
             "Dynamic": false,
             "AnchorPoint": [ 0.5, 0.0 ],
             "Size": [ 1920.0, 30.0 ],

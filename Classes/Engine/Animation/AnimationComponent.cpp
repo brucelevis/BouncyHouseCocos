@@ -27,7 +27,9 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
         {
             std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
             std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
-            float pFrameCount = i_dnaObject["Motions"][i]["Frames"].GetDouble();
+            int pStartFrame = i_dnaObject["Motions"][i]["StartFrame"].GetInt();
+            int pEndFrame = i_dnaObject["Motions"][i]["EndFrame"].GetInt();
+            int pFrameCount = pEndFrame - pStartFrame + 1;
             float pMotionRate = -1.0f;
             if ( i_dnaObject["Motions"][i].HasMember("MotionRate") )
             {
@@ -35,34 +37,37 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
             }
             
             Vector<SpriteFrame*> pFrames( pFrameCount );
-            for ( int i = 0; i < pFrameCount; i++ )
+            for ( int i = pStartFrame; i <= pEndFrame; i++ )
             {
                 char pFrameName[100] = {0};
                 sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
                 pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
             }
             
+            char pChar[200];
+            sprintf( pChar, "%s_%s", pMotionName.c_str(), pSpriteName.c_str() );
+            std::string pAnimationName = std::string( pChar );
             Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
-            AnimationCache::getInstance()->addAnimation( pAnimation, pSpriteName );
+            AnimationCache::getInstance()->addAnimation( pAnimation, pAnimationName );
             
-            MotionInfo pMotionInfo = MotionInfo( pSpriteName, pMotionRate );
+            MotionInfo pMotionInfo = MotionInfo( pAnimationName, pMotionRate );
             
             m_motions.insert( std::make_pair( pMotionName, pMotionInfo ) );
         }
     }
 }
 
-void AnimationComponent::Activate()
-{
-    StartMotion( "Run", -1 );
-}
-
-AnimationComponent::~AnimationComponent() 
+AnimationComponent::~AnimationComponent()
 {
     AnimationSystem::UnregisterComponent( this );
 }
 
-void AnimationComponent::StartMotion( std::string i_motionName, float i_loops )
+void AnimationComponent::OnActivate()
+{
+    StartMotion( "Run", -1 );
+}
+
+void AnimationComponent::StartMotion( std::string i_motionName, float i_loops, cocos2d::Action* i_nextAction )
 {
     MotionInfo pMotionInfo = m_motions.at( i_motionName );
     Animation* pAnimation = AnimationCache::getInstance()->getAnimation( pMotionInfo.m_animationName );
@@ -80,6 +85,11 @@ void AnimationComponent::StartMotion( std::string i_motionName, float i_loops )
             pAction = Animate::create( pAnimation );
         }
         pAction->setTag( ActionTag::AnimationAction );
+        
+        if ( i_nextAction )
+        {
+            pAction = Sequence::create( (FiniteTimeAction*) pAction, i_nextAction, NULL);
+        }
         
         RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
         if ( pRenderComponent )

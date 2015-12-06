@@ -9,6 +9,7 @@
 #include "../../../Engine/Animation/AnimationComponent.h"
 #include "../../../Engine/Entity/EntitySystem.h"
 #include "../../../Engine/GroundDetect/GroundDetectComponent.h"
+#include "../../../Engine/Health/HealthComponent.h"
 #include "../../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../../Engine/Locomotion/LocomotionSystem.h"
 #include "../../../Engine/Physics/PhysicsComponent.h"
@@ -34,7 +35,7 @@ void RunLocomotionMode::MoveToPoint( cocos2d::Vec2 i_point, float i_speed )
     
 }
 
-void RunLocomotionMode::Jump( bool i_force )
+void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
 {
     bool pOnGround = false;
     GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetComponent<GroundDetectComponent>( m_entityHandle );
@@ -55,20 +56,26 @@ void RunLocomotionMode::Jump( bool i_force )
             cocos2d::Vec2 pVelocity = pPhysicsComponent->GetVelocity();
             pVelocity.y = 0.0f;
             pPhysicsComponent->SetVelocity( pVelocity );
-            pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, 7000.0f ) );
+            pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
             m_diving = false;
+            
+            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+            if ( pAnimationComponent && i_playAnim )
+            {
+                pAnimationComponent->StartMotion( "Jump" );
+            }
         }
         else
         {
-            pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, -14000.0f ) );
+            pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY * -2.0f ) );
             m_diving = true;
+            
+            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+            if ( pAnimationComponent && i_playAnim )
+            {
+                pAnimationComponent->StartMotion( "Dive" );
+            }
         }
-    }
-    
-    AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
-    if ( pAnimationComponent )
-    {
-        pAnimationComponent->StartMotion( "Jump" );
     }
 }
 
@@ -148,8 +155,19 @@ void RunLocomotionMode::Update( float i_dt )
             }
         }
     
+        float pImpulseAmount;
         cocos2d::Vec2 pVelocity = pPhysicsComponent->GetVelocity();
-        float pImpulseAmount = ( pRunSpeed - fabs( pVelocity.x ) ) * m_runDir;
+        float pCurrentDir = pVelocity.x > 0.0f ? 1.0f : -1.0f;
+        if ( pCurrentDir == m_runDir )
+        {
+            float pCurrentSpeed = fabs( pVelocity.x ) <= pRunSpeed ? fabs( pVelocity.x ) : pRunSpeed;
+            pImpulseAmount = ( pRunSpeed - pCurrentSpeed ) * m_runDir;
+        }
+        else
+        {
+            pImpulseAmount = pRunSpeed * m_runDir;
+        }
+        ASSERTS( fabs( pImpulseAmount ) <= pRunSpeed, "Impulse is too fast!" );
         cocos2d::Vec2 pImpulse = cocos2d::Vec2( pImpulseAmount, 0.0f );
         pPhysicsComponent->ApplyImpulse( pImpulse );
     }
@@ -181,8 +199,19 @@ void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
                     {
                         if ( pLocomotionComponent->m_jumpState != JumpState::JUMPING )
                         {
-                            Jump( true );
-                            EntitySystem::MarkForDelete( pPhysicsContactInfo->m_otherEntityHandle );
+                            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+                            if ( pAnimationComponent )
+                            {
+                                auto pCallback = cocos2d::CallFunc::create( CC_CALLBACK_0( RunLocomotionMode::AfterSmash, this ) );
+                                pAnimationComponent->StartMotion( "Smash", 1, pCallback );
+                            }
+
+                            Jump( true, false );
+                            HealthComponent* pOtherHealthComponent = EntitySystem::GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
+                            if ( pOtherHealthComponent )
+                            {
+                                pOtherHealthComponent->ChangeHealth( -100.0f );
+                            }
                         }
                     }
                 }
@@ -208,5 +237,14 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
                 }
             }
         }
+    }
+}
+
+void RunLocomotionMode::AfterSmash()
+{
+    AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+    if ( pAnimationComponent )
+    {
+        pAnimationComponent->StartMotion( "Jump" );
     }
 }

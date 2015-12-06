@@ -231,6 +231,10 @@
             <filename>Vik1_Run_15.png</filename>
             <filename>Vik1_Run_16.png</filename>
             <filename>Vik1_Run_17.png</filename>
+            <filename>Vik1_Smash_00.png</filename>
+            <filename>Vik1_Smash_01.png</filename>
+            <filename>Vik1_Smash_02.png</filename>
+            <filename>Vik1_Smash_03.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

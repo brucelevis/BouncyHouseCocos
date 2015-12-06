@@ -9,6 +9,13 @@
 #ifndef DEFINES_hpp
 #define DEFINES_hpp
 
+#define GRAVITY -1500.0f
+#define JUMP_VELOCITY 7000.0f
+
+
+
+
+
 #define DEBUG 1
 #ifdef DEBUG
     #define DEBUG_NAN 1

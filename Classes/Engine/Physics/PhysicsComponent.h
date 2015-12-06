@@ -40,10 +40,11 @@ public:
     static std::string s_componentType;
     
     PhysicsComponent() {};
-    virtual ~PhysicsComponent();
+    virtual ~PhysicsComponent() override;
     
-    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
-    void Activate();
+    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
+    virtual void OnActivate() override;
+    
     
     cocos2d::Node* GetNode() { return m_node; };
     cocos2d::PhysicsBody* GetPhysicsBody() { return m_physicsBody; };

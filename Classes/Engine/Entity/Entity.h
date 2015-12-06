@@ -19,6 +19,8 @@ class Entity
 {
     std::string m_name;
 public:
+    ~Entity();
+    
     EntityHandle m_entityHandle;
     std::map<std::string, Component*> m_components;
     

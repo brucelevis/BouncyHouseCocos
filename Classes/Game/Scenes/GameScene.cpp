@@ -12,6 +12,7 @@
 #include "../../Engine/Entity/EntitySystem.h"
 #include "GameScene.h"
 #include "../../Engine/GroundDetect/GroundDetectSystem.h"
+#include "../../Engine/Health/HealthSystem.h"
 #include "../Level/Level.h"
 #include "../Level/LevelSystem.h"
 #include "../../Engine/Locomotion/LocomotionComponent.h"
@@ -24,13 +25,14 @@ USING_NS_CC;
 // on "init" you need to initialize your instance
 bool GameScene::Start()
 {
-    this->getPhysicsWorld()->setGravity( Vec2( 0.0f, -1500.0f ) );
+    this->getPhysicsWorld()->setGravity( Vec2( 0.0f, GRAVITY ) );
     this->getPhysicsWorld()->setAutoStep( false );
     
     RenderSystem::m_activeScene = this;
     RenderSystem::m_activeScene->scheduleUpdate();
     
     ComponentSystem::Init();
+    HealthSystem::Init();
     LocomotionSystem::Init();
     PhysicsSystem::Init();
     
@@ -74,9 +76,9 @@ bool GameScene::Start()
             }
             case EventKeyboard::KeyCode::KEY_S:
             {
-                if ( Director::getInstance()->getScheduler()->getTimeScale() != 0.25f )
+                if ( Director::getInstance()->getScheduler()->getTimeScale() != 0.1f )
                 {
-                    Director::getInstance()->getScheduler()->setTimeScale( 0.25f);
+                    Director::getInstance()->getScheduler()->setTimeScale( 0.1f);
                 }
                 else
                 {
@@ -139,6 +141,7 @@ void GameScene::update( float i_dt )
     AnimationSystem::Update( i_dt );
     LocomotionSystem::Update( i_dt );
     PhysicsSystem::Update( i_dt );
+    HealthSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
     RenderSystem::Update( i_dt );
 }

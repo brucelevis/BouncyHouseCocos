@@ -51,6 +51,10 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		652F73431C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
 		652F73441C0D477400F7ECAC /* Baked in Resources */ = {isa = PBXBuildFile; fileRef = 652F73421C0D477400F7ECAC /* Baked */; };
+		6550093D1C13988D00E2C167 /* HealthSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093B1C13988D00E2C167 /* HealthSystem.cpp */; };
+		6550093E1C13988D00E2C167 /* HealthSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093B1C13988D00E2C167 /* HealthSystem.cpp */; };
+		655009411C13991400E2C167 /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093F1C13991400E2C167 /* HealthComponent.cpp */; };
+		655009421C13991400E2C167 /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093F1C13991400E2C167 /* HealthComponent.cpp */; };
 		657868B81C138F01006F7761 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6578687C1C138F01006F7761 /* AppDelegate.cpp */; };
 		657868B91C138F01006F7761 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6578687C1C138F01006F7761 /* AppDelegate.cpp */; };
 		657868BA1C138F01006F7761 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657868811C138F01006F7761 /* AnimationComponent.cpp */; };
@@ -183,12 +187,16 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		652F73421C0D477400F7ECAC /* Baked */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Baked; sourceTree = "<group>"; };
-		652F734E1C0D550F00F7ECAC /* floor.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = floor.dna; sourceTree = "<group>"; };
+		652F734E1C0D550F00F7ECAC /* floor.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = floor.json; sourceTree = "<group>"; };
 		652F734F1C0D550F00F7ECAC /* floor.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = floor.psd; sourceTree = "<group>"; };
-		652F73511C0D550F00F7ECAC /* player.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = player.dna; sourceTree = "<group>"; };
+		652F73511C0D550F00F7ECAC /* player.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = player.json; sourceTree = "<group>"; };
 		652F73541C0D550F00F7ECAC /* wall.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = wall.psd; sourceTree = "<group>"; };
-		652F73551C0D553100F7ECAC /* wall.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = wall.dna; sourceTree = "<group>"; };
-		6551ED501C0F820D00639933 /* enemy.dna */ = {isa = PBXFileReference; lastKnownFileType = text; path = enemy.dna; sourceTree = "<group>"; };
+		652F73551C0D553100F7ECAC /* wall.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wall.json; sourceTree = "<group>"; };
+		6550093B1C13988D00E2C167 /* HealthSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthSystem.cpp; sourceTree = "<group>"; };
+		6550093C1C13988D00E2C167 /* HealthSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthSystem.h; sourceTree = "<group>"; };
+		6550093F1C13991400E2C167 /* HealthComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthComponent.cpp; sourceTree = "<group>"; };
+		655009401C13991400E2C167 /* HealthComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthComponent.h; sourceTree = "<group>"; };
+		6551ED501C0F820D00639933 /* enemy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = enemy.json; sourceTree = "<group>"; };
 		6551ED531C0F820D00639933 /* PlayerMotions.tps */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlayerMotions.tps; sourceTree = "<group>"; };
 		6551ED541C0F820D00639933 /* Vik1_Jump_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vik1_Jump_00.png; sourceTree = "<group>"; };
 		6551ED551C0F820D00639933 /* Vik1_Jump_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vik1_Jump_01.png; sourceTree = "<group>"; };
@@ -423,8 +431,8 @@
 				6578687C1C138F01006F7761 /* AppDelegate.cpp */,
 				6578687D1C138F01006F7761 /* AppDelegate.h */,
 				6578687E1C138F01006F7761 /* DEFINES.h */,
-				6578687F1C138F01006F7761 /* Engine */,
 				657868AB1C138F01006F7761 /* Game */,
+				6578687F1C138F01006F7761 /* Engine */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -499,7 +507,7 @@
 		652F734D1C0D550F00F7ECAC /* Floor */ = {
 			isa = PBXGroup;
 			children = (
-				652F734E1C0D550F00F7ECAC /* floor.dna */,
+				652F734E1C0D550F00F7ECAC /* floor.json */,
 				652F734F1C0D550F00F7ECAC /* floor.psd */,
 			);
 			path = Floor;
@@ -508,7 +516,7 @@
 		652F73501C0D550F00F7ECAC /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				652F73511C0D550F00F7ECAC /* player.dna */,
+				652F73511C0D550F00F7ECAC /* player.json */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -516,16 +524,27 @@
 		652F73531C0D550F00F7ECAC /* Wall */ = {
 			isa = PBXGroup;
 			children = (
-				652F73551C0D553100F7ECAC /* wall.dna */,
+				652F73551C0D553100F7ECAC /* wall.json */,
 				652F73541C0D550F00F7ECAC /* wall.psd */,
 			);
 			path = Wall;
 			sourceTree = "<group>";
 		};
+		6550093A1C13986700E2C167 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				6550093F1C13991400E2C167 /* HealthComponent.cpp */,
+				655009401C13991400E2C167 /* HealthComponent.h */,
+				6550093B1C13988D00E2C167 /* HealthSystem.cpp */,
+				6550093C1C13988D00E2C167 /* HealthSystem.h */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		6551ED4F1C0F820D00639933 /* Enemy */ = {
 			isa = PBXGroup;
 			children = (
-				6551ED501C0F820D00639933 /* enemy.dna */,
+				6551ED501C0F820D00639933 /* enemy.json */,
 				6551ED511C0F820D00639933 /* Motions */,
 			);
 			path = Enemy;
@@ -594,6 +613,7 @@
 				657868801C138F01006F7761 /* Animation */,
 				657868851C138F01006F7761 /* Entity */,
 				657868901C138F01006F7761 /* GroundDetect */,
+				6550093A1C13986700E2C167 /* Health */,
 				657868951C138F01006F7761 /* Locomotion */,
 				6578689D1C138F01006F7761 /* Physics */,
 				657868A21C138F01006F7761 /* Render */,
@@ -880,12 +900,14 @@
 			files = (
 				657868DA1C138F01006F7761 /* System.cpp in Sources */,
 				657868D61C138F01006F7761 /* RenderComponent.cpp in Sources */,
+				6550093D1C13988D00E2C167 /* HealthSystem.cpp in Sources */,
 				657868D41C138F01006F7761 /* PhysicsSystem.cpp in Sources */,
 				657868E01C138F01006F7761 /* RunLocomotionMode.cpp in Sources */,
 				657868CC1C138F01006F7761 /* LocomotionComponent.cpp in Sources */,
 				657868B81C138F01006F7761 /* AppDelegate.cpp in Sources */,
 				657868D21C138F01006F7761 /* PhysicsComponent.cpp in Sources */,
 				657868DC1C138F01006F7761 /* Level.cpp in Sources */,
+				655009411C13991400E2C167 /* HealthComponent.cpp in Sources */,
 				657868BC1C138F01006F7761 /* AnimationSystem.cpp in Sources */,
 				657868BE1C138F01006F7761 /* Component.cpp in Sources */,
 				657868CE1C138F01006F7761 /* LocomotionMode.cpp in Sources */,
@@ -910,6 +932,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655009421C13991400E2C167 /* HealthComponent.cpp in Sources */,
 				657868C51C138F01006F7761 /* Entity.cpp in Sources */,
 				657868C31C138F01006F7761 /* DNASequencer.cpp in Sources */,
 				657868C11C138F01006F7761 /* ComponentSystem.cpp in Sources */,
@@ -930,6 +953,7 @@
 				657868CB1C138F01006F7761 /* GroundDetectSystem.cpp in Sources */,
 				657868CD1C138F01006F7761 /* LocomotionComponent.cpp in Sources */,
 				657868BF1C138F01006F7761 /* Component.cpp in Sources */,
+				6550093E1C13988D00E2C167 /* HealthSystem.cpp in Sources */,
 				657868DB1C138F01006F7761 /* System.cpp in Sources */,
 				657868D11C138F01006F7761 /* LocomotionSystem.cpp in Sources */,
 				657868D31C138F01006F7761 /* PhysicsComponent.cpp in Sources */,

@@ -8,6 +8,7 @@
 
 #include "LocomotionComponent.h"
 #include "LocomotionSystem.h"
+#include "RenderSystem.h"
 
 using namespace cocos2d;
 
@@ -17,7 +18,6 @@ void LocomotionComponent::Init( EntityHandle i_entityHandle, const rapidjson::Va
 {
     m_entityHandle = i_entityHandle;
     m_jumpState = JumpState::NOT_JUMPING;
-    LocomotionSystem::RegisterComponent( this );
     
     if ( i_dnaObject.HasMember( "RunSpeed" ) )
     {
@@ -31,16 +31,33 @@ void LocomotionComponent::Init( EntityHandle i_entityHandle, const rapidjson::Va
     
     if ( i_dnaObject.HasMember( "LocomotionMode" ) )
     {
-        m_locomotionMode = LocomotionSystem::CreateLocomotionMode( i_dnaObject["LocomotionMode"].GetString() );
-        m_locomotionMode->Init( m_entityHandle );
+        m_locomotionModeName = i_dnaObject["LocomotionMode"].GetString();
     }
 }
 
 LocomotionComponent::~LocomotionComponent()
 {
+    
+}
+
+void LocomotionComponent::OnActivate()
+{
+    LocomotionSystem::RegisterComponent( this );
+    
+    m_locomotionMode = LocomotionSystem::CreateLocomotionMode( m_locomotionModeName );
+    if ( m_locomotionMode )
+    {
+        m_locomotionMode->Init( m_entityHandle );
+    }
+}
+
+void LocomotionComponent::OnDeactivate()
+{
     if ( m_locomotionMode )
     {
         delete m_locomotionMode;
+        m_locomotionMode = NULL;
     }
+    
     LocomotionSystem::UnregisterComponent( this );
 }

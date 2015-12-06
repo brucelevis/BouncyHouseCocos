@@ -17,6 +17,8 @@
 
 class Component
 {
+private:
+    bool m_active;
 public:
     static std::string s_componentType;
     
@@ -26,7 +28,10 @@ public:
     virtual ~Component() {};
     
     virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) {};
-    virtual void Activate() {};
+    void Activate() { m_active = true; OnActivate(); };
+    void Deactivate() { OnDeactivate(); };
+    virtual void OnActivate() { };
+    virtual void OnDeactivate() { };
 };
 
 #endif /* Component_hpp */

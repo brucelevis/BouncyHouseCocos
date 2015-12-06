@@ -77,7 +77,7 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
     }
 }
 
-void PhysicsComponent::Activate()
+void PhysicsComponent::OnActivate()
 {
     RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
     ASSERTS( pRenderComponent, "PhysicsComponent depends on RenderComponent!" );

@@ -9,6 +9,7 @@
 #include "../Animation/AnimationComponent.h"
 #include "ComponentSystem.h"
 #include "../GroundDetect/GroundDetectComponent.h"
+#include "../Health/HealthComponent.h"
 #include "../Locomotion/LocomotionComponent.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
@@ -20,6 +21,7 @@ void ComponentSystem::Init()
 {
     ComponentRegister<AnimationComponent>( "AnimationComponent" );
     ComponentRegister<GroundDetectComponent>( "GroundDetectComponent" );
+    ComponentRegister<HealthComponent>( "HealthComponent" );
     ComponentRegister<LocomotionComponent>( "LocomotionComponent" );
     ComponentRegister<PhysicsComponent>( "PhysicsComponent" );
     ComponentRegister<RenderComponent>( "RenderComponent" );

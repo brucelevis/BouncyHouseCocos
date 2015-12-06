@@ -26,10 +26,10 @@ public:
     AnimationComponent() {};
     virtual ~AnimationComponent();
     
-    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
-    void Activate();
+    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
+    virtual void OnActivate() override;
     
-    void StartMotion( std::string i_motionName, float i_loops = 1 );
+    void StartMotion( std::string i_motionName, float i_loops = 1, cocos2d::Action* i_nextAction = NULL );
     void SyncMotionRate();
     
     MotionInfo GetCurrentMotion() { return m_motions.at( m_currentMotionName ); };

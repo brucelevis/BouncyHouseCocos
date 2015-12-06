@@ -21,14 +21,16 @@ public:
     RunLocomotionMode() {};
     virtual ~RunLocomotionMode() {};
     
-    virtual void Init( EntityHandle i_entityHandle );
+    virtual void Init( EntityHandle i_entityHandle ) override;
     
-    virtual void MoveToPoint( cocos2d::Vec2 i_point, float i_speed );
-    virtual void Jump( bool i_force = false );
-    virtual void Update( float i_dt );
+    virtual void MoveToPoint( cocos2d::Vec2 i_point, float i_speed ) override;
+    virtual void Jump( bool i_force = false, bool i_playAnim = true ) override;
+    virtual void Update( float i_dt ) override;
 
     void OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_event );
     void OnGroundChangedEvent( cocos2d::EventCustom* i_event );
+    
+    void AfterSmash();
 };
 
 #endif /* RunLocomotionMode_hpp */
