@@ -55,6 +55,14 @@
 		6550093E1C13988D00E2C167 /* HealthSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093B1C13988D00E2C167 /* HealthSystem.cpp */; };
 		655009411C13991400E2C167 /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093F1C13991400E2C167 /* HealthComponent.cpp */; };
 		655009421C13991400E2C167 /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6550093F1C13991400E2C167 /* HealthComponent.cpp */; };
+		655009561C13E3C200E2C167 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009501C13E3C200E2C167 /* Effect.cpp */; };
+		655009571C13E3C200E2C167 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009501C13E3C200E2C167 /* Effect.cpp */; };
+		655009581C13E3C200E2C167 /* EffectSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009521C13E3C200E2C167 /* EffectSprite.cpp */; };
+		655009591C13E3C200E2C167 /* EffectSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009521C13E3C200E2C167 /* EffectSprite.cpp */; };
+		6550095A1C13E3C200E2C167 /* LightEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009541C13E3C200E2C167 /* LightEffect.cpp */; };
+		6550095B1C13E3C200E2C167 /* LightEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655009541C13E3C200E2C167 /* LightEffect.cpp */; };
+		6550095D1C13E68A00E2C167 /* pointlight.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6550095C1C13E68A00E2C167 /* pointlight.frag */; };
+		6550095E1C13E68A00E2C167 /* pointlight.frag in Resources */ = {isa = PBXBuildFile; fileRef = 6550095C1C13E68A00E2C167 /* pointlight.frag */; };
 		657868B81C138F01006F7761 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6578687C1C138F01006F7761 /* AppDelegate.cpp */; };
 		657868B91C138F01006F7761 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6578687C1C138F01006F7761 /* AppDelegate.cpp */; };
 		657868BA1C138F01006F7761 /* AnimationComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657868811C138F01006F7761 /* AnimationComponent.cpp */; };
@@ -196,6 +204,19 @@
 		6550093C1C13988D00E2C167 /* HealthSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthSystem.h; sourceTree = "<group>"; };
 		6550093F1C13991400E2C167 /* HealthComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthComponent.cpp; sourceTree = "<group>"; };
 		655009401C13991400E2C167 /* HealthComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthComponent.h; sourceTree = "<group>"; };
+		655009481C13CB2800E2C167 /* Skybox.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Skybox.psd; sourceTree = "<group>"; };
+		655009491C13CB4600E2C167 /* skybox.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = skybox.json; sourceTree = "<group>"; };
+		6550094B1C13D21E00E2C167 /* Longboat.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Longboat.psd; sourceTree = "<group>"; };
+		6550094C1C13D21E00E2C167 /* Longboat_Sail.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Longboat_Sail.psd; sourceTree = "<group>"; };
+		6550094D1C13D26B00E2C167 /* longboat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = longboat.json; sourceTree = "<group>"; };
+		6550094E1C13D27500E2C167 /* longboat_sail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = longboat_sail.json; sourceTree = "<group>"; };
+		655009501C13E3C200E2C167 /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Effect.cpp; sourceTree = "<group>"; };
+		655009511C13E3C200E2C167 /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
+		655009521C13E3C200E2C167 /* EffectSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectSprite.cpp; sourceTree = "<group>"; };
+		655009531C13E3C200E2C167 /* EffectSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectSprite.h; sourceTree = "<group>"; };
+		655009541C13E3C200E2C167 /* LightEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightEffect.cpp; sourceTree = "<group>"; };
+		655009551C13E3C200E2C167 /* LightEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightEffect.h; sourceTree = "<group>"; };
+		6550095C1C13E68A00E2C167 /* pointlight.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pointlight.frag; sourceTree = "<group>"; };
 		6551ED501C0F820D00639933 /* enemy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = enemy.json; sourceTree = "<group>"; };
 		6551ED531C0F820D00639933 /* PlayerMotions.tps */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlayerMotions.tps; sourceTree = "<group>"; };
 		6551ED541C0F820D00639933 /* Vik1_Jump_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vik1_Jump_00.png; sourceTree = "<group>"; };
@@ -416,6 +437,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6550095C1C13E68A00E2C167 /* pointlight.frag */,
 				652F734B1C0D550F00F7ECAC /* Raw */,
 				652F73421C0D477400F7ECAC /* Baked */,
 				521A8EA819F11F5000D177D7 /* fonts */,
@@ -489,6 +511,8 @@
 			isa = PBXGroup;
 			children = (
 				652F734C1C0D550F00F7ECAC /* Characters */,
+				655009471C13CB2800E2C167 /* Skybox */,
+				6550094A1C13D21E00E2C167 /* Longboat */,
 			);
 			path = Raw;
 			sourceTree = "<group>";
@@ -539,6 +563,39 @@
 				6550093C1C13988D00E2C167 /* HealthSystem.h */,
 			);
 			path = Health;
+			sourceTree = "<group>";
+		};
+		655009471C13CB2800E2C167 /* Skybox */ = {
+			isa = PBXGroup;
+			children = (
+				655009481C13CB2800E2C167 /* Skybox.psd */,
+				655009491C13CB4600E2C167 /* skybox.json */,
+			);
+			path = Skybox;
+			sourceTree = "<group>";
+		};
+		6550094A1C13D21E00E2C167 /* Longboat */ = {
+			isa = PBXGroup;
+			children = (
+				6550094B1C13D21E00E2C167 /* Longboat.psd */,
+				6550094C1C13D21E00E2C167 /* Longboat_Sail.psd */,
+				6550094D1C13D26B00E2C167 /* longboat.json */,
+				6550094E1C13D27500E2C167 /* longboat_sail.json */,
+			);
+			path = Longboat;
+			sourceTree = "<group>";
+		};
+		6550094F1C13E3C200E2C167 /* EffectSprite */ = {
+			isa = PBXGroup;
+			children = (
+				655009501C13E3C200E2C167 /* Effect.cpp */,
+				655009511C13E3C200E2C167 /* Effect.h */,
+				655009521C13E3C200E2C167 /* EffectSprite.cpp */,
+				655009531C13E3C200E2C167 /* EffectSprite.h */,
+				655009541C13E3C200E2C167 /* LightEffect.cpp */,
+				655009551C13E3C200E2C167 /* LightEffect.h */,
+			);
+			path = EffectSprite;
 			sourceTree = "<group>";
 		};
 		6551ED4F1C0F820D00639933 /* Enemy */ = {
@@ -697,6 +754,7 @@
 		657868A21C138F01006F7761 /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				6550094F1C13E3C200E2C167 /* EffectSprite */,
 				657868A31C138F01006F7761 /* RenderComponent.cpp */,
 				657868A41C138F01006F7761 /* RenderComponent.h */,
 				657868A51C138F01006F7761 /* RenderSystem.cpp */,
@@ -857,6 +915,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				6550095D1C13E68A00E2C167 /* pointlight.frag in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
@@ -888,6 +947,7 @@
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
+				6550095E1C13E68A00E2C167 /* pointlight.frag in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +974,7 @@
 				657868CA1C138F01006F7761 /* GroundDetectSystem.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				657868D81C138F01006F7761 /* RenderSystem.cpp in Sources */,
+				655009561C13E3C200E2C167 /* Effect.cpp in Sources */,
 				657868C01C138F01006F7761 /* ComponentSystem.cpp in Sources */,
 				657868E21C138F01006F7761 /* GameScene.cpp in Sources */,
 				657868C81C138F01006F7761 /* GroundDetectComponent.cpp in Sources */,
@@ -924,6 +985,8 @@
 				657868D01C138F01006F7761 /* LocomotionSystem.cpp in Sources */,
 				657868C61C138F01006F7761 /* EntitySystem.cpp in Sources */,
 				657868DE1C138F01006F7761 /* LevelSystem.cpp in Sources */,
+				6550095A1C13E3C200E2C167 /* LightEffect.cpp in Sources */,
+				655009581C13E3C200E2C167 /* EffectSprite.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,6 +1001,7 @@
 				657868C11C138F01006F7761 /* ComponentSystem.cpp in Sources */,
 				657868CF1C138F01006F7761 /* LocomotionMode.cpp in Sources */,
 				657868E31C138F01006F7761 /* GameScene.cpp in Sources */,
+				655009571C13E3C200E2C167 /* Effect.cpp in Sources */,
 				657868C91C138F01006F7761 /* GroundDetectComponent.cpp in Sources */,
 				657868C71C138F01006F7761 /* EntitySystem.cpp in Sources */,
 				657868DD1C138F01006F7761 /* Level.cpp in Sources */,
@@ -952,8 +1016,10 @@
 				657868D51C138F01006F7761 /* PhysicsSystem.cpp in Sources */,
 				657868CB1C138F01006F7761 /* GroundDetectSystem.cpp in Sources */,
 				657868CD1C138F01006F7761 /* LocomotionComponent.cpp in Sources */,
+				6550095B1C13E3C200E2C167 /* LightEffect.cpp in Sources */,
 				657868BF1C138F01006F7761 /* Component.cpp in Sources */,
 				6550093E1C13988D00E2C167 /* HealthSystem.cpp in Sources */,
+				655009591C13E3C200E2C167 /* EffectSprite.cpp in Sources */,
 				657868DB1C138F01006F7761 /* System.cpp in Sources */,
 				657868D11C138F01006F7761 /* LocomotionSystem.cpp in Sources */,
 				657868D31C138F01006F7761 /* PhysicsComponent.cpp in Sources */,

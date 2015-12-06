@@ -21,7 +21,7 @@ for root, dirs, files in os.walk('Raw'):
             baked_path = baked_path.replace(ext, '.png')
             os.system('convert %s -background transparent -flatten %s' % (path, baked_path))
 
-        if ext in ['.png', '.plist']:
+        if ext in ['.png', '.plist', '.frag']:
             print '  Copying %s' % path
             os.system('cp %s %s' % (path, baked_path))
 

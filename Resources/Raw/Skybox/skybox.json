@@ -1,0 +1,12 @@
+{
+    "Name": "Skybox",
+    "Components": {
+        "RenderComponent": {
+            "Sprite": "Skybox/Skybox.png",
+            "ZOrder": -1000
+        },
+        "PhysicsComponent": {
+            "AnchorPoint": [ 1.0, 0.0 ]
+        }
+    }
+}

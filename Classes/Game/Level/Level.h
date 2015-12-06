@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "../../Engine/Entity/Entity.h"
+#include "../../Engine/Render/EffectSprite/LightEffect.h"
 #include "../../Engine/TypeDefs.h"
 
 class Level
@@ -23,9 +24,17 @@ class Level
     std::map<EntityHandle, Entity*> m_staticEntities;
     int m_maxEnemyCount;
     float m_enemySpawnTimer;
+    
+    LightEffect* m_lightEffect;
+    float m_flickerTimer;
+    float m_flickerTime;
+    float m_targetBrightness;
+    float m_startBrightness;
 public:
     Level();
     ~Level();
+    
+    virtual void update( float i_dt );
     
     Entity* GetPlayer() { return m_player; };
     
@@ -38,6 +47,8 @@ public:
     void SetEnemySpawnTimer( float i_enemySpawnTimer ) { m_enemySpawnTimer = i_enemySpawnTimer; };
     
     void OnRemovingEntityEvent( cocos2d::EventCustom* i_event );
+    
+    void AddLightEffect( Entity* i_entity );
 };
 
 #endif /* Level_hpp */

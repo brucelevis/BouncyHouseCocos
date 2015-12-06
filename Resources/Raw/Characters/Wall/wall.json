@@ -1,9 +1,6 @@
 {
     "Name": "Wall",
     "Components": {
-        "RenderComponent": {
-            "Sprite": "Characters/Wall/wall.png"
-        },
         "PhysicsComponent": {
             "Density": 1000.0,
             "Restitution": 0.0,

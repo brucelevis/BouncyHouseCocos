@@ -13,6 +13,7 @@
 
 #include "cocos2d.h"
 
+#include "EffectSprite/EffectSprite.h"
 #include "../Entity/Component.h"
 #include "../TypeDefs.h"
 
@@ -20,6 +21,7 @@ class RenderComponent : public Component
 {
 private:
     bool m_facingLeft;
+    std::string m_spriteSheetName;
 public:
     static std::string s_componentType;
     
@@ -37,8 +39,9 @@ public:
     FacingDirection GetFacing();
     bool SetFacing( FacingDirection i_facingDirection );
     
-    cocos2d::Sprite* m_sprite;
-    cocos2d::SpriteBatchNode* m_spriteBatchNode;
+    bool SetEffect( LightEffect* i_lightEffect );
+    
+    EffectSprite* m_sprite;
 };
 
 #endif /* RenderComponent_hpp */

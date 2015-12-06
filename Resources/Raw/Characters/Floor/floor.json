@@ -1,9 +1,6 @@
 {
     "Name": "Floor",
     "Components": {
-        "RenderComponent": {
-            "Sprite": "Characters/Floor/floor.png"
-        },
         "PhysicsComponent": {
             "Density": 1000.0,
             "Restitution": 0.1,

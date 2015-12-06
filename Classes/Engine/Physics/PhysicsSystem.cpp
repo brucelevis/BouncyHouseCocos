@@ -50,7 +50,6 @@ void PhysicsSystem::Update( float i_dt )
             {
                 cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
                 pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::BLUE );
-                pDrawNode->drawPoint( pComponent->GetPhysicsBody()->getPosition(), 10.0f, cocos2d::Color4F::RED );
                 RenderSystem::DebugDraw( pDrawNode, i_dt * 0.25f );
             }
 #endif

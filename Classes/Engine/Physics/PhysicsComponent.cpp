@@ -80,27 +80,35 @@ void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value
 void PhysicsComponent::OnActivate()
 {
     RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
-    ASSERTS( pRenderComponent, "PhysicsComponent depends on RenderComponent!" );
     if ( pRenderComponent && pRenderComponent->m_sprite )
     {
         m_node = pRenderComponent->m_sprite;
     }
-    
+    else
+    {
+        m_node = Node::create();
+        m_node->setTag( m_entityHandle );
+        RenderSystem::m_activeScene->addChild( m_node );
+    }
+        
     if ( m_node )
     {
         m_node->setAnchorPoint( m_anchorPoint );
         
-        m_physicsBody = PhysicsBody::createBox( Size( m_width, m_height ), PhysicsMaterial( m_density, m_restitution, m_friction ) );
-        m_physicsBody->setPositionOffset( m_offset );
-        m_physicsBody->setDynamic( m_dynamic );
-        m_physicsBody->setMass( 10.0f );
-        m_physicsBody->setRotationEnable( false );
-        
-        m_physicsBody->setCategoryBitmask( m_category );
-        m_physicsBody->setCollisionBitmask( m_collision );
-        m_physicsBody->setContactTestBitmask( m_contact );
-        
-        m_node->setPhysicsBody( m_physicsBody );
+        if ( m_width != 0.0f && m_height != 0.0f )
+        {
+            m_physicsBody = PhysicsBody::createBox( Size( m_width, m_height ), PhysicsMaterial( m_density, m_restitution, m_friction ) );
+            m_physicsBody->setPositionOffset( m_offset );
+            m_physicsBody->setDynamic( m_dynamic );
+            m_physicsBody->setMass( 10.0f );
+            m_physicsBody->setRotationEnable( false );
+            
+            m_physicsBody->setCategoryBitmask( m_category );
+            m_physicsBody->setCollisionBitmask( m_collision );
+            m_physicsBody->setContactTestBitmask( m_contact );
+            
+            m_node->setPhysicsBody( m_physicsBody );
+        }
     }
 }
 
@@ -127,6 +135,7 @@ cocos2d::Vec2 PhysicsComponent::GetPosition()
 
 bool PhysicsComponent::SetPosition( cocos2d::Vec2 i_position )
 {
+    ASSERTS( m_node, "Missing node!" );
     if ( m_node )
     {
 #ifdef DEBUG_NAN

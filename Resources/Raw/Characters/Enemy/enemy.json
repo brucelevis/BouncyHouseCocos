@@ -3,6 +3,7 @@
     "Components": {
         "RenderComponent": {
             "SpriteSheet": "Characters/Player/Motions/PlayerMotions",
+            "DefaultSprite": "Vik1_Run_00.png",
             "FacingLeft": true
         },
         "AnimationComponent": {

@@ -3,7 +3,9 @@
     "Components": {
         "RenderComponent": {
             "SpriteSheet": "Characters/Player/Motions/PlayerMotions",
-            "FacingLeft": true
+            "DefaultSprite": "Vik1_Run_00.png",
+            "FacingLeft": true,
+            "ZOrder": 10
         },
         "AnimationComponent": {
             "Motions": [

@@ -1,0 +1,13 @@
+{
+    "Name": "Longboat",
+    "Components": {
+        "RenderComponent": {
+            "SpriteSheet": "Longboat/LongboatSprites",
+            "DefaultSprite": "Longboat_Sail.png",
+            "ZOrder": -100
+        },
+        "PhysicsComponent": {
+            "AnchorPoint": [ 0.5, 0.0 ]
+        }
+    }
+}

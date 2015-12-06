@@ -137,7 +137,7 @@ void RunLocomotionMode::Update( float i_dt )
             }
         }
 
-        if ( pHit )
+        if ( pHit )  
         {
             cocos2d::Vec2 pRayDir = cocos2d::Vec2( pPosition - pEnd );
             pRayDir.normalize();

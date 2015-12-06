@@ -235,6 +235,49 @@
             <filename>Vik1_Smash_01.png</filename>
             <filename>Vik1_Smash_02.png</filename>
             <filename>Vik1_Smash_03.png</filename>
+            <filename>Vik1_Jump_00_n.png</filename>
+            <filename>Vik1_Jump_01_n.png</filename>
+            <filename>Vik1_Jump_02_n.png</filename>
+            <filename>Vik1_Jump_03_n.png</filename>
+            <filename>Vik1_Jump_04_n.png</filename>
+            <filename>Vik1_Jump_05_n.png</filename>
+            <filename>Vik1_Jump_06_n.png</filename>
+            <filename>Vik1_Jump_07_n.png</filename>
+            <filename>Vik1_Jump_08_n.png</filename>
+            <filename>Vik1_Jump_09_n.png</filename>
+            <filename>Vik1_Jump_10_n.png</filename>
+            <filename>Vik1_Jump_11_n.png</filename>
+            <filename>Vik1_Jump_12_n.png</filename>
+            <filename>Vik1_Jump_13_n.png</filename>
+            <filename>Vik1_Jump_14_n.png</filename>
+            <filename>Vik1_Jump_15_n.png</filename>
+            <filename>Vik1_Jump_16_n.png</filename>
+            <filename>Vik1_Jump_17_n.png</filename>
+            <filename>Vik1_Jump_18_n.png</filename>
+            <filename>Vik1_Jump_19_n.png</filename>
+            <filename>Vik1_Jump_20_n.png</filename>
+            <filename>Vik1_Run_00_n.png</filename>
+            <filename>Vik1_Run_01_n.png</filename>
+            <filename>Vik1_Run_02_n.png</filename>
+            <filename>Vik1_Run_03_n.png</filename>
+            <filename>Vik1_Run_04_n.png</filename>
+            <filename>Vik1_Run_05_n.png</filename>
+            <filename>Vik1_Run_06_n.png</filename>
+            <filename>Vik1_Run_07_n.png</filename>
+            <filename>Vik1_Run_08_n.png</filename>
+            <filename>Vik1_Run_09_n.png</filename>
+            <filename>Vik1_Run_10_n.png</filename>
+            <filename>Vik1_Run_11_n.png</filename>
+            <filename>Vik1_Run_12_n.png</filename>
+            <filename>Vik1_Run_13_n.png</filename>
+            <filename>Vik1_Run_14_n.png</filename>
+            <filename>Vik1_Run_15_n.png</filename>
+            <filename>Vik1_Run_16_n.png</filename>
+            <filename>Vik1_Run_17_n.png</filename>
+            <filename>Vik1_Smash_00_n.png</filename>
+            <filename>Vik1_Smash_01_n.png</filename>
+            <filename>Vik1_Smash_02_n.png</filename>
+            <filename>Vik1_Smash_03_n.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
@@ -247,7 +290,7 @@
         <key>commonDivisorY</key>
         <uint>1</uint>
         <key>packNormalMaps</key>
-        <false/>
+        <true/>
         <key>autodetectNormalMaps</key>
         <true/>
         <key>normalMapFilter</key>

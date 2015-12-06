@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include "EffectSprite/EffectSprite.h"
+#include "EffectSprite/LightEffect.h"
 #include "RenderComponent.h"
 #include "RenderSystem.h"
 
@@ -25,31 +27,34 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
         m_facingLeft = i_dnaObject["FacingLeft"].GetBool();
     }
     
+    int pZOrder = 0;
+    if ( i_dnaObject.HasMember( "ZOrder" ) )
+    {
+        pZOrder = i_dnaObject["ZOrder"].GetInt();
+    }
+    
     if ( i_dnaObject.HasMember( "Sprite" ) )
     {
         std::string pSpritePath = std::string( i_dnaObject["Sprite"].GetString() );
         pSpritePath.insert( 0, "Baked/" );
         
-        m_sprite = Sprite::create( pSpritePath );
-        RenderSystem::m_activeScene->addChild( m_sprite );
+        m_sprite = EffectSprite::create( pSpritePath );
+        RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
     }
     else if ( i_dnaObject.HasMember( "SpriteSheet" ) )
     {
-        std::string pSpriteSheetPath = std::string( i_dnaObject["SpriteSheet"].GetString() );
+        m_spriteSheetName = i_dnaObject["SpriteSheet"].GetString();
+        std::string pSpriteSheetPath = std::string( m_spriteSheetName );
         pSpriteSheetPath.insert( 0, "Baked/" );
         pSpriteSheetPath.insert( pSpriteSheetPath.length(), ".png" );
-        std::string pSpriteSheetPlistPath = std::string( i_dnaObject["SpriteSheet"].GetString() );
+        std::string pSpriteSheetPlistPath = std::string( m_spriteSheetName );
         pSpriteSheetPlistPath.insert( 0, "Baked/" );
         pSpriteSheetPlistPath.insert( pSpriteSheetPlistPath.length(), ".plist" );
         
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pSpriteSheetPlistPath );
-        m_spriteBatchNode = SpriteBatchNode::create( pSpriteSheetPath );
         
-        // TODO: How do we find this frame name automagically?
-        m_sprite = Sprite::createWithSpriteFrameName( "Vik1_Run_00.png" );
-        m_spriteBatchNode->addChild( m_sprite );
-        
-        RenderSystem::m_activeScene->addChild( m_spriteBatchNode );
+        m_sprite = EffectSprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
+        RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
     }
     SetFacing( RenderComponent::FacingDirection::LEFT );
     m_sprite->setTag( i_entityHandle );
@@ -110,4 +115,13 @@ bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
         return true;
     }
     return false;
+}
+
+bool RenderComponent::SetEffect( LightEffect* i_lightEffect )
+{
+    std::string pSpriteSheetNormalPath = std::string( m_spriteSheetName );
+    pSpriteSheetNormalPath.insert( 0, "Baked/" );
+    pSpriteSheetNormalPath.insert( pSpriteSheetNormalPath.length(), "_n.png" );
+    
+    m_sprite->setEffect( i_lightEffect, pSpriteSheetNormalPath );
 }
