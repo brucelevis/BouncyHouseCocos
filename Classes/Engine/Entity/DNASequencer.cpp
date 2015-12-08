@@ -8,7 +8,7 @@
 #include <fstream>
 
 #include "cocos2d.h"
-#include "rapidjson/document.h"
+#include "../../Libraries/rapidjson/document.h"
 
 #include "DNASequencer.h"
 #include "EntitySystem.h"

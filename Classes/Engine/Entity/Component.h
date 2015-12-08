@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#include "rapidjson/document.h"
+#include "../../Libraries/rapidjson/document.h"
 
 #include "../TypeDefs.h"
 

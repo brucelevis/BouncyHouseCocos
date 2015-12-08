@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <vector>
 
-#include "rapidjson/document.h"
+#include "../../Libraries/rapidjson/document.h"
 
 #include "Component.h"
 #include "Entity.h"
