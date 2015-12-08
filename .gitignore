@@ -43,3 +43,7 @@ out/
 *.tar
 *.tgz
 *.gtgz
+
+
+proj.*/*
+cocos2d/*
