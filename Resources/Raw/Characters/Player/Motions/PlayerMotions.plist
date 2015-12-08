@@ -9,28 +9,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-4,-3}</string>
+                <string>{-8,-7}</string>
                 <key>spriteSize</key>
-                <string>{50,85}</string>
+                <string>{100,168}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{67,471},{50,85}}</string>
+                <string>{{1049,133},{100,168}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-3,-1}</string>
+                <string>{-6,-2}</string>
                 <key>spriteSize</key>
-                <string>{52,77}</string>
+                <string>{104,154}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{67,1210},{52,77}}</string>
+                <string>{{373,149},{104,154}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -39,13 +39,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-3,2}</string>
+                <string>{-5,4}</string>
                 <key>spriteSize</key>
-                <string>{54,71}</string>
+                <string>{106,142}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{73,78},{54,71}}</string>
+                <string>{{883,265},{106,142}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -54,13 +54,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,4}</string>
+                <string>{-3,7}</string>
                 <key>spriteSize</key>
-                <string>{56,69}</string>
+                <string>{110,136}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,1521},{56,69}}</string>
+                <string>{{991,255},{110,136}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -69,13 +69,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,3}</string>
+                <string>{-3,6}</string>
                 <key>spriteSize</key>
-                <string>{56,67}</string>
+                <string>{110,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,1592},{56,67}}</string>
+                <string>{{487,273},{110,134}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -84,13 +84,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,4}</string>
+                <string>{-3,7}</string>
                 <key>spriteSize</key>
-                <string>{56,67}</string>
+                <string>{110,132}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,1661},{56,67}}</string>
+                <string>{{1103,235},{110,132}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -99,28 +99,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,3}</string>
+                <string>{-3,6}</string>
                 <key>spriteSize</key>
-                <string>{56,65}</string>
+                <string>{110,130}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,709},{56,65}}</string>
+                <string>{{1215,259},{110,130}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_07.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,3}</string>
+                <string>{-3,5}</string>
                 <key>spriteSize</key>
-                <string>{56,65}</string>
+                <string>{110,128}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,776},{56,65}}</string>
+                <string>{{1743,267},{110,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -129,13 +129,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,3}</string>
+                <string>{-3,6}</string>
                 <key>spriteSize</key>
-                <string>{56,63}</string>
+                <string>{110,126}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{70,910},{56,63}}</string>
+                <string>{{785,137},{110,126}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -144,13 +144,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,3}</string>
+                <string>{-3,5}</string>
                 <key>spriteSize</key>
-                <string>{56,63}</string>
+                <string>{110,124}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{70,975},{56,63}}</string>
+                <string>{{1855,267},{110,124}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -159,28 +159,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,2}</string>
+                <string>{-2,4}</string>
                 <key>spriteSize</key>
-                <string>{56,65}</string>
+                <string>{112,130}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{70,843},{56,65}}</string>
+                <string>{{1347,265},{112,130}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,2}</string>
+                <string>{-1,3}</string>
                 <key>spriteSize</key>
-                <string>{58,67}</string>
+                <string>{114,132}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,558},{58,67}}</string>
+                <string>{{1637,133},{114,132}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -189,28 +189,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,1}</string>
+                <string>{0,2}</string>
                 <key>spriteSize</key>
-                <string>{58,69}</string>
+                <string>{116,138}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{69,1366},{58,69}}</string>
+                <string>{{1885,149},{116,138}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,1}</string>
+                <string>{1,2}</string>
                 <key>spriteSize</key>
-                <string>{60,71}</string>
+                <string>{118,142}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{67,398},{60,71}}</string>
+                <string>{{763,265},{118,142}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -219,13 +219,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{1,2}</string>
+                <string>{2,4}</string>
                 <key>spriteSize</key>
-                <string>{60,73}</string>
+                <string>{120,146}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{67,323},{60,73}}</string>
+                <string>{{1909,1},{120,146}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -234,58 +234,58 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,3}</string>
+                <string>{4,5}</string>
                 <key>spriteSize</key>
-                <string>{62,75}</string>
+                <string>{124,148}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{1,1289},{62,75}}</string>
+                <string>{{1219,133},{124,148}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,3}</string>
+                <string>{4,6}</string>
                 <key>spriteSize</key>
-                <string>{62,75}</string>
+                <string>{124,150}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{65,1289},{62,75}}</string>
+                <string>{{897,129},{124,150}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_17.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,4}</string>
+                <string>{5,7}</string>
                 <key>spriteSize</key>
-                <string>{64,77}</string>
+                <string>{126,152}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{1,1210},{64,77}}</string>
+                <string>{{631,137},{126,152}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_18.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,5}</string>
+                <string>{5,9}</string>
                 <key>spriteSize</key>
-                <string>{64,79}</string>
+                <string>{126,156}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{1,406},{64,79}}</string>
+                <string>{{143,151},{126,156}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -294,148 +294,148 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,5}</string>
+                <string>{5,10}</string>
                 <key>spriteSize</key>
-                <string>{64,79}</string>
+                <string>{126,158}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{1,487},{64,79}}</string>
+                <string>{{957,1},{126,158}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Jump_20.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,6}</string>
+                <string>{5,12}</string>
                 <key>spriteSize</key>
-                <string>{64,81}</string>
+                <string>{126,162}</string>
                 <key>spriteSourceSize</key>
-                <string>{68,93}</string>
+                <string>{136,186}</string>
                 <key>textureRect</key>
-                <string>{{1,323},{64,81}}</string>
+                <string>{{793,1},{126,162}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_00.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,-2}</string>
+                <string>{-15,-4}</string>
                 <key>spriteSize</key>
-                <string>{66,79}</string>
+                <string>{130,158}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,568},{66,79}}</string>
+                <string>{{1117,1},{130,158}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-5,-2}</string>
+                <string>{-11,-5}</string>
                 <key>spriteSize</key>
-                <string>{70,79}</string>
+                <string>{138,156}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,78},{70,79}}</string>
+                <string>{{157,1},{138,156}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,1}</string>
+                <string>{-5,2}</string>
                 <key>spriteSize</key>
-                <string>{76,67}</string>
+                <string>{150,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1132},{76,67}}</string>
+                <string>{{479,137},{150,134}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Run_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,3}</string>
+                <string>{-3,6}</string>
                 <key>spriteSize</key>
-                <string>{78,67}</string>
+                <string>{154,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,892},{78,67}}</string>
+                <string>{{1753,1},{154,134}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Run_04.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,4}</string>
+                <string>{-2,8}</string>
                 <key>spriteSize</key>
-                <string>{78,67}</string>
+                <string>{156,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,972},{78,67}}</string>
+                <string>{{635,1},{156,134}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Run_05.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,5}</string>
+                <string>{-1,10}</string>
                 <key>spriteSize</key>
-                <string>{80,67}</string>
+                <string>{158,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,241},{80,67}}</string>
+                <string>{{475,1},{158,134}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Run_06.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,7}</string>
+                <string>{-1,13}</string>
                 <key>spriteSize</key>
-                <string>{80,69}</string>
+                <string>{158,136}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,159},{80,69}}</string>
+                <string>{{315,1},{158,136}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Run_07.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,6}</string>
+                <string>{-2,13}</string>
                 <key>spriteSize</key>
-                <string>{78,71}</string>
+                <string>{156,140}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1052},{78,71}}</string>
+                <string>{{1,151},{156,140}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -444,13 +444,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,4}</string>
+                <string>{-3,9}</string>
                 <key>spriteSize</key>
-                <string>{78,75}</string>
+                <string>{154,148}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{78,75}}</string>
+                <string>{{1,1},{154,148}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -459,58 +459,58 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,-2}</string>
+                <string>{-15,-4}</string>
                 <key>spriteSize</key>
-                <string>{66,79}</string>
+                <string>{130,158}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,649},{66,79}}</string>
+                <string>{{1277,1},{130,158}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,-1}</string>
+                <string>{-15,-3}</string>
                 <key>spriteSize</key>
-                <string>{66,79}</string>
+                <string>{130,156}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,730},{66,79}}</string>
+                <string>{{1437,1},{130,156}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,2}</string>
+                <string>{-15,3}</string>
                 <key>spriteSize</key>
-                <string>{66,67}</string>
+                <string>{130,132}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1439},{66,67}}</string>
+                <string>{{1369,133},{130,132}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,5}</string>
+                <string>{-15,9}</string>
                 <key>spriteSize</key>
-                <string>{66,65}</string>
+                <string>{130,128}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1577},{66,65}}</string>
+                <string>{{1753,137},{130,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -519,13 +519,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,6}</string>
+                <string>{-15,12}</string>
                 <key>spriteSize</key>
-                <string>{66,63}</string>
+                <string>{130,126}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1711},{66,63}}</string>
+                <string>{{1479,265},{130,126}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -534,13 +534,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,7}</string>
+                <string>{-15,13}</string>
                 <key>spriteSize</key>
-                <string>{66,65}</string>
+                <string>{130,128}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1644},{66,65}}</string>
+                <string>{{1611,267},{130,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -549,28 +549,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,8}</string>
+                <string>{-15,15}</string>
                 <key>spriteSize</key>
-                <string>{66,67}</string>
+                <string>{130,132}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1508},{66,67}}</string>
+                <string>{{1503,133},{130,132}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Run_16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,6}</string>
+                <string>{-15,12}</string>
                 <key>spriteSize</key>
-                <string>{66,71}</string>
+                <string>{130,142}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,1366},{66,71}}</string>
+                <string>{{631,265},{130,142}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -579,43 +579,43 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,2}</string>
+                <string>{-15,3}</string>
                 <key>spriteSize</key>
-                <string>{66,79}</string>
+                <string>{130,156}</string>
                 <key>spriteSourceSize</key>
-                <string>{80,83}</string>
+                <string>{160,166}</string>
                 <key>textureRect</key>
-                <string>{{1,811},{66,79}}</string>
+                <string>{{1595,1},{130,156}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Vik1_Smash_00.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{1,0}</string>
+                <string>{2,0}</string>
                 <key>spriteSize</key>
-                <string>{80,51}</string>
+                <string>{160,102}</string>
                 <key>spriteSourceSize</key>
-                <string>{82,51}</string>
+                <string>{164,102}</string>
                 <key>textureRect</key>
-                <string>{{70,241},{80,51}}</string>
+                <string>{{325,305},{160,102}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Smash_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{1,-1}</string>
                 <key>spriteSize</key>
-                <string>{82,51}</string>
+                <string>{162,100}</string>
                 <key>spriteSourceSize</key>
-                <string>{82,51}</string>
+                <string>{164,102}</string>
                 <key>textureRect</key>
-                <string>{{69,1437},{82,51}}</string>
+                <string>{{271,141},{162,100}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -624,30 +624,30 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,-1}</string>
+                <string>{0,-2}</string>
                 <key>spriteSize</key>
-                <string>{80,49}</string>
+                <string>{160,98}</string>
                 <key>spriteSourceSize</key>
-                <string>{82,51}</string>
+                <string>{164,102}</string>
                 <key>textureRect</key>
-                <string>{{72,159},{80,49}}</string>
+                <string>{{1,309},{160,98}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Vik1_Smash_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,-1}</string>
+                <string>{0,-3}</string>
                 <key>spriteSize</key>
-                <string>{80,49}</string>
+                <string>{160,96}</string>
                 <key>spriteSourceSize</key>
-                <string>{82,51}</string>
+                <string>{164,102}</string>
                 <key>textureRect</key>
-                <string>{{69,627},{80,49}}</string>
+                <string>{{163,309},{160,96}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -657,9 +657,9 @@
             <key>realTextureFileName</key>
             <string>PlayerMotions.png</string>
             <key>size</key>
-            <string>{128,1782}</string>
+            <string>{2030,408}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5b4c8e8d927c3df3bfa516d46b5cf4af:a17724f5e933c3e42ec14a8e92996d13:bf1677049d1b9486c61f81822c93c091$</string>
+            <string>$TexturePacker:SmartUpdate:e2a00d602566cbd590b09b69376e6ea0:a88eb2cfb7cc46fbc01ffc199be7a3cd:bf1677049d1b9486c61f81822c93c091$</string>
             <key>textureFileName</key>
             <string>PlayerMotions.png</string>
         </dict>

@@ -9,13 +9,13 @@
 #ifndef EntitySystem_hpp
 #define EntitySystem_hpp
 
-#include <iostream>
 #include <map>
 #include <stdio.h>
 #include <vector>
 
 #include "rapidjson/document.h"
 
+#include "Component.h"
 #include "Entity.h"
 #include "../../DEFINES.h"
 #include "../System/System.h"

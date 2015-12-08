@@ -5,20 +5,24 @@
 //  Created by Derek Peterson on 12/4/15.
 //
 //
+#include "cocos2d.h"
 
 #include "../../Engine/Entity/DNASequencer.h"
 #include "../../Engine/Entity/EntitySystem.h"
 #include "Level.h"
 #include "../../Engine/Locomotion/LocomotionComponent.h"
+#include "../../Engine/Physics/PhysicsComponent.h"
 #include "../../Engine/Physics/PhysicsSystem.h"
 #include "../../Engine/Render/RenderComponent.h"
 #include "../../Engine/Render/RenderSystem.h"
 
 Level::Level()
 {
-    m_playerSpawner = cocos2d::Vec2( 250.0f, 50.0f );
-    m_enemySpawner = cocos2d::Vec2( 1650, 50.0f );
-    m_maxEnemyCount = 5;
+    cocos2d::Size pScreenSize = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
+    
+    m_playerSpawner = cocos2d::Vec2( 200.0f, 50.0f );
+    m_enemySpawner = cocos2d::Vec2( pScreenSize.width - 200.0f, 50.0f );
+    m_maxEnemyCount = 3;
     m_enemySpawnTimer = 0.0f;
     m_flickerTimer = 0.0f;
     
@@ -26,10 +30,10 @@ Level::Level()
     m_lightEffect->retain();
     
     m_lightEffect->setLightHalfRadius( 0.8f );
-    m_lightEffect->setLightCutoffRadius( 900 );
-    m_lightEffect->setBrightness( 2.0f );
-    m_lightEffect->setLightPos( cocos2d::Vec3(960, 600, 600) );
-    m_lightEffect->setLightColor( cocos2d::Color3B( cocos2d::Color4F( 1.0f, 0.6f, 0.2f, 1.0f ) ) );
+    m_lightEffect->setLightCutoffRadius( 500 );
+    m_lightEffect->setBrightness( 1.5f );
+    m_lightEffect->setLightPos( cocos2d::Vec3(960, 600, 100) );
+    m_lightEffect->setLightColor( cocos2d::Color3B( 255, 110, 40 ) );
     m_lightEffect->setAmbientLightColor( cocos2d::Color3B( cocos2d::Color4F( 0.025f, 0.025f, 0.025f, 1.0f ) ) );
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
@@ -38,29 +42,24 @@ Level::Level()
     
     
     Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
-    ASSERTS( pFloor, "Floor is no good!" );
-    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( 960.0f, 15.0f ) );
+    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 15.0f ) );
     m_staticEntities.insert( std::make_pair( pFloor->m_entityHandle, pFloor ) );
     
     Entity* pLeftWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 150.0f, 0.0f ) );
+    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pLeftWall->m_entityHandle, pLeftWall ) );
     
     Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( 1770.0f, 0.0f ) );
+    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( pScreenSize.width - 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pRightWall->m_entityHandle, pRightWall ) );
-    
-//    Entity* pSkyBox = DNASequencer::CreateEntity( "Baked/Skybox/skybox.dna" );
-//    PhysicsSystem::SetPosition( pSkyBox->m_entityHandle, cocos2d::Vec2( 0.0f, 0.0f ) );
-//    m_staticEntities.insert( std::make_pair( pSkyBox->m_entityHandle, pSkyBox ) );
-//    
+
     Entity* pLongboat = DNASequencer::CreateEntity( "Baked/Longboat/longboat.dna" );
-    PhysicsSystem::SetPosition( pLongboat->m_entityHandle, cocos2d::Vec2( 1920.0f * 0.5f, 0.0f ) );
+    PhysicsSystem::SetPosition( pLongboat->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 0.0f ) );
     AddLightEffect( pLongboat );
     m_staticEntities.insert( std::make_pair( pLongboat->m_entityHandle, pLongboat ) );
     
     Entity* pLongboatSail = DNASequencer::CreateEntity( "Baked/Longboat/longboat_sail.dna" );
-    PhysicsSystem::SetPosition( pLongboatSail->m_entityHandle, cocos2d::Vec2( 1920.0f * 0.5f, 0.0f ) );
+    PhysicsSystem::SetPosition( pLongboatSail->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 70.0f ) );
     AddLightEffect( pLongboatSail );
     m_staticEntities.insert( std::make_pair( pLongboatSail->m_entityHandle, pLongboatSail ) );
     
@@ -113,6 +112,12 @@ void Level::update( float i_dt )
         float pBriDiff = pDiff * pPercent;
         float pBrightness = m_startBrightness + pBriDiff;
         m_lightEffect->setBrightness( pBrightness );
+    }
+    
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_player->m_entityHandle );
+    if ( pPhysicsComponent )
+    {
+        m_lightEffect->setLightPos( cocos2d::Vec3( pPhysicsComponent->GetPosition().x, pPhysicsComponent->GetPosition().y + 100.0f, 70.0f ) );
     }
 }
 

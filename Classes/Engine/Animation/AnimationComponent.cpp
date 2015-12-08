@@ -12,8 +12,6 @@
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
 
-using namespace cocos2d;
-
 std::string AnimationComponent::s_componentType = "AnimationComponent";
 
 void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
@@ -23,7 +21,7 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
     
     if ( i_dnaObject.HasMember( "Motions" ) )
     {
-        for ( int i = 0; i < i_dnaObject["Motions"].Capacity(); i++ )
+        for ( unsigned int i = 0; i < i_dnaObject["Motions"].Capacity(); i++ )
         {
             std::string pMotionName = i_dnaObject["Motions"][i]["Motion"].GetString();
             std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
@@ -36,19 +34,19 @@ void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Val
                 pMotionRate = i_dnaObject["Motions"][i]["MotionRate"].GetDouble();
             }
             
-            Vector<SpriteFrame*> pFrames( pFrameCount );
+            cocos2d::Vector<cocos2d::SpriteFrame*> pFrames( pFrameCount );
             for ( int i = pStartFrame; i <= pEndFrame; i++ )
             {
                 char pFrameName[100] = {0};
                 sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
-                pFrames.pushBack( SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
+                pFrames.pushBack( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
             }
             
             char pChar[200];
             sprintf( pChar, "%s_%s", pMotionName.c_str(), pSpriteName.c_str() );
             std::string pAnimationName = std::string( pChar );
-            Animation* pAnimation = Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
-            AnimationCache::getInstance()->addAnimation( pAnimation, pAnimationName );
+            cocos2d::Animation* pAnimation = cocos2d::Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
+            cocos2d::AnimationCache::getInstance()->addAnimation( pAnimation, pAnimationName );
             
             MotionInfo pMotionInfo = MotionInfo( pAnimationName, pMotionRate );
             
@@ -64,37 +62,37 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::OnActivate()
 {
-    StartMotion( "Run", -1 );
+    StartMotion( "Run", 999999 );
 }
 
 void AnimationComponent::StartMotion( std::string i_motionName, float i_loops, cocos2d::Action* i_nextAction )
 {
     MotionInfo pMotionInfo = m_motions.at( i_motionName );
-    Animation* pAnimation = AnimationCache::getInstance()->getAnimation( pMotionInfo.m_animationName );
+    cocos2d::Animation* pAnimation = cocos2d::AnimationCache::getInstance()->getAnimation( pMotionInfo.m_animationName );
     if ( pAnimation )
     {
         pAnimation->setLoops( i_loops );
-        Action* pAction;
+        cocos2d::Action* pAction;
         if ( pMotionInfo.m_motionRate > 0.0f )
         {
-            Animate* pAnimate = Animate::create( pAnimation );
-            pAction = Speed::create( pAnimate, 1.0f );
+            cocos2d::Animate* pAnimate = cocos2d::Animate::create( pAnimation );
+            pAction = cocos2d::Speed::create( pAnimate, 1.0f );
         }
         else
         {
-            pAction = Animate::create( pAnimation );
+            pAction = cocos2d::Animate::create( pAnimation );
         }
         pAction->setTag( ActionTag::AnimationAction );
         
         if ( i_nextAction )
         {
-            pAction = Sequence::create( (FiniteTimeAction*) pAction, i_nextAction, NULL);
+            pAction = cocos2d::Sequence::create( (cocos2d::FiniteTimeAction*) pAction, i_nextAction, NULL);
         }
         
         RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
         if ( pRenderComponent )
         {
-            Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
+            cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
             if ( strcmp( i_motionName.c_str(), m_currentMotionName.c_str() ) != 0 || !pCurrentAnimation || pCurrentAnimation->isDone() )
             {
                 if ( pCurrentAnimation && !pCurrentAnimation->isDone() )
@@ -113,8 +111,8 @@ void AnimationComponent::SyncMotionRate()
     RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
     if ( pRenderComponent )
     {
-        Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
-        Speed* pSpeedAction = dynamic_cast<Speed*>( pCurrentAnimation );
+        cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
+        cocos2d::Speed* pSpeedAction = dynamic_cast<cocos2d::Speed*>( pCurrentAnimation );
         if ( pCurrentAnimation && pSpeedAction )
         {
             PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );

@@ -6,6 +6,8 @@
 //
 //
 
+#include "cocos2d.h"
+
 #include "../Entity/EntitySystem.h"
 #include "LocomotionComponent.h"
 #include "LocomotionSystem.h"

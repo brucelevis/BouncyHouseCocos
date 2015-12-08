@@ -20,13 +20,11 @@
 #include "../../Engine/Physics/PhysicsSystem.h"
 #include "../../Engine/Render/RenderSystem.h"
 
-USING_NS_CC;
-
 // on "init" you need to initialize your instance
 bool GameScene::Start()
 {
-    this->getPhysicsWorld()->setGravity( Vec2( 0.0f, GRAVITY ) );
-    this->getPhysicsWorld()->setAutoStep( false );
+    this->getPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
+    //this->getPhysicsWorld()->setAutoStep( false );
     
     RenderSystem::m_activeScene = this;
     RenderSystem::m_activeScene->scheduleUpdate();
@@ -38,11 +36,11 @@ bool GameScene::Start()
     
     LevelSystem::m_level = new Level();
 
-    auto eventListener = EventListenerKeyboard::create();
-    eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event){
-        Vec2 loc = event->getCurrentTarget()->getPosition();
+    auto eventListener = cocos2d::EventListenerKeyboard::create();
+    eventListener->onKeyPressed = [](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event){
+        cocos2d::Vec2 loc = event->getCurrentTarget()->getPosition();
         switch(keyCode){
-            case EventKeyboard::KeyCode::KEY_SPACE:
+            case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
                 LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
                 if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
@@ -51,58 +49,58 @@ bool GameScene::Start()
                 }
                 break;
             }
-            case EventKeyboard::KeyCode::KEY_C:
+            case cocos2d::EventKeyboard::KeyCode::KEY_C:
             {
                 PhysicsSystem::m_debug = !PhysicsSystem::m_debug;
                 if ( PhysicsSystem::m_debug )
                 {
-                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
                 }
                 else
                 {
-                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_NONE);
+                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_NONE);
                 }
                 break;
             }
-            case EventKeyboard::KeyCode::KEY_L:
+            case cocos2d::EventKeyboard::KeyCode::KEY_L:
             {
                 LocomotionSystem::m_debug = !LocomotionSystem::m_debug;
                 break;
             }
-            case EventKeyboard::KeyCode::KEY_A:
+            case cocos2d::EventKeyboard::KeyCode::KEY_A:
             {
                 AnimationSystem::m_debug = !AnimationSystem::m_debug;
                 break;
             }
-            case EventKeyboard::KeyCode::KEY_S:
+            case cocos2d::EventKeyboard::KeyCode::KEY_S:
             {
-                if ( Director::getInstance()->getScheduler()->getTimeScale() != 0.1f )
+                if ( cocos2d::Director::getInstance()->getScheduler()->getTimeScale() != 0.1f )
                 {
-                    Director::getInstance()->getScheduler()->setTimeScale( 0.1f);
+                    cocos2d::Director::getInstance()->getScheduler()->setTimeScale( 0.1f);
                 }
                 else
                 {
-                    Director::getInstance()->getScheduler()->setTimeScale( 1.0f);
+                    cocos2d::Director::getInstance()->getScheduler()->setTimeScale( 1.0f);
                 }
                 break;
             }
-            case EventKeyboard::KeyCode::KEY_P:
+            case cocos2d::EventKeyboard::KeyCode::KEY_P:
             {
-                if ( Director::getInstance()->getScheduler()->getTimeScale() > 0.0f )
+                if ( cocos2d::Director::getInstance()->getScheduler()->getTimeScale() > 0.0f )
                 {
-                    Director::getInstance()->getScheduler()->setTimeScale( 0.0f );
+                    cocos2d::Director::getInstance()->getScheduler()->setTimeScale( 0.0f );
                 }
                 else
                 {
-                    Director::getInstance()->getScheduler()->setTimeScale( 1.0f );
+                    cocos2d::Director::getInstance()->getScheduler()->setTimeScale( 1.0f );
                 }
             }
         }
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
     
-    auto touchListener = EventListenerTouchOneByOne::create();
-    touchListener->onTouchBegan = touchListener->onTouchBegan = [](Touch* touch, Event* event){
+    auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+    touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
         LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
         if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
         {
@@ -126,7 +124,7 @@ bool GameScene::Start()
 
 void GameScene::menuCloseCallback(Ref* pSender)
 {
-    Director::getInstance()->end();
+    cocos2d::Director::getInstance()->end();
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
@@ -151,7 +149,7 @@ bool GameScene::OnContactBegin( cocos2d::PhysicsContact& i_contact )
     return PhysicsSystem::OnContactBegin( i_contact );
 }
 
-bool GameScene::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
+void GameScene::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
 {
-    return PhysicsSystem::OnContactPostSolve( i_contact );
+    PhysicsSystem::OnContactPostSolve( i_contact );
 }

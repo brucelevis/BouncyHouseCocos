@@ -6,6 +6,8 @@
 //
 //
 
+#include "cocos2d.h"
+
 #include "../Entity/ComponentSystem.h"
 #include "../Entity/DNASequencer.h"
 #include "../Entity/EntitySystem.h"
@@ -13,8 +15,6 @@
 #include "PhysicsSystem.h"
 #include "../Render/RenderComponent.h"
 #include "../Render/RenderSystem.h"
-
-using namespace cocos2d;
 
 std::string PhysicsComponent::s_componentType = "PhysicsComponent";
 
@@ -86,7 +86,7 @@ void PhysicsComponent::OnActivate()
     }
     else
     {
-        m_node = Node::create();
+        m_node = cocos2d::Node::create();
         m_node->setTag( m_entityHandle );
         RenderSystem::m_activeScene->addChild( m_node );
     }
@@ -97,7 +97,7 @@ void PhysicsComponent::OnActivate()
         
         if ( m_width != 0.0f && m_height != 0.0f )
         {
-            m_physicsBody = PhysicsBody::createBox( Size( m_width, m_height ), PhysicsMaterial( m_density, m_restitution, m_friction ) );
+            m_physicsBody = cocos2d::PhysicsBody::createBox( cocos2d::Size( m_width, m_height ), cocos2d::PhysicsMaterial( m_density, m_restitution, m_friction ) );
             m_physicsBody->setPositionOffset( m_offset );
             m_physicsBody->setDynamic( m_dynamic );
             m_physicsBody->setMass( 10.0f );
@@ -214,18 +214,16 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
 
 bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )
 {
-    EventCustom event( "PhysicsContactBegin" );
+    cocos2d::EventCustom event( "PhysicsContactBegin" );
     event.setUserData( &i_contact );
     RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
     
     return true;
 }
 
-bool PhysicsComponent::OnContactPostSolve( PhysicsContactInfo i_contact )
+void PhysicsComponent::OnContactPostSolve( PhysicsContactInfo i_contact )
 {
-    EventCustom event( "PhysicsContactPostSolve" );
+    cocos2d::EventCustom event( "PhysicsContactPostSolve" );
     event.setUserData( &i_contact );
     RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
-    
-    return true;
 }

@@ -5,15 +5,16 @@
 //  Created by Derek Peterson on 12/5/15.
 //
 //
+#include <string>
 
-#include "AnimationComponent.h"
-#include "EntitySystem.h"
+#include "cocos2d.h"
+
+#include "../Animation/AnimationComponent.h"
+#include "../Entity/EntitySystem.h"
 #include "HealthComponent.h"
 #include "HealthSystem.h"
-#include "RenderComponent.h"
-#include "RenderSystem.h"
-
-using namespace cocos2d;
+#include "../Render/RenderComponent.h"
+#include "../Render/RenderSystem.h"
 
 std::string HealthComponent::s_componentType = "HealthComponent";
 

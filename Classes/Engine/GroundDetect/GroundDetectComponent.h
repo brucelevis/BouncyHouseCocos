@@ -9,8 +9,6 @@
 #ifndef GroundDetectComponent_hpp
 #define GroundDetectComponent_hpp
 
-#include "cocos2d.h"
-
 #include "../Entity/Component.h"
 #include "../TypeDefs.h"
 

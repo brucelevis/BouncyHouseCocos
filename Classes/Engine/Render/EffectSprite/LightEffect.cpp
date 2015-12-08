@@ -30,9 +30,6 @@
 #include "LightEffect.h"
 #include "EffectSprite.h"
 
-USING_NS_CC;
-
-
 LightEffect* LightEffect::create()
 {
     LightEffect *normalMappedSprite = new (std::nothrow) LightEffect();
@@ -58,21 +55,21 @@ bool LightEffect::init()
     return false;
 }
 
-void LightEffect::setLightPos(const Vec3 &pos)
+void LightEffect::setLightPos(const cocos2d::Vec3 &pos)
 {
     _lightPos = pos;
 }
 
-void LightEffect::setLightColor(const Color3B &color)
+void LightEffect::setLightColor(const cocos2d::Color3B &color)
 {
     _lightColor = color;
-    getGLProgramState()->setUniformVec3("u_lightColor", Vec3(_lightColor.r,_lightColor.g,_lightColor.b)/255.0f);
+    getGLProgramState()->setUniformVec3("u_lightColor", cocos2d::Vec3(_lightColor.r,_lightColor.g,_lightColor.b)/255.0f);
 }
 
-void LightEffect::setAmbientLightColor(const Color3B &color)
+void LightEffect::setAmbientLightColor(const cocos2d::Color3B &color)
 {
     _ambientLightColor = color;
-    getGLProgramState()->setUniformVec3("u_ambientColor", Vec3(_ambientLightColor.r,_ambientLightColor.g,_ambientLightColor.b)/255.0f);
+    getGLProgramState()->setUniformVec3("u_ambientColor", cocos2d::Vec3(_ambientLightColor.r,_ambientLightColor.g,_ambientLightColor.b)/255.0f);
 }
 
 void LightEffect::setBrightness(float value)
@@ -93,32 +90,32 @@ void LightEffect::setLightHalfRadius(float value)
     getGLProgramState()->setUniformFloat("u_halfRadius", _lightHalfRadius);
 }
 
-void LightEffect::prepareForRender(Sprite *sprite, Texture2D *normalmap)
+void LightEffect::prepareForRender(cocos2d::Sprite *sprite, cocos2d::Texture2D *normalmap)
 {
     auto gl = getGLProgramState();
 
     gl->setUniformVec2("u_contentSize", sprite->getContentSize());
 
-    Point posRelToSprite = PointApplyAffineTransform(Point(_lightPos.x, _lightPos.y), sprite->getWorldToNodeAffineTransform());
-    gl->setUniformVec3("u_lightPos", Vec3(posRelToSprite.x, posRelToSprite.y, _lightPos.z));
+    cocos2d::Point posRelToSprite = PointApplyAffineTransform(cocos2d::Point(_lightPos.x, _lightPos.y), sprite->getWorldToNodeAffineTransform());
+    gl->setUniformVec3("u_lightPos", cocos2d::Vec3(posRelToSprite.x, posRelToSprite.y, _lightPos.z));
 
     gl->setUniformTexture("u_normals", normalmap);
 
-    SpriteFrame *frame = sprite->getSpriteFrame();
-    Size untrimmedSize = frame->getOriginalSize();
-    Size trimmedSize = frame->getRect().size;
-    Vec2 framePos = frame->getRect().origin;
-    Size texSize = frame->getTexture()->getContentSize();
+    cocos2d::SpriteFrame *frame = sprite->getSpriteFrame();
+    cocos2d::Size untrimmedSize = frame->getOriginalSize();
+    cocos2d::Size trimmedSize = frame->getRect().size;
+    cocos2d::Vec2 framePos = frame->getRect().origin;
+    cocos2d::Size texSize = frame->getTexture()->getContentSize();
     
     // set sprite position in sheet
-    gl->setUniformVec2("u_spritePosInSheet", Vec2(framePos.x / texSize.width, framePos.y / texSize.height));
-    gl->setUniformVec2("u_spriteSizeRelToSheet", Vec2(untrimmedSize.width / texSize.width, untrimmedSize.height / texSize.height));
+    gl->setUniformVec2("u_spritePosInSheet", cocos2d::Vec2(framePos.x / texSize.width, framePos.y / texSize.height));
+    gl->setUniformVec2("u_spriteSizeRelToSheet", cocos2d::Vec2(untrimmedSize.width / texSize.width, untrimmedSize.height / texSize.height));
     gl->setUniformInt("u_spriteRotated", frame->isRotated());
     
     // set offset of trimmed sprite
-    Vec2 bottomLeft = frame->getOffset() + (untrimmedSize - trimmedSize) / 2;
-    Vec2 cornerOffset = frame->isRotated() ? Vec2(bottomLeft.y, bottomLeft.x)
-                                           : Vec2(bottomLeft.x, untrimmedSize.height - trimmedSize.height - bottomLeft.y);
+    cocos2d::Vec2 bottomLeft = frame->getOffset() + (untrimmedSize - trimmedSize) / 2;
+    cocos2d::Vec2 cornerOffset = frame->isRotated() ? cocos2d::Vec2(bottomLeft.y, bottomLeft.x)
+                                           : cocos2d::Vec2(bottomLeft.x, untrimmedSize.height - trimmedSize.height - bottomLeft.y);
     gl->setUniformVec2("u_spriteOffset", cornerOffset);
 
 }

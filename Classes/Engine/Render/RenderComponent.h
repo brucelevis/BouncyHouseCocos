@@ -11,8 +11,6 @@
 
 #include <stdio.h>
 
-#include "cocos2d.h"
-
 #include "EffectSprite/EffectSprite.h"
 #include "../Entity/Component.h"
 #include "../TypeDefs.h"

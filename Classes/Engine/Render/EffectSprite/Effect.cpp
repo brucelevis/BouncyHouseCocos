@@ -29,21 +29,18 @@
 
 #include "Effect.h"
 
-USING_NS_CC;
-
-
 bool Effect::initGLProgramState(const std::string &fragmentFilename)
 {
-    auto fileUtiles = FileUtils::getInstance();
+    auto fileUtiles = cocos2d::FileUtils::getInstance();
     auto fragmentFullPath = fileUtiles->fullPathForFilename(fragmentFilename);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
-    auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
+    auto glprogram = cocos2d::GLProgram::createWithByteArrays(cocos2d::ccPositionTextureColor_noMVP_vert, fragSource.c_str());
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8 || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     _fragSource = fragSource;
 #endif
     
-    _glprogramstate = GLProgramState::getOrCreateWithGLProgram(glprogram);
+    _glprogramstate = cocos2d::GLProgramState::getOrCreateWithGLProgram(glprogram);
     _glprogramstate->retain();
     
     return _glprogramstate != nullptr;

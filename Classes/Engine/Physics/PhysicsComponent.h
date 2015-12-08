@@ -67,7 +67,7 @@ public:
     bool RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info );
     
     bool OnContactBegin( PhysicsContactInfo i_contact );
-    bool OnContactPostSolve( PhysicsContactInfo i_contact );
+    void OnContactPostSolve( PhysicsContactInfo i_contact );
 };
 
 #endif /* PhysicsComponent_hpp */

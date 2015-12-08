@@ -233,7 +233,7 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
                 AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
                 if ( pAnimationComponent )
                 {
-                    pAnimationComponent->StartMotion( "Run", -1 );
+                    pAnimationComponent->StartMotion( "Run", 999999 );
                 }
             }
         }

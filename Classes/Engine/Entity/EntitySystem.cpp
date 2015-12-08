@@ -5,13 +5,10 @@
 //  Created by Derek Peterson on 11/28/15.
 //
 //
-#include <vector>
-
 #include "ComponentSystem.h"
 #include "../../DEFINES.h"
 #include "EntitySystem.h"
-#include "../Render/RenderComponent.h"
-#include "../Render/RenderSystem.h"
+#include "../Event/EventManager.h"
 
 std::vector<EntityHandle> EntitySystem::m_markedForDelete;
 std::map<EntityHandle, Entity*> EntitySystem::m_entities;
@@ -55,9 +52,7 @@ void EntitySystem::RemoveEntity( EntityHandle i_entityHandle )
     
     if ( pEntity )
     {
-        cocos2d::EventCustom event( "RemovingEntity" );
-        event.setUserData( &i_entityHandle );
-        RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+        EventManager::SendEvent( "RemovingEntity", (void*) &i_entityHandle );
         
         delete pEntity;
     }

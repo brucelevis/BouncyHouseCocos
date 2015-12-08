@@ -9,7 +9,7 @@
 #ifndef HealthComponent_hpp
 #define HealthComponent_hpp
 
-#include "cocos2d.h"
+#include "rapidjson/document.h"
 
 #include "../Entity/Component.h"
 #include "../TypeDefs.h"

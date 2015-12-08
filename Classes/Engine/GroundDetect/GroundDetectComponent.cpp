@@ -10,8 +10,6 @@
 #include "GroundDetectSystem.h"
 #include "../Render/RenderComponent.h"
 
-using namespace cocos2d;
-
 std::string GroundDetectComponent::s_componentType = "GroundDetectComponent";
 
 void GroundDetectComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )

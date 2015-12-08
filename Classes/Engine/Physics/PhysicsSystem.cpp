@@ -8,6 +8,8 @@
 
 #include <cmath>
 
+#include "cocos2d.h"
+
 #include "../Entity/EntitySystem.h"
 #include "PhysicsSystem.h"
 #include "PhysicsComponent.h"
@@ -39,7 +41,7 @@ void PhysicsSystem::Init()
 
 void PhysicsSystem::Update( float i_dt )
 {
-    RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
+    //RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
     for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;

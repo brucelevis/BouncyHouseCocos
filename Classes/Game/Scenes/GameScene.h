@@ -22,7 +22,7 @@ public:
     virtual void update( float i_dt ) override;
     
     bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
-    bool OnContactPostSolve( cocos2d::PhysicsContact& i_contact );
+    void OnContactPostSolve( cocos2d::PhysicsContact& i_contact );
     
     cocos2d::EventDispatcher* GetEventDispatcher() { return _eventDispatcher; };
 };

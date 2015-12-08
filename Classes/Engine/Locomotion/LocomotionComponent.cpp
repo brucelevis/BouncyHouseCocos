@@ -8,9 +8,7 @@
 
 #include "LocomotionComponent.h"
 #include "LocomotionSystem.h"
-#include "RenderSystem.h"
-
-using namespace cocos2d;
+#include "../Render/RenderSystem.h"
 
 std::string LocomotionComponent::s_componentType = "LocomotionComponent";
 

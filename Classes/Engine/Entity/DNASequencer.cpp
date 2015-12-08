@@ -7,6 +7,7 @@
 //
 #include <fstream>
 
+#include "cocos2d.h"
 #include "rapidjson/document.h"
 
 #include "DNASequencer.h"

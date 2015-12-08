@@ -33,7 +33,7 @@ void RenderSystem::Update( float i_dt )
 void RenderSystem::DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration )
 {
     i_drawNode->runAction( cocos2d::Sequence::create( cocos2d::DelayTime::create( i_duration ), cocos2d::RemoveSelf::create(), nullptr ) );
-    RenderSystem::m_activeScene->addChild( i_drawNode );
+    RenderSystem::m_activeScene->addChild( i_drawNode, 2000 );
 }
 
 void RenderSystem::DebugText( std::string i_text, cocos2d::Vec2 i_position, float i_duration, cocos2d::Color4F i_color, int i_fontSize, cocos2d::TextHAlignment i_hAlignment )
@@ -44,7 +44,7 @@ void RenderSystem::DebugText( std::string i_text, cocos2d::Vec2 i_position, floa
     pLabel->setAlignment( i_hAlignment );
     pLabel->runAction( cocos2d::Sequence::create( cocos2d::DelayTime::create( i_duration ), cocos2d::RemoveSelf::create(), nullptr ) );
     
-    m_activeScene->addChild( pLabel, 1000 );
+    m_activeScene->addChild( pLabel, 2000 );
 }
 
 void RenderSystem::DebugUpdate( float i_dt )

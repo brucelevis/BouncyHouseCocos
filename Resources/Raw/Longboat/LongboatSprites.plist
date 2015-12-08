@@ -9,13 +9,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,-10}</string>
+                <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{1700,280}</string>
+                <string>{1920,350}</string>
                 <key>spriteSourceSize</key>
-                <string>{1700,300}</string>
+                <string>{1920,350}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{1700,280}}</string>
+                <string>{{1,1},{1920,350}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -24,13 +24,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{24,32}</string>
+                <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{314,236}</string>
+                <string>{528,400}</string>
                 <key>spriteSourceSize</key>
-                <string>{1700,300}</string>
+                <string>{528,400}</string>
                 <key>textureRect</key>
-                <string>{{1703,1},{314,236}}</string>
+                <string>{{1,353},{528,400}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -42,9 +42,9 @@
             <key>realTextureFileName</key>
             <string>LongboatSprites.png</string>
             <key>size</key>
-            <string>{2018,282}</string>
+            <string>{1922,754}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c4ff01380aef8254dc7ec65e058aad41:3d2e7a51ebf2b7da6e4ff0b09ae87fbf:45d41a05fd878c4b2c46b83dfbe53324$</string>
+            <string>$TexturePacker:SmartUpdate:30927c4888675bf84029d4cd4b65ad34:b32be004b1950301c449b0856f78d77f:45d41a05fd878c4b2c46b83dfbe53324$</string>
             <key>textureFileName</key>
             <string>LongboatSprites.png</string>
         </dict>

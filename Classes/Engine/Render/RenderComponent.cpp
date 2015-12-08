@@ -6,14 +6,12 @@
 //
 //
 
-#include <iostream>
+#include "cocos2d.h"
 
 #include "EffectSprite/EffectSprite.h"
 #include "EffectSprite/LightEffect.h"
 #include "RenderComponent.h"
 #include "RenderSystem.h"
-
-using namespace cocos2d;
 
 std::string RenderComponent::s_componentType = "RenderComponent";
 
@@ -51,9 +49,9 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
         pSpriteSheetPlistPath.insert( 0, "Baked/" );
         pSpriteSheetPlistPath.insert( pSpriteSheetPlistPath.length(), ".plist" );
         
-        SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pSpriteSheetPlistPath );
+        cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pSpriteSheetPlistPath );
         
-        m_sprite = EffectSprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
+        m_sprite = EffectSprite::createWithSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
         RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
     }
     SetFacing( RenderComponent::FacingDirection::LEFT );
@@ -63,7 +61,6 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
 RenderComponent::~RenderComponent()
 {
     m_sprite->removeFromParent();
-    m_sprite->cleanup();
     RenderSystem::UnregisterComponent( this );
 }
 
@@ -124,4 +121,5 @@ bool RenderComponent::SetEffect( LightEffect* i_lightEffect )
     pSpriteSheetNormalPath.insert( pSpriteSheetNormalPath.length(), "_n.png" );
     
     m_sprite->setEffect( i_lightEffect, pSpriteSheetNormalPath );
+    return true;
 }

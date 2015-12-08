@@ -9,10 +9,8 @@
 #ifndef LocomotionComponent_hpp
 #define LocomotionComponent_hpp
 
-#include "cocos2d.h"
-
 #include "../Entity/Component.h"
-#include "LocomotionMode.h"
+#include "LocomotionModes/LocomotionMode.h"
 #include "../TypeDefs.h"
 
 class LocomotionComponent : public Component

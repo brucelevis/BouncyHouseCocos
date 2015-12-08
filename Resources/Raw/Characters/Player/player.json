@@ -42,7 +42,7 @@
         },
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
-            "RunSpeed": 250.0,
+            "RunSpeed": 350.0,
             "WalkSpeed": 100.0
         },
         "PhysicsComponent": {
@@ -52,7 +52,7 @@
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
             "YOffset": 0.0,
-            "Size": [ 50, 70.0 ],
+            "Size": [ 100.0, 140.0 ],
 
             "Category": [ "Player", "Bouncy" ],
             "Collision": [ "Solid", "Enemy", "Player" ],
