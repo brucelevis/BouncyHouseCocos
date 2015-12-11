@@ -28,14 +28,24 @@ Entity* EntitySystem::CreateEntity()
     return pEntity;
 }
 
-Component* EntitySystem::AttachComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject )
+Component* EntitySystem::AttachAndInitComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject )
+{
+    Component* pComponent = AttachComponent( i_entityHandle, i_componentType );
+    if ( pComponent )
+    {
+        pComponent->DNADataInit( i_entityHandle, i_dnaObject );
+    }
+    return pComponent;
+}
+
+Component* EntitySystem::AttachComponent( EntityHandle i_entityHandle, std::string i_componentType )
 {
     Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
     Component* pComponent = ComponentSystem::CreateComponent( i_componentType );
     ASSERTS( pComponent, "Newly created component is null!" );
     if ( pComponent )
     {
-        pComponent->Init( i_entityHandle, i_dnaObject );
+        pComponent->Init( i_entityHandle );
         pEntity->m_components.insert( std::make_pair( i_componentType, pComponent ) );
     }
     return pComponent;

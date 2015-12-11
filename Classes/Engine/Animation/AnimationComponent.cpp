@@ -14,7 +14,7 @@
 
 std::string AnimationComponent::s_componentType = "AnimationComponent";
 
-void AnimationComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
+void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
     AnimationSystem::RegisterComponent( this );

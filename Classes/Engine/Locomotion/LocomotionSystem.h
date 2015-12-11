@@ -30,7 +30,7 @@ public:
     static void RegisterComponent( Component* i_component );
     static void UnregisterComponent( Component* i_component );
     
-    static void Init();
+    static void DNADataInit();
     static LocomotionMode* CreateLocomotionMode( std::string i_locomotionModeType );
     
     static LocomotionModeMap m_locomotionModeTypes;

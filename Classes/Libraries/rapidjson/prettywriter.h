@@ -40,7 +40,7 @@ public:
     //! Constructor
     /*! \param os Output stream.
         \param allocator User supplied allocator. If it is null, it will create a private one.
-        \param levelDepth Initial capacity of stack.
+        \param levelDepth DNADataInitial capacity of stack.
     */
     PrettyWriter(OutputStream& os, StackAllocator* allocator = 0, size_t levelDepth = Base::kDefaultLevelDepth) : 
         Base(os, allocator, levelDepth), indentChar_(' '), indentCharCount_(4) {}

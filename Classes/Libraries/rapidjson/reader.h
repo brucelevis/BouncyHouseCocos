@@ -1257,7 +1257,7 @@ private:
                 n = IterativeParsingMemberValueState;
             // Push current state.
             *stack_.template Push<SizeType>(1) = n;
-            // Initialize and push the member/element count.
+            // DNADataInitialize and push the member/element count.
             *stack_.template Push<SizeType>(1) = 0;
             // Call handler
             bool hr = (dst == IterativeParsingObjectInitialState) ? handler.StartObject() : handler.StartArray();

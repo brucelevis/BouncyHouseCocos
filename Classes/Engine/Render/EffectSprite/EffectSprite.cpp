@@ -28,7 +28,10 @@
  */
 
 #include "EffectSprite.h"
-#include "LightEffect.h"
+#include "../../Entity/EntitySystem.h"
+#include "../../Lighting/LightEffect.h"
+#include "../../Lighting/LightingSystem.h"
+#include "../../Render/RenderComponent.h"
 
 
 EffectSprite *EffectSprite::create(const std::string& filename)
@@ -56,26 +59,33 @@ EffectSprite *EffectSprite::createWithSpriteFrame(cocos2d::SpriteFrame *spriteFr
 }
 
 
-void EffectSprite::setEffect(LightEffect *effect, const std::string &normalMapFilename)
+void EffectSprite::setNormalMap(const std::string &normalMapFilename)
 {
     _normalmap = cocos2d::Director::getInstance()->getTextureCache()->addImage(normalMapFilename);
-    
-    if(_effect != effect) {
-        
-        CC_SAFE_RELEASE(_effect);
-        _effect = effect;
-        CC_SAFE_RETAIN(_effect);
-        
-        setGLProgramState(_effect->getGLProgramState());
-    }
 }
 
 void EffectSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags)
 {
-    if (_effect != nullptr)
+    if ( _normalmap )
     {
-        _effect->prepareForRender(this, _normalmap);
+        setGLProgramState( LightingSystem::GetGLProgramState() );
+        
+        std::vector<LightEffect*> pLightEffects = LightingSystem::GetLightEffects();
+        int i = 0;
+        for( std::vector<LightEffect*>::iterator it = pLightEffects.begin(); it != pLightEffects.end(); ++it ) {
+            LightEffect* pLightEffect = *it;
+            if ( pLightEffect )
+            {
+                pLightEffect->prepareForRender( this, _normalmap, i );
+            }
+            i++;
+        }
+        char pVarName[100];
+        sprintf( pVarName, "u_lightActive%d", i );
+        LightingSystem::GetGLProgramState()->setUniformInt( pVarName, 0 );
     }
+    
+    
     Sprite::draw(renderer, transform, flags);
     renderer->render();
     
@@ -83,5 +93,5 @@ void EffectSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transf
 
 EffectSprite::~EffectSprite()
 {
-    CC_SAFE_RELEASE(_effect);
+
 }

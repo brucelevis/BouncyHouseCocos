@@ -18,7 +18,7 @@
 
 std::string PhysicsComponent::s_componentType = "PhysicsComponent";
 
-void PhysicsComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
+void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
     PhysicsSystem::RegisterComponent( this );

@@ -18,8 +18,8 @@ public:
 
     /**
     @brief    Implement Director and Scene init code here.
-    @return true    Initialize success, app continue.
-    @return false   Initialize failed, app terminate.
+    @return true    DNADataInitialize success, app continue.
+    @return false   DNADataInitialize failed, app terminate.
     */
     virtual bool applicationDidFinishLaunching();
 

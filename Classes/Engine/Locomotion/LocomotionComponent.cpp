@@ -12,7 +12,7 @@
 
 std::string LocomotionComponent::s_componentType = "LocomotionComponent";
 
-void LocomotionComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
+void LocomotionComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
     m_jumpState = JumpState::NOT_JUMPING;

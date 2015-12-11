@@ -52,7 +52,8 @@ public:
         return NULL;
     }
     
-    static Component* AttachComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject );
+    static Component* AttachAndInitComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject );
+    static Component* AttachComponent( EntityHandle i_entityHandle, std::string i_componentType );
     
 #if DEBUG
     static std::string GetNameDoNotUseInCode( EntityHandle i_entityHandle );

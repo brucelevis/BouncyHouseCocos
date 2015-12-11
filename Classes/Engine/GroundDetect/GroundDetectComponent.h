@@ -22,7 +22,7 @@ public:
     GroundDetectComponent() {};
     virtual ~GroundDetectComponent();
     
-    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
     bool GetOnGround() { return m_onGround; };
     void SetOnGround( bool i_onGround ) { m_onGround = i_onGround; };

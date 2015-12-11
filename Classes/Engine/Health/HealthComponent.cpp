@@ -18,7 +18,7 @@
 
 std::string HealthComponent::s_componentType = "HealthComponent";
 
-void HealthComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
+void HealthComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
     

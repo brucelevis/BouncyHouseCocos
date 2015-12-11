@@ -1536,7 +1536,7 @@ private:
         kCopyFlag = 0x200000,
         kInlineStrFlag = 0x400000,
 
-        // Initial flags of different types.
+        // DNADataInitial flags of different types.
         kNullFlag = kNullType,
         kTrueFlag = kTrueType | kBoolFlag,
         kFalseFlag = kFalseType | kBoolFlag,
@@ -1627,7 +1627,7 @@ private:
         Array a;
     };  // 12 bytes in 32-bit mode, 16 bytes in 64-bit mode
 
-    // Initialize this value as array with initial data, without calling destructor.
+    // DNADataInitialize this value as array with initial data, without calling destructor.
     void SetArrayRaw(GenericValue* values, SizeType count, Allocator& allocator) {
         flags_ = kArrayFlag;
         if (count) {
@@ -1639,7 +1639,7 @@ private:
         data_.a.size = data_.a.capacity = count;
     }
 
-    //! Initialize this value as object with initial data, without calling destructor.
+    //! DNADataInitialize this value as object with initial data, without calling destructor.
     void SetObjectRaw(Member* members, SizeType count, Allocator& allocator) {
         flags_ = kObjectFlag;
         if (count) {
@@ -1651,14 +1651,14 @@ private:
         data_.o.size = data_.o.capacity = count;
     }
 
-    //! Initialize this value as constant string, without calling destructor.
+    //! DNADataInitialize this value as constant string, without calling destructor.
     void SetStringRaw(StringRefType s) RAPIDJSON_NOEXCEPT {
         flags_ = kConstStringFlag;
         data_.s.str = s;
         data_.s.length = s.length;
     }
 
-    //! Initialize this value as copy string with initial data, without calling destructor.
+    //! DNADataInitialize this value as copy string with initial data, without calling destructor.
     void SetStringRaw(StringRefType s, Allocator& allocator) {
         Ch* str = NULL;
         if(ShortString::Usable(s.length)) {

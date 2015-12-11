@@ -29,7 +29,7 @@ void PhysicsSystem::UnregisterComponent( Component* i_component )
     m_components.erase( i_component->m_entityHandle );
 }
 
-void PhysicsSystem::Init()
+void PhysicsSystem::DNADataInit()
 {
     m_collisionCategoryMap.insert( std::make_pair( "None", CollisionCategory::None ) );
     m_collisionCategoryMap.insert( std::make_pair( "Solid", CollisionCategory::Solid ) );
@@ -41,7 +41,7 @@ void PhysicsSystem::Init()
 
 void PhysicsSystem::Update( float i_dt )
 {
-    //RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
+    RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
     for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;

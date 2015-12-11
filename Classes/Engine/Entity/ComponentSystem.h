@@ -21,7 +21,7 @@ typedef std::map<std::string, Component*(*)()> ComponentMap;
 class ComponentSystem : public System
 {
 public:
-    static void Init();
+    static void DNADataInit();
     static Component* CreateComponent( std::string i_componentType );
     static ComponentMap m_componentTypes;
 };

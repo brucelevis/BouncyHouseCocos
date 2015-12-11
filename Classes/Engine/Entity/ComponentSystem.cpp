@@ -10,6 +10,7 @@
 #include "ComponentSystem.h"
 #include "../GroundDetect/GroundDetectComponent.h"
 #include "../Health/HealthComponent.h"
+#include "../Lighting/LightingComponent.h"
 #include "../Locomotion/LocomotionComponent.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
@@ -17,11 +18,12 @@
 
 ComponentMap ComponentSystem::m_componentTypes;
 
-void ComponentSystem::Init()
+void ComponentSystem::DNADataInit()
 {
     ComponentRegister<AnimationComponent>( "AnimationComponent" );
     ComponentRegister<GroundDetectComponent>( "GroundDetectComponent" );
     ComponentRegister<HealthComponent>( "HealthComponent" );
+    ComponentRegister<LightingComponent>( "LightingComponent" );
     ComponentRegister<LocomotionComponent>( "LocomotionComponent" );
     ComponentRegister<PhysicsComponent>( "PhysicsComponent" );
     ComponentRegister<RenderComponent>( "RenderComponent" );

@@ -15,6 +15,7 @@
 #include "../../Engine/Health/HealthSystem.h"
 #include "../Level/Level.h"
 #include "../Level/LevelSystem.h"
+#include "../../Engine/Lighting/LightingSystem.h"
 #include "../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../Engine/Locomotion/LocomotionSystem.h"
 #include "../../Engine/Physics/PhysicsSystem.h"
@@ -24,15 +25,15 @@
 bool GameScene::Start()
 {
     this->getPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
-    //this->getPhysicsWorld()->setAutoStep( false );
+    this->getPhysicsWorld()->setAutoStep( false );
     
     RenderSystem::m_activeScene = this;
     RenderSystem::m_activeScene->scheduleUpdate();
     
-    ComponentSystem::Init();
-    HealthSystem::Init();
-    LocomotionSystem::Init();
-    PhysicsSystem::Init();
+    ComponentSystem::DNADataInit();
+    HealthSystem::DNADataInit();
+    LocomotionSystem::DNADataInit();
+    PhysicsSystem::DNADataInit();
     
     LevelSystem::m_level = new Level();
 
@@ -139,6 +140,7 @@ void GameScene::update( float i_dt )
     AnimationSystem::Update( i_dt );
     LocomotionSystem::Update( i_dt );
     PhysicsSystem::Update( i_dt );
+    LightingSystem::Update( i_dt );
     HealthSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
     RenderSystem::Update( i_dt );

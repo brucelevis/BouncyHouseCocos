@@ -26,7 +26,7 @@ public:
     HealthComponent() {};
     virtual ~HealthComponent() override;
     
-    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
+    virtual void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
     virtual void OnActivate() override;
     virtual void OnDeactivate() override;
     

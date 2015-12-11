@@ -9,13 +9,13 @@
 #include "cocos2d.h"
 
 #include "EffectSprite/EffectSprite.h"
-#include "EffectSprite/LightEffect.h"
+#include "../Lighting/LightEffect.h"
 #include "RenderComponent.h"
 #include "RenderSystem.h"
 
 std::string RenderComponent::s_componentType = "RenderComponent";
 
-void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
+void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
     RenderSystem::RegisterComponent( this );
@@ -48,10 +48,14 @@ void RenderComponent::Init( EntityHandle i_entityHandle, const rapidjson::Value&
         std::string pSpriteSheetPlistPath = std::string( m_spriteSheetName );
         pSpriteSheetPlistPath.insert( 0, "Baked/" );
         pSpriteSheetPlistPath.insert( pSpriteSheetPlistPath.length(), ".plist" );
+        m_spriteSheetNormalPath = std::string( m_spriteSheetName );
+        m_spriteSheetNormalPath.insert( 0, "Baked/" );
+        m_spriteSheetNormalPath.insert( m_spriteSheetNormalPath.length(), "_n.png" );
         
         cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pSpriteSheetPlistPath );
         
         m_sprite = EffectSprite::createWithSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
+        m_sprite->setNormalMap( m_spriteSheetNormalPath );
         RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
     }
     SetFacing( RenderComponent::FacingDirection::LEFT );
@@ -112,14 +116,4 @@ bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
         return true;
     }
     return false;
-}
-
-bool RenderComponent::SetEffect( LightEffect* i_lightEffect )
-{
-    std::string pSpriteSheetNormalPath = std::string( m_spriteSheetName );
-    pSpriteSheetNormalPath.insert( 0, "Baked/" );
-    pSpriteSheetNormalPath.insert( pSpriteSheetNormalPath.length(), "_n.png" );
-    
-    m_sprite->setEffect( i_lightEffect, pSpriteSheetNormalPath );
-    return true;
 }

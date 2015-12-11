@@ -27,7 +27,8 @@ public:
     Component() {};
     virtual ~Component() {};
     
-    virtual void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) {};
+    virtual void Init( EntityHandle i_entityHandle ) {};
+    virtual void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) {};
     void Activate() { m_active = true; OnActivate(); };
     void Deactivate() { OnDeactivate(); };
     virtual void OnActivate() { };

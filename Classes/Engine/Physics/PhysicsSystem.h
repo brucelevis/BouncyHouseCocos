@@ -16,7 +16,7 @@
 class PhysicsSystem : public System
 {
 public:
-    static void Init();
+    static void DNADataInit();
     static void Update( float i_dt );
     
     static std::map<EntityHandle, Component*> m_components;

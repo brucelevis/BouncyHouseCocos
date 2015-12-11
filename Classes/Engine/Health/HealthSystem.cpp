@@ -12,7 +12,7 @@
 std::map<EntityHandle, Component*> HealthSystem::m_components;
 bool HealthSystem::m_debug;
 
-void HealthSystem::Init()
+void HealthSystem::DNADataInit()
 {
     m_debug = false;
 }

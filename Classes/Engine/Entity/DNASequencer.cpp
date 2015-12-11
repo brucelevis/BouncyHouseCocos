@@ -36,7 +36,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         
         if ( itr->value.GetType() == rapidjson::Type::kObjectType )
         {
-            EntitySystem::AttachComponent( pEntity->m_entityHandle, itr->name.GetString(), itr->value );
+            EntitySystem::AttachAndInitComponent( pEntity->m_entityHandle, itr->name.GetString(), itr->value );
         }
     }
     

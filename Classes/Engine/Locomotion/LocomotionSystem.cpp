@@ -20,7 +20,7 @@ std::map<EntityHandle, Component*> LocomotionSystem::m_components;
 LocomotionModeMap LocomotionSystem::m_locomotionModeTypes;
 bool LocomotionSystem::m_debug;
 
-void LocomotionSystem::Init()
+void LocomotionSystem::DNADataInit()
 {
     LocomotionModeRegister<RunLocomotionMode>( "RunLocomotionMode" );
     m_debug = false;

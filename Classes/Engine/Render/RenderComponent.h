@@ -20,13 +20,14 @@ class RenderComponent : public Component
 private:
     bool m_facingLeft;
     std::string m_spriteSheetName;
+    std::string m_spriteSheetNormalPath;
 public:
     static std::string s_componentType;
     
     RenderComponent() {};
     virtual ~RenderComponent();
     
-    void Init( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
     
     enum FacingDirection
     {
@@ -36,8 +37,6 @@ public:
     };
     FacingDirection GetFacing();
     bool SetFacing( FacingDirection i_facingDirection );
-    
-    bool SetEffect( LightEffect* i_lightEffect );
     
     EffectSprite* m_sprite;
 };
