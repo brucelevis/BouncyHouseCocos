@@ -137,7 +137,7 @@ void GameScene::update( float i_dt )
 {
     LevelSystem::Update( i_dt );
     
-    GroundDetectSystem::Update( i_dt );
+    GroundDetectSystem::GetInstance()->Update( i_dt );
     AnimationSystem::Update( i_dt );
     LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );

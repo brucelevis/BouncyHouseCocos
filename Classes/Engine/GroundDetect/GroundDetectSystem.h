@@ -18,13 +18,20 @@
 class GroundDetectSystem : public System
 {
 public:
-    static void Update( float i_dt );
+    static GroundDetectSystem* GetInstance();
+    static void DestroyInstance();
     
-    static std::map<EntityHandle, Component*> m_components;
-    static void RegisterComponent( Component* i_component );
-    static void UnregisterComponent( Component* i_component );
+    void Update( float i_dt );
     
-    static bool m_debug;
+    std::map<EntityHandle, Component*> m_components;
+    void RegisterComponent( Component* i_component );
+    void UnregisterComponent( Component* i_component );
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
+private:
+    static GroundDetectSystem* s_instance;
+    bool m_debug;
 };
 
 #endif /* GroundDetectSystem_hpp */

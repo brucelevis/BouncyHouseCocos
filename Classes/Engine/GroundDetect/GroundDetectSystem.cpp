@@ -16,8 +16,25 @@
 #include "../Physics/PhysicsSystem.h"
 #include "../Render/DebugDrawSystem.h"
 
-std::map<EntityHandle, Component*> GroundDetectSystem::m_components;
-bool GroundDetectSystem::m_debug;
+GroundDetectSystem* GroundDetectSystem::s_instance;
+
+GroundDetectSystem* GroundDetectSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new GroundDetectSystem();
+    }
+    return s_instance;
+}
+
+void GroundDetectSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void GroundDetectSystem::RegisterComponent( Component* i_component )
 {

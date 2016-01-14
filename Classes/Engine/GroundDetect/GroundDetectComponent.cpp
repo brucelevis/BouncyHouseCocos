@@ -15,10 +15,10 @@ std::string GroundDetectComponent::s_componentType = "GroundDetectComponent";
 void GroundDetectComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
-    GroundDetectSystem::RegisterComponent( this );
+    GroundDetectSystem::GetInstance()->RegisterComponent( this );
 }
 
 GroundDetectComponent::~GroundDetectComponent()
 {
-    GroundDetectSystem::UnregisterComponent( this );
+    GroundDetectSystem::GetInstance()->UnregisterComponent( this );
 }
