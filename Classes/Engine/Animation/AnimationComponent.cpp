@@ -17,7 +17,7 @@ std::string AnimationComponent::s_componentType = "AnimationComponent";
 void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
-    AnimationSystem::RegisterComponent( this );
+    AnimationSystem::GetInstance()->RegisterComponent( this );
     
     if ( i_dnaObject.HasMember( "Motions" ) )
     {
@@ -57,7 +57,7 @@ void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjs
 
 AnimationComponent::~AnimationComponent()
 {
-    AnimationSystem::UnregisterComponent( this );
+    AnimationSystem::GetInstance()->UnregisterComponent( this );
 }
 
 void AnimationComponent::OnActivate()

@@ -71,7 +71,7 @@ bool GameScene::Start()
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_A:
             {
-                AnimationSystem::m_debug = !AnimationSystem::m_debug;
+                AnimationSystem::GetInstance()->SetDebug( !AnimationSystem::GetInstance()->GetDebug() );
                 break;
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_S:
@@ -138,7 +138,7 @@ void GameScene::update( float i_dt )
     LevelSystem::Update( i_dt );
     
     GroundDetectSystem::GetInstance()->Update( i_dt );
-    AnimationSystem::Update( i_dt );
+    AnimationSystem::GetInstance()->Update( i_dt );
     LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::GetInstance()->Update( i_dt );

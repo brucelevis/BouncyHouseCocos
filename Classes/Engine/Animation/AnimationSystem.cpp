@@ -13,8 +13,25 @@
 #include "../Render/DebugDrawSystem.h"
 #include "../Render/RenderComponent.h"
 
-std::map<EntityHandle, Component*> AnimationSystem::m_components;
-bool AnimationSystem::m_debug;
+AnimationSystem* AnimationSystem::s_instance;
+
+AnimationSystem* AnimationSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new AnimationSystem();
+    }
+    return s_instance;
+}
+
+void AnimationSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void AnimationSystem::RegisterComponent( Component* i_component )
 {
