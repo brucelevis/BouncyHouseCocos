@@ -18,8 +18,25 @@
 // TODO Stop crossing game/engine lines
 #include "../../Game/Stalactite/StalactiteComponent.h"
 
+ComponentSystem* ComponentSystem::s_instance;
 
-ComponentMap ComponentSystem::m_componentTypes;
+ComponentSystem* ComponentSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new ComponentSystem();
+    }
+    return s_instance;
+}
+
+void ComponentSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void ComponentSystem::DNADataInit()
 {

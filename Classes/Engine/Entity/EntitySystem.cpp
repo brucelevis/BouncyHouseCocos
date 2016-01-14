@@ -29,6 +29,7 @@ void EntitySystem::DestroyInstance()
         s_instance = NULL;
     }
 }
+
 Entity* EntitySystem::CreateEntity()
 {
     EntityHandle newHandle = rand() % 10000;
@@ -57,7 +58,7 @@ Component* EntitySystem::AttachAndInitComponent( EntityHandle i_entityHandle, st
 Component* EntitySystem::AttachComponent( EntityHandle i_entityHandle, std::string i_componentType )
 {
     Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
-    Component* pComponent = ComponentSystem::CreateComponent( i_componentType );
+    Component* pComponent = ComponentSystem::GetInstance()->CreateComponent( i_componentType );
     ASSERTS( pComponent, "Newly created component is null!" );
     if ( pComponent )
     {

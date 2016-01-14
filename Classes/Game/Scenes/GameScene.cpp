@@ -31,7 +31,7 @@ bool GameScene::Start()
     RenderSystem::GetInstance()->SetScene( this );
     RenderSystem::GetInstance()->GetScene()->scheduleUpdate();
     
-    ComponentSystem::DNADataInit();
+    ComponentSystem::GetInstance()->DNADataInit();
     HealthSystem::GetInstance()->DNADataInit();
     LocomotionSystem::GetInstance()->DNADataInit();
     PhysicsSystem::GetInstance()->DNADataInit();
