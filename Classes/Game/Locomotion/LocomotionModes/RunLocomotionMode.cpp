@@ -6,7 +6,7 @@
 //
 //
 
-#include "../../../Engine/Animation/AnimationComponent.h"
+#include "../../../Engine/Animation/AnimationSystem.h"
 #include "../../../Engine/Entity/EntitySystem.h"
 #include "../../../Engine/Event/EventManager.h"
 #include "../../../Engine/GroundDetect/GroundDetectComponent.h"
@@ -64,21 +64,16 @@ void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
             pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
             m_diving = false;
             
-            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-            if ( pAnimationComponent && i_playAnim )
-            {
-                pAnimationComponent->StartMotion( "Jump" );
-            }
+            AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "JUMP" );
         }
         else
         {
             pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY * -2.0f ) );
             m_diving = true;
             
-            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-            if ( pAnimationComponent && i_playAnim )
+            if ( i_playAnim )
             {
-                pAnimationComponent->StartMotion( "Dive" );
+                AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "DIVE" );
             }
         }
     }
@@ -204,12 +199,7 @@ void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
                     {
                         if ( pLocomotionComponent->m_jumpState != JumpState::JUMPING )
                         {
-                            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-                            if ( pAnimationComponent )
-                            {
-                                auto pCallback = cocos2d::CallFunc::create( CC_CALLBACK_0( RunLocomotionMode::AfterSmash, this ) );
-                                pAnimationComponent->StartMotion( "Smash", 1, pCallback );
-                            }
+                            AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "SMASH" );
 
                             Jump( true, false );
                             HealthComponent* pOtherHealthComponent = EntitySystem::GetInstance()->GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
@@ -235,11 +225,7 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
         {
             if ( pGroundDetectComponent->GetOnGround() )
             {
-                AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-                if ( pAnimationComponent )
-                {
-                    pAnimationComponent->StartMotion( "Run", 999999 );
-                }
+                AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "RUN" );
             }
         }
     }
@@ -247,9 +233,5 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
 
 void RunLocomotionMode::AfterSmash()
 {
-    AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-    if ( pAnimationComponent )
-    {
-        pAnimationComponent->StartMotion( "Jump" );
-    }
+    AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "JUMP" );
 }

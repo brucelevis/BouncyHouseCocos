@@ -8,7 +8,14 @@
             "ZOrder": 10
         },
         "AnimationComponent": {
+            "AnimTree": "Characters/Character/Motions/animtree.dna",
             "Motions": [
+                {
+                    "Motion": "Idle",
+                    "StartFrame": 0,
+                    "EndFrame": 0,
+                    "Name": "Vik1_Run"
+                },
                 {
                     "Motion": "Run",
                     "StartFrame": 0,

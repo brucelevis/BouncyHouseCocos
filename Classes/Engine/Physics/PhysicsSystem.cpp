@@ -49,6 +49,7 @@ void PhysicsSystem::UnregisterComponent( Component* i_component )
 void PhysicsSystem::DNADataInit()
 {
     m_collisionCategoryMap.insert( std::make_pair( "None", CollisionCategory::None ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Environment", CollisionCategory::Environment ) );
     m_collisionCategoryMap.insert( std::make_pair( "Solid", CollisionCategory::Solid ) );
     m_collisionCategoryMap.insert( std::make_pair( "Player", CollisionCategory::Player ) );
     m_collisionCategoryMap.insert( std::make_pair( "Enemy", CollisionCategory::Enemy ) );

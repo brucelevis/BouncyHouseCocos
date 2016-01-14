@@ -17,10 +17,11 @@ typedef int EntityHandle;
 enum CollisionCategory
 {
     None = 0,
-    Solid = (1 << 0),
-    Player = (1 << 1),
-    Enemy = (1 << 2),
-    Bouncy = (1 << 3),
+    Environment = (1 << 0),
+    Solid = (1 << 1),
+    Player = (1 << 2),
+    Enemy = (1 << 3),
+    Bouncy = (1 << 4),
     All = INT_MAX
 };
 

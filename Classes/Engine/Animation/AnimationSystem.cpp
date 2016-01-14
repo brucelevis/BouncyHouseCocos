@@ -50,6 +50,10 @@ void AnimationSystem::Update( float i_dt )
         AnimationComponent* pComponent = (AnimationComponent*) it->second;
         if ( pComponent )
         {
+            if ( pComponent->GetAnimTree() )
+            {
+                pComponent->GetAnimTree()->Update( i_dt );
+            }
             pComponent->SyncMotionRate();
 
 #ifdef DEBUG
@@ -109,5 +113,17 @@ void AnimationSystem::Update( float i_dt )
 #endif
         }
         i++;
+    }
+}
+
+void AnimationSystem::SendEvent( EntityHandle i_entityHandle, std::string i_event )
+{
+    AnimationComponent* pComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( i_entityHandle );
+    if ( pComponent )
+    {
+        if ( pComponent->GetAnimTree() )
+        {
+            pComponent->GetAnimTree()->SendEvent( i_event );
+        }
     }
 }

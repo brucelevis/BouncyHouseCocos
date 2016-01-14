@@ -1,0 +1,23 @@
+{
+    "name": "Icicle",
+    "states": [
+        {
+            "name": "wiggle",
+            "defaultState": true,
+            "motion": "Wiggle",
+            "loop": true,
+            "onExit": "",
+            "events": [ "WIGGLE" ],
+            "ignoreEvents": [ "WIGGLE" ]
+        },
+        {
+            "name": "crush",
+            "defaultState": false,
+            "motion": "Crush",
+            "loop": false,
+            "onExit": "",
+            "events": [ "CRUSH" ],
+            "ignoreEvents": [ "CRUSH" ]
+        }
+    ]
+}

@@ -9,6 +9,7 @@
 #include "AnimationComponent.h"
 #include "AnimationSystem.h"
 #include "../Entity/EntitySystem.h"
+#include "../Event/EventManager.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
 
@@ -18,6 +19,12 @@ void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjs
 {
     m_entityHandle = i_entityHandle;
     AnimationSystem::GetInstance()->RegisterComponent( this );
+    
+    ASSERTS( i_dnaObject.HasMember( "AnimTree" ), "AnimationComponent not configured with AnimTree!" );
+    if ( i_dnaObject.HasMember( "AnimTree" ) )
+    {
+        m_animTree = AnimTree::CreateWithDNA( m_entityHandle, i_dnaObject["AnimTree"].GetString() );
+    }
     
     if ( i_dnaObject.HasMember( "Motions" ) )
     {
@@ -62,46 +69,60 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::OnActivate()
 {
-    StartMotion( "Run", 999999 );
+    if ( m_animTree )
+    {
+        m_animTree->Start();
+    }
 }
 
-void AnimationComponent::StartMotion( std::string i_motionName, float i_loops, cocos2d::Action* i_nextAction )
+void AnimationComponent::OnDeactivate()
 {
+    if ( m_animTree )
+    {
+        m_animTree->Stop();
+    }
+}
+
+void AnimationComponent::StartMotion( std::string i_motionName, int i_loops )
+{
+    ASSERTS( m_motions.find( i_motionName ) != m_motions.end(), "Starting missing motion" );
     MotionInfo pMotionInfo = m_motions.at( i_motionName );
     cocos2d::Animation* pAnimation = cocos2d::AnimationCache::getInstance()->getAnimation( pMotionInfo.m_animationName );
     if ( pAnimation )
     {
         pAnimation->setLoops( i_loops );
-        cocos2d::Action* pAction;
+        cocos2d::Action* pAction = cocos2d::Animate::create( pAnimation );
+        
+        auto pCallback = cocos2d::CallFunc::create( CC_CALLBACK_0( AnimationComponent::OnMotionEnd, this ) );
+        pAction = cocos2d::Sequence::create( (cocos2d::FiniteTimeAction*) pAction, pCallback, NULL);
+        
         if ( pMotionInfo.m_motionRate > 0.0f )
         {
-            cocos2d::Animate* pAnimate = cocos2d::Animate::create( pAnimation );
-            pAction = cocos2d::Speed::create( pAnimate, 1.0f );
+            pAction = cocos2d::Speed::create( (cocos2d::ActionInterval*) pAction, 1.0f );
         }
-        else
-        {
-            pAction = cocos2d::Animate::create( pAnimation );
-        }
-        pAction->setTag( ActionTag::AnimationAction );
         
-        if ( i_nextAction )
-        {
-            pAction = cocos2d::Sequence::create( (cocos2d::FiniteTimeAction*) pAction, i_nextAction, NULL);
-        }
+        pAction->setTag( ActionTag::AnimationAction );
         
         RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
         if ( pRenderComponent )
         {
-            cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
-            if ( strcmp( i_motionName.c_str(), m_currentMotionName.c_str() ) != 0 || !pCurrentAnimation || pCurrentAnimation->isDone() )
-            {
-                if ( pCurrentAnimation && !pCurrentAnimation->isDone() )
-                {
-                    pRenderComponent->m_sprite->stopAction( pCurrentAnimation );
-                }
-                pRenderComponent->m_sprite->runAction( pAction );
-                m_currentMotionName = i_motionName;
-            }
+            pRenderComponent->m_sprite->runAction( pAction );
+        }
+        m_currentMotionName = i_motionName;
+
+    }
+}
+
+void AnimationComponent::StopMotion()
+{
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
+    if ( pRenderComponent )
+    {
+        cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
+        if ( pCurrentAnimation )
+        {
+            pRenderComponent->m_sprite->stopAction( pCurrentAnimation );
+            m_motionInterrupted = true;
         }
     }
 }
@@ -126,3 +147,15 @@ void AnimationComponent::SyncMotionRate()
         }
     }
 }
+
+void AnimationComponent::OnMotionEnd()
+{
+    EventManager::GetInstance()->SendEvent( "MotionEnd", &m_entityHandle );
+    if ( !m_motionInterrupted && m_animTree )
+    {
+        m_animTree->ExitState();
+    }
+    m_motionInterrupted = false;
+}
+
+

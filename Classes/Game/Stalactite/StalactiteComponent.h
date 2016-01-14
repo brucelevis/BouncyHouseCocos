@@ -32,6 +32,7 @@ public:
     virtual void Update( float i_dt ) override;
     
     void OnGroundChangedEvent( cocos2d::EventCustom* i_event );
+    void BeginCrush();
 };
 
 

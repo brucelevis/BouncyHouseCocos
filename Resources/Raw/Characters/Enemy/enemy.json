@@ -7,8 +7,15 @@
             "FacingLeft": true
         },
         "AnimationComponent": {
+            "AnimTree": "Characters/Character/Motions/animtree.dna",
             "Motions":
             [
+                {
+                    "Motion": "Idle",
+                    "StartFrame": 0,
+                    "EndFrame": 0,
+                    "Name": "SmallEnemyWalk"
+                },
                 {
                     "Motion": "Run",
                     "StartFrame": 0,

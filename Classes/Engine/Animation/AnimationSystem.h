@@ -31,6 +31,8 @@ public:
     
     bool GetDebug() { return m_debug; };
     void SetDebug( bool i_debug ) { m_debug = i_debug; };
+    
+    void SendEvent( EntityHandle i_entityHandle, std::string i_event );
 private:
     static AnimationSystem* s_instance;
     bool m_debug;

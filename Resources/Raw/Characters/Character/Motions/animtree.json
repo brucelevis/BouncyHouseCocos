@@ -1,0 +1,41 @@
+{
+    "name": "Character",
+    "states": [
+        {
+            "name": "run",
+            "defaultState": false,
+            "motion": "Run",
+            "loop": true,
+            "onExit": "",
+            "events": [ "RUN" ],
+            "ignoreEvents": [ "RUN" ]
+        },
+        {
+            "name": "jump",
+            "defaultState": false,
+            "motion": "Jump",
+            "loop": false,
+            "onExit": "",
+            "events": [ "JUMP" ],
+            "ignoreEvents": []
+        },
+        {
+            "name": "smash",
+            "defaultState": false,
+            "motion": "Smash",
+            "loop": false,
+            "onExit": "",
+            "events": [ "DIVE" ],
+            "ignoreEvents": []
+        },
+        {
+            "name": "idle",
+            "defaultState": true,
+            "motion": "Idle",
+            "loop": true,
+            "onExit": "",
+            "events": [ "IDLE" ],
+            "ignoreEvents": []
+        }
+    ]
+}

@@ -7,7 +7,7 @@
 //
 
 #include "StalactiteComponent.h"
-#include "../../Engine/Animation/AnimationComponent.h"
+#include "../../Engine/Animation/AnimationSystem.h"
 #include "../../Engine/Event/EventManager.h"
 #include "../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../Engine/Health/HealthComponent.h"
@@ -74,12 +74,21 @@ void StalactiteComponent::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
         {
             if ( pGroundDetectComponent->GetOnGround() )
             {
-                AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
-                if ( pAnimationComponent )
-                {
-                    pAnimationComponent->StartMotion( "Crush" );
-                }
+                BeginCrush();
             }
         }
+    }
+}
+
+void StalactiteComponent::BeginCrush()
+{
+    AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "CRUSH" );
+    
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+    if ( pPhysicsComponent )
+    {
+        pPhysicsComponent->SetCategoryMask( CollisionCategory::Environment );
+        pPhysicsComponent->SetCollisionMask( CollisionCategory::Environment );
+        pPhysicsComponent->SetContactMask( CollisionCategory::Environment );
     }
 }

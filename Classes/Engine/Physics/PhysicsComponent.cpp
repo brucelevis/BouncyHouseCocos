@@ -113,12 +113,16 @@ void PhysicsComponent::OnActivate()
     }
 }
 
-PhysicsComponent::~PhysicsComponent()
+void PhysicsComponent::OnDeactivate()
 {
     if ( m_physicsBody && m_physicsBody->getShapes().size() > 0 )
         m_physicsBody->removeAllShapes();
     if ( m_physicsBody && m_physicsBody->getWorld() )
         m_physicsBody->removeFromWorld();
+}
+
+PhysicsComponent::~PhysicsComponent()
+{
     PhysicsSystem::GetInstance()->UnregisterComponent( this );
 }
 
@@ -211,6 +215,15 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
     RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->rayCast( pFunc, i_start, i_end, nullptr );
 
     return pHit;
+}
+
+void PhysicsComponent::DisableCollision() {
+    if ( m_physicsBody )
+    {
+        m_physicsBody->setCategoryBitmask( CollisionCategory::None );
+        m_physicsBody->setCollisionBitmask( CollisionCategory::None );
+        m_physicsBody->setContactTestBitmask( CollisionCategory::None );
+    }
 }
 
 bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )

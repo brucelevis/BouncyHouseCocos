@@ -44,6 +44,7 @@ public:
     
     virtual void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
     virtual void OnActivate() override;
+    virtual void OnDeactivate() override;
     
     
     cocos2d::Node* GetNode() { return m_node; };
@@ -63,7 +64,13 @@ public:
     CollisionCategory GetCollisionMask() { return m_collision; };
     CollisionCategory GetContactMask() { return m_contact; };
     
+    void SetCategoryMask( CollisionCategory i_category ) { m_category = i_category; };
+    void SetCollisionMask( CollisionCategory i_collision ) { m_collision = i_collision; };
+    void SetContactMask( CollisionCategory i_contact ) { m_contact = i_contact; };
+    
     void ApplyImpulse( cocos2d::Vec2 i_impulse );
+    void DisableCollision();
+    
     bool RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info );
     
     bool OnContactBegin( PhysicsContactInfo i_contact );

@@ -6,10 +6,11 @@
             "DefaultSprite": "wiggle_00.png"
         },
         "AnimationComponent": {
+            "AnimTree": "Characters/Icicle/Motions/animtree.dna",
             "Motions":
             [
                  {
-                     "Motion": "Run",
+                     "Motion": "Wiggle",
                      "StartFrame": 0,
                      "EndFrame": 6,
                      "Name": "wiggle"
@@ -35,7 +36,7 @@
             "YOffset": 0.0,
             "Size": [ 140.0, 300.0 ],
 
-            "Category": [ "Solid" ],
+            "Category": [ "Environment", "Solid" ],
             "Collision": [ "Solid", "Player", "Enemy" ],
             "Contact": [ "Solid", "Player", "Enemy" ]
         },
