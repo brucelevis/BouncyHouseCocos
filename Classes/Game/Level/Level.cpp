@@ -54,7 +54,7 @@ void Level::SpawnEnemy()
 {
     m_enemySpawnTimer = ENEMY_SPAWN_INTERVAL;
     Entity* pEnemy = DNASequencer::CreateEntity( "Baked/Characters/Enemy/enemy.dna" );
-    PhysicsSystem::SetPosition( pEnemy->m_entityHandle, m_enemySpawners[ cocos2d::RandomHelper::random_int( 0, (int)m_enemySpawners.size() - 1 ) ] );
+    PhysicsSystem::GetInstance()->SetPosition( pEnemy->m_entityHandle, m_enemySpawners[ cocos2d::RandomHelper::random_int( 0, (int)m_enemySpawners.size() - 1 ) ] );
     LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( pEnemy->m_entityHandle );
     if ( pLocomotionComponent )
     {

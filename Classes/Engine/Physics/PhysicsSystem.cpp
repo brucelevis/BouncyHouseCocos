@@ -16,9 +16,25 @@
 #include "../Render/DebugDrawSystem.h"
 #include "../Render/RenderSystem.h"
 
-std::map<EntityHandle, Component*> PhysicsSystem::m_components;
-std::map<std::string, CollisionCategory> PhysicsSystem::m_collisionCategoryMap;
-bool PhysicsSystem::m_debug;
+PhysicsSystem* PhysicsSystem::s_instance;
+
+PhysicsSystem* PhysicsSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new PhysicsSystem();
+    }
+    return s_instance;
+}
+
+void PhysicsSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void PhysicsSystem::RegisterComponent( Component* i_component )
 {

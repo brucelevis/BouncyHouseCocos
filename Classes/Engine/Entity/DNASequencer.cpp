@@ -59,12 +59,12 @@ uint32_t DNASequencer::CreateCollisionCategory( const rapidjson::Value& i_dnaObj
     {
         if ( first )
         {
-            pCategory = PhysicsSystem::GetCollisionCategory( itr->GetString() );
+            pCategory = PhysicsSystem::GetInstance()->GetCollisionCategory( itr->GetString() );
             first = false;
         }
         else
         {
-            pCategory |= PhysicsSystem::GetCollisionCategory( itr->GetString() );
+            pCategory |= PhysicsSystem::GetInstance()->GetCollisionCategory( itr->GetString() );
         }
     }
     return pCategory;

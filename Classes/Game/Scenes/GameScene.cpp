@@ -24,8 +24,9 @@
 // on "init" you need to initialize your instance
 bool GameScene::Start()
 {
-    this->getPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
-    this->getPhysicsWorld()->setAutoStep( false );
+    PhysicsSystem::GetInstance()->SetPhysicsWorld( this->getPhysicsWorld() );
+    PhysicsSystem::GetInstance()->GetPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
+    PhysicsSystem::GetInstance()->GetPhysicsWorld()->setAutoStep( false );
     
     RenderSystem::GetInstance()->SetScene( this );
     RenderSystem::GetInstance()->GetScene()->scheduleUpdate();
@@ -33,7 +34,7 @@ bool GameScene::Start()
     ComponentSystem::DNADataInit();
     HealthSystem::DNADataInit();
     LocomotionSystem::DNADataInit();
-    PhysicsSystem::DNADataInit();
+    PhysicsSystem::GetInstance()->DNADataInit();
     
     LevelSystem::StartLevel( new CaveLevel() );
 
@@ -52,14 +53,14 @@ bool GameScene::Start()
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_C:
             {
-                PhysicsSystem::m_debug = !PhysicsSystem::m_debug;
-                if ( PhysicsSystem::m_debug )
+                PhysicsSystem::GetInstance()->SetDebug( !PhysicsSystem::GetInstance()->GetDebug() );
+                if ( PhysicsSystem::GetInstance()->GetDebug() )
                 {
-                    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
+                    PhysicsSystem::GetInstance()->GetPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
                 }
                 else
                 {
-                    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_NONE);
+                    PhysicsSystem::GetInstance()->GetPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_NONE);
                 }
                 break;
             }
@@ -139,7 +140,7 @@ void GameScene::update( float i_dt )
     GroundDetectSystem::Update( i_dt );
     AnimationSystem::Update( i_dt );
     LocomotionSystem::Update( i_dt );
-    PhysicsSystem::Update( i_dt );
+    PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::Update( i_dt );
     HealthSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
@@ -148,10 +149,10 @@ void GameScene::update( float i_dt )
 
 bool GameScene::OnContactBegin( cocos2d::PhysicsContact& i_contact )
 {
-    return PhysicsSystem::OnContactBegin( i_contact );
+    return PhysicsSystem::GetInstance()->OnContactBegin( i_contact );
 }
 
 void GameScene::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
 {
-    PhysicsSystem::OnContactPostSolve( i_contact );
+    PhysicsSystem::GetInstance()->OnContactPostSolve( i_contact );
 }

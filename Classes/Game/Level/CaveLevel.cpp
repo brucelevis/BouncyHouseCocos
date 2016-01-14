@@ -25,19 +25,19 @@ void CaveLevel::initLevel()
     m_maxEnemyCount = 3;
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
-    PhysicsSystem::SetPosition( m_player->m_entityHandle, m_playerSpawner );
+    PhysicsSystem::GetInstance()->SetPosition( m_player->m_entityHandle, m_playerSpawner );
     
     
     Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
-    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 15.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 15.0f ) );
     m_staticEntities.insert( std::make_pair( pFloor->m_entityHandle, pFloor ) );
     
     Entity* pLeftWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 45.0f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pLeftWall->m_entityHandle, pLeftWall ) );
     
     Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( pScreenSize.width - 45.0f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( pScreenSize.width - 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pRightWall->m_entityHandle, pRightWall ) );
 }
 
@@ -51,7 +51,7 @@ void CaveLevel::update( float i_dt )
         cocos2d::Size pScreenSize = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
         
         pIcicle = DNASequencer::CreateEntity( "Baked/Characters/Icicle/icicle.dna" );
-        PhysicsSystem::SetPosition( pIcicle->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, pScreenSize.height - 328.0f ) );
+        PhysicsSystem::GetInstance()->SetPosition( pIcicle->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, pScreenSize.height - 328.0f ) );
         m_staticEntities.insert( std::make_pair( pIcicle->m_entityHandle, pIcicle ) );
         m_icicleHandle = pIcicle->m_entityHandle;
     }

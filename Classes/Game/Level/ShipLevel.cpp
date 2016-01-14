@@ -45,7 +45,7 @@ void ShipLevel::initLevel()
     
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
-    PhysicsSystem::SetPosition( m_player->m_entityHandle, m_playerSpawner );
+    PhysicsSystem::GetInstance()->SetPosition( m_player->m_entityHandle, m_playerSpawner );
     LightingComponent* pLightingComponent = (LightingComponent*) EntitySystem::AttachComponent( m_player->m_entityHandle, "LightingComponent" );
     if ( pLightingComponent )
     {
@@ -55,26 +55,26 @@ void ShipLevel::initLevel()
     
     
     Entity* pFloor = DNASequencer::CreateEntity( "Baked/Characters/Floor/floor.dna" );
-    PhysicsSystem::SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 15.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pFloor->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 15.0f ) );
     m_staticEntities.insert( std::make_pair( pFloor->m_entityHandle, pFloor ) );
     
     Entity* pLeftWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 45.0f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pLeftWall->m_entityHandle, cocos2d::Vec2( 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pLeftWall->m_entityHandle, pLeftWall ) );
     
     Entity* pRightWall = DNASequencer::CreateEntity( "Baked/Characters/Wall/wall.dna" );
-    PhysicsSystem::SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( pScreenSize.width - 45.0f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pRightWall->m_entityHandle, cocos2d::Vec2( pScreenSize.width - 45.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pRightWall->m_entityHandle, pRightWall ) );
     
     Entity* pLongboat = DNASequencer::CreateEntity( "Baked/Longboat/longboat.dna" );
-    PhysicsSystem::SetPosition( pLongboat->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pLongboat->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pLongboat->m_entityHandle, pLongboat ) );
     
     Entity* pLongboatSail = DNASequencer::CreateEntity( "Baked/Longboat/longboat_sail.dna" );
-    PhysicsSystem::SetPosition( pLongboatSail->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 70.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pLongboatSail->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, 70.0f ) );
     m_staticEntities.insert( std::make_pair( pLongboatSail->m_entityHandle, pLongboatSail ) );
     
     Entity* pSkyBox = DNASequencer::CreateEntity( "Baked/Skybox/skybox.dna" );
-    PhysicsSystem::SetPosition( pSkyBox->m_entityHandle, cocos2d::Vec2( 0.0f, 0.0f ) );
+    PhysicsSystem::GetInstance()->SetPosition( pSkyBox->m_entityHandle, cocos2d::Vec2( 0.0f, 0.0f ) );
     m_staticEntities.insert( std::make_pair( pSkyBox->m_entityHandle, pSkyBox ) );
 }

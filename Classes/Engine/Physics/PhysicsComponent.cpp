@@ -22,7 +22,7 @@ std::string PhysicsComponent::s_componentType = "PhysicsComponent";
 void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
-    PhysicsSystem::RegisterComponent( this );
+    PhysicsSystem::GetInstance()->RegisterComponent( this );
 //    m_node = NULL;
 //    m_physicsBody = NULL;
     
@@ -119,7 +119,7 @@ PhysicsComponent::~PhysicsComponent()
         m_physicsBody->removeAllShapes();
     if ( m_physicsBody && m_physicsBody->getWorld() )
         m_physicsBody->removeFromWorld();
-    PhysicsSystem::UnregisterComponent( this );
+    PhysicsSystem::GetInstance()->UnregisterComponent( this );
 }
 
 cocos2d::Vec2 PhysicsComponent::GetPosition()
@@ -196,7 +196,7 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
     {
         if ( pHit == false )
         {
-            if ( i_info.shape->getBody()->getNode()->getTag() != pEntityHandle && PhysicsSystem::IsInBitmask( pCollisionMask  , (CollisionCategory)i_info.shape->getBody()->getCategoryBitmask() ) )
+            if ( i_info.shape->getBody()->getNode()->getTag() != pEntityHandle && PhysicsSystem::GetInstance()->IsInBitmask( pCollisionMask  , (CollisionCategory)i_info.shape->getBody()->getCategoryBitmask() ) )
             {
                 pHit = true;
                 o_info.start = i_info.start;

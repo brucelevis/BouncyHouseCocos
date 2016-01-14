@@ -192,7 +192,7 @@ void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
     PhysicsContactInfo* pPhysicsContactInfo = (PhysicsContactInfo*) i_event->getUserData();
     if ( pPhysicsContactInfo && pPhysicsContactInfo->m_entityHandle == m_entityHandle && pPhysicsContactInfo->m_otherShape )
     {
-        if ( PhysicsSystem::IsInBitmask( CollisionCategory::Bouncy, (CollisionCategory) pPhysicsContactInfo->m_otherShape->getCategoryBitmask() ) )
+        if ( PhysicsSystem::GetInstance()->IsInBitmask( CollisionCategory::Bouncy, (CollisionCategory) pPhysicsContactInfo->m_otherShape->getCategoryBitmask() ) )
         {
             PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
             if ( pPhysicsComponent )

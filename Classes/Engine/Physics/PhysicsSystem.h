@@ -16,23 +16,35 @@
 class PhysicsSystem : public System
 {
 public:
-    static void DNADataInit();
-    static void Update( float i_dt );
+    static PhysicsSystem* GetInstance();
+    static void DestroyInstance();
     
-    static std::map<EntityHandle, Component*> m_components;
-    static void RegisterComponent( Component* i_component );
-    static void UnregisterComponent( Component* i_component );
+    void DNADataInit();
+    void Update( float i_dt );
     
-    static bool SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position );
+    std::map<EntityHandle, Component*> m_components;
+    void RegisterComponent( Component* i_component );
+    void UnregisterComponent( Component* i_component );
     
-    static CollisionCategory GetCollisionCategory( std::string i_collisionCategory );
-    static bool IsInBitmask( CollisionCategory i_collisionCategory, CollisionCategory i_mask );
-    static bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
-    static bool OnContactPostSolve( cocos2d::PhysicsContact& i_contact );
+    bool SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position );
     
-    static std::map<std::string, CollisionCategory> m_collisionCategoryMap;
+    CollisionCategory GetCollisionCategory( std::string i_collisionCategory );
+    bool IsInBitmask( CollisionCategory i_collisionCategory, CollisionCategory i_mask );
+    bool OnContactBegin( cocos2d::PhysicsContact& i_contact );
+    bool OnContactPostSolve( cocos2d::PhysicsContact& i_contact );
     
-    static bool m_debug;
+    std::map<std::string, CollisionCategory> m_collisionCategoryMap;
+    
+    cocos2d::PhysicsWorld* GetPhysicsWorld() { return m_physicsWorld; };
+    void SetPhysicsWorld( cocos2d::PhysicsWorld* i_physicsWorld ) { m_physicsWorld = i_physicsWorld; };
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
+    
+private:
+    static PhysicsSystem* s_instance;
+    cocos2d::PhysicsWorld* m_physicsWorld;
+    bool m_debug;
 };
 
 struct PhysicsContactInfo
