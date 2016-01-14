@@ -33,7 +33,7 @@ bool GameScene::Start()
     
     ComponentSystem::DNADataInit();
     HealthSystem::DNADataInit();
-    LocomotionSystem::DNADataInit();
+    LocomotionSystem::GetInstance()->DNADataInit();
     PhysicsSystem::GetInstance()->DNADataInit();
     
     LevelSystem::StartLevel( new CaveLevel() );
@@ -66,7 +66,7 @@ bool GameScene::Start()
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_L:
             {
-                LocomotionSystem::m_debug = !LocomotionSystem::m_debug;
+                LocomotionSystem::GetInstance()->SetDebug( !LocomotionSystem::GetInstance()->GetDebug() );
                 break;
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_A:
@@ -139,7 +139,7 @@ void GameScene::update( float i_dt )
     
     GroundDetectSystem::Update( i_dt );
     AnimationSystem::Update( i_dt );
-    LocomotionSystem::Update( i_dt );
+    LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::Update( i_dt );
     HealthSystem::Update( i_dt );

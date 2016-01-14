@@ -123,7 +123,7 @@ void RunLocomotionMode::Update( float i_dt )
             pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );
             
 #ifdef DEBUG
-            if ( LocomotionSystem::m_debug )
+            if ( LocomotionSystem::GetInstance()->GetDebug() )
             {
                 cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
                 pDrawNode->drawSegment( pPosition, pEnd, 1, cocos2d::Color4F::RED );

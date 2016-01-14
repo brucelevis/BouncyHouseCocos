@@ -24,24 +24,31 @@ typedef std::map<std::string, LocomotionMode*(*)()> LocomotionModeMap;
 class LocomotionSystem : public System
 {
 public:
-    static void Update( float i_dt );
+    static LocomotionSystem* GetInstance();
+    static void DestroyInstance();
     
-    static std::map<EntityHandle, Component*> m_components;
-    static void RegisterComponent( Component* i_component );
-    static void UnregisterComponent( Component* i_component );
+    void Update( float i_dt );
     
-    static void DNADataInit();
-    static LocomotionMode* CreateLocomotionMode( std::string i_locomotionModeType );
+    std::map<EntityHandle, Component*> m_components;
+    void RegisterComponent( Component* i_component );
+    void UnregisterComponent( Component* i_component );
     
-    static LocomotionModeMap m_locomotionModeTypes;
+    void DNADataInit();
+    LocomotionMode* CreateLocomotionMode( std::string i_locomotionModeType );
     
-    static bool m_debug;
+    LocomotionModeMap m_locomotionModeTypes;
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
+private:
+    static LocomotionSystem* s_instance;
+    bool m_debug;
 };
 
 template<typename T>
 struct LocomotionModeRegister : LocomotionSystem {
     LocomotionModeRegister(std::string const& s) {
-        LocomotionSystem::m_locomotionModeTypes.insert(std::make_pair(s, &createT<T>));
+        LocomotionSystem::GetInstance()->m_locomotionModeTypes.insert(std::make_pair(s, &createT<T>));
     }
 };
 

@@ -16,9 +16,25 @@
 #include "../Render/RenderComponent.h"
 #include "../../Game/Locomotion/LocomotionModes/RunLocomotionMode.h"
 
-std::map<EntityHandle, Component*> LocomotionSystem::m_components;
-LocomotionModeMap LocomotionSystem::m_locomotionModeTypes;
-bool LocomotionSystem::m_debug;
+LocomotionSystem* LocomotionSystem::s_instance;
+
+LocomotionSystem* LocomotionSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new LocomotionSystem();
+    }
+    return s_instance;
+}
+
+void LocomotionSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void LocomotionSystem::DNADataInit()
 {

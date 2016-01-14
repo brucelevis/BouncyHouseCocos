@@ -40,9 +40,9 @@ LocomotionComponent::~LocomotionComponent()
 
 void LocomotionComponent::OnActivate()
 {
-    LocomotionSystem::RegisterComponent( this );
+    LocomotionSystem::GetInstance()->RegisterComponent( this );
     
-    m_locomotionMode = LocomotionSystem::CreateLocomotionMode( m_locomotionModeName );
+    m_locomotionMode = LocomotionSystem::GetInstance()->CreateLocomotionMode( m_locomotionModeName );
     if ( m_locomotionMode )
     {
         m_locomotionMode->Init( m_entityHandle );
@@ -57,5 +57,5 @@ void LocomotionComponent::OnDeactivate()
         m_locomotionMode = NULL;
     }
     
-    LocomotionSystem::UnregisterComponent( this );
+    LocomotionSystem::GetInstance()->UnregisterComponent( this );
 }
