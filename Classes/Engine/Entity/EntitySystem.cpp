@@ -62,7 +62,7 @@ void EntitySystem::RemoveEntity( EntityHandle i_entityHandle )
     
     if ( pEntity )
     {
-        EventManager::SendEvent( "RemovingEntity", (void*) &i_entityHandle );
+        EventManager::GetInstance()->SendEvent( "RemovingEntity", (void*) &i_entityHandle );
         
         delete pEntity;
     }

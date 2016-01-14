@@ -13,6 +13,7 @@
 #include "../Entity/EntitySystem.h"
 #include "PhysicsSystem.h"
 #include "PhysicsComponent.h"
+#include "../Render/DebugDrawSystem.h"
 #include "../Render/RenderSystem.h"
 
 std::map<EntityHandle, Component*> PhysicsSystem::m_components;
@@ -41,7 +42,7 @@ void PhysicsSystem::DNADataInit()
 
 void PhysicsSystem::Update( float i_dt )
 {
-    RenderSystem::m_activeScene->getPhysicsWorld()->step( i_dt );
+    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->step( i_dt );
     for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;
@@ -52,7 +53,7 @@ void PhysicsSystem::Update( float i_dt )
             {
                 cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
                 pDrawNode->drawPoint( pComponent->GetPosition(), 10.0f, cocos2d::Color4F::BLUE );
-                RenderSystem::DebugDraw( pDrawNode, i_dt * 0.25f );
+                DebugDrawSystem::GetInstance()->DebugDraw( pDrawNode, i_dt * 0.25f );
             }
 #endif
             

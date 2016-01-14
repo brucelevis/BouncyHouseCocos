@@ -19,7 +19,7 @@ private:
     bool m_diving;
 public:
     RunLocomotionMode() {};
-    virtual ~RunLocomotionMode() {};
+    virtual ~RunLocomotionMode() override;
     
     virtual void Init( EntityHandle i_entityHandle ) override;
     

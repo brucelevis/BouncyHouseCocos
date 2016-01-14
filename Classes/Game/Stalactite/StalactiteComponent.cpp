@@ -8,6 +8,7 @@
 
 #include "StalactiteComponent.h"
 #include "../../Engine/Animation/AnimationComponent.h"
+#include "../../Engine/Event/EventManager.h"
 #include "../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../Engine/Health/HealthComponent.h"
 #include "../../Engine/Physics/PhysicsComponent.h"
@@ -30,14 +31,13 @@ void StalactiteComponent::OnActivate()
     {
         pPhysicsComponent->GetPhysicsBody()->setVelocityLimit( 0.0f );
     }
-    
-    cocos2d::EventListenerCustom* pGroundChangedListener = cocos2d::EventListenerCustom::create( "GroundChanged", CC_CALLBACK_1( StalactiteComponent::OnGroundChangedEvent, this ) );
-    RenderSystem::m_activeScene->GetEventDispatcher()->addEventListenerWithFixedPriority( pGroundChangedListener, 1 );
+
+    EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( StalactiteComponent::OnGroundChangedEvent, this ), this );
 }
 
 StalactiteComponent::~StalactiteComponent()
 {
-    
+    EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
 }
 
 void StalactiteComponent::Update( float i_dt )

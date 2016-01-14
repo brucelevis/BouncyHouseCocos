@@ -9,6 +9,7 @@
 
 #include "../../Engine/Entity/DNASequencer.h"
 #include "../../Engine/Entity/EntitySystem.h"
+#include "../../Engine/Event/EventManager.h"
 #include "Level.h"
 #include "../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../Engine/Physics/PhysicsComponent.h"
@@ -20,8 +21,7 @@
 
 Level::Level()
 {
-    cocos2d::EventListenerCustom* pRemovingEntityListener = cocos2d::EventListenerCustom::create( "RemovingEntity", CC_CALLBACK_1( Level::OnRemovingEntityEvent, this ) );
-    RenderSystem::m_activeScene->GetEventDispatcher()->addEventListenerWithFixedPriority( pRemovingEntityListener, 1 );
+    EventManager::GetInstance()->RegisterForEvent( "RemovingEntity", CC_CALLBACK_1( Level::OnRemovingEntityEvent, this ), this );
 }
 
 void Level::initLevel() {
@@ -30,6 +30,7 @@ void Level::initLevel() {
 
 Level::~Level()
 {
+    EventManager::GetInstance()->UnregisterForEvent( "RemovingEntity", this );
     for ( std::map<EntityHandle, Entity*>::iterator it = m_enemies.begin(); it != m_enemies.end(); it++ )
     {
         delete it->second;

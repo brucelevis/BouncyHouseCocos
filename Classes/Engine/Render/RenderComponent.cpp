@@ -18,7 +18,7 @@ std::string RenderComponent::s_componentType = "RenderComponent";
 void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject )
 {
     m_entityHandle = i_entityHandle;
-    RenderSystem::RegisterComponent( this );
+    RenderSystem::GetInstance()->RegisterComponent( this );
     
     if ( i_dnaObject.HasMember( "FacingLeft" ) )
     {
@@ -37,7 +37,7 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
         pSpritePath.insert( 0, "Baked/" );
         
         m_sprite = EffectSprite::create( pSpritePath );
-        RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
+        RenderSystem::GetInstance()->GetScene()->addChild( m_sprite, pZOrder );
     }
     else if ( i_dnaObject.HasMember( "SpriteSheet" ) )
     {
@@ -56,7 +56,7 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
         
         m_sprite = EffectSprite::createWithSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
         m_sprite->setNormalMap( m_spriteSheetNormalPath );
-        RenderSystem::m_activeScene->addChild( m_sprite, pZOrder );
+        RenderSystem::GetInstance()->GetScene()->addChild( m_sprite, pZOrder );
     }
     SetFacing( RenderComponent::FacingDirection::LEFT );
     m_sprite->setTag( i_entityHandle );
@@ -65,7 +65,7 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
 RenderComponent::~RenderComponent()
 {
     m_sprite->removeFromParent();
-    RenderSystem::UnregisterComponent( this );
+    RenderSystem::GetInstance()->UnregisterComponent( this );
 }
 
 RenderComponent::FacingDirection RenderComponent::GetFacing()

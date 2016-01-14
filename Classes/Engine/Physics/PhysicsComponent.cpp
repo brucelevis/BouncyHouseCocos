@@ -11,6 +11,7 @@
 #include "../Entity/ComponentSystem.h"
 #include "../Entity/DNASequencer.h"
 #include "../Entity/EntitySystem.h"
+#include "../Event/EventManager.h"
 #include "PhysicsComponent.h"
 #include "PhysicsSystem.h"
 #include "../Render/RenderComponent.h"
@@ -88,7 +89,7 @@ void PhysicsComponent::OnActivate()
     {
         m_node = cocos2d::Node::create();
         m_node->setTag( m_entityHandle );
-        RenderSystem::m_activeScene->addChild( m_node );
+        RenderSystem::GetInstance()->GetScene()->addChild( m_node );
     }
         
     if ( m_node )
@@ -207,23 +208,18 @@ bool PhysicsComponent::RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, coco
         }
         return true;
     };
-    RenderSystem::m_activeScene->getPhysicsWorld()->rayCast( pFunc, i_start, i_end, nullptr );
+    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->rayCast( pFunc, i_start, i_end, nullptr );
 
     return pHit;
 }
 
 bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )
 {
-    cocos2d::EventCustom event( "PhysicsContactBegin" );
-    event.setUserData( &i_contact );
-    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
-    
+    EventManager::GetInstance()->SendEvent( "PhysicsContactBegin", &i_contact );
     return true;
 }
 
 void PhysicsComponent::OnContactPostSolve( PhysicsContactInfo i_contact )
 {
-    cocos2d::EventCustom event( "PhysicsContactPostSolve" );
-    event.setUserData( &i_contact );
-    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+    EventManager::GetInstance()->SendEvent( "PhysicsContactPostSolve", &i_contact );
 }

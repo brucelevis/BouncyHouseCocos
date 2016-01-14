@@ -8,12 +8,14 @@
 
 #include "../../../Engine/Animation/AnimationComponent.h"
 #include "../../../Engine/Entity/EntitySystem.h"
+#include "../../../Engine/Event/EventManager.h"
 #include "../../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../../Engine/Health/HealthComponent.h"
 #include "../../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../../Engine/Locomotion/LocomotionSystem.h"
 #include "../../../Engine/Physics/PhysicsComponent.h"
 #include "../../../Engine/Physics/PhysicsSystem.h"
+#include "../../../Engine/Render/DebugDrawSystem.h"
 #include "../../../Engine/Render/RenderComponent.h"
 #include "../../../Engine/Render/RenderSystem.h"
 #include "RunLocomotionMode.h"
@@ -23,11 +25,14 @@ void RunLocomotionMode::Init( EntityHandle i_entityHandle )
     m_entityHandle = i_entityHandle;
     m_runDir = cocos2d::RandomHelper::random_int(0, 1) == 0 ? -1.0f : 1.0f;
     
-    cocos2d::EventListenerCustom* pContactPostSolveListener = cocos2d::EventListenerCustom::create( "PhysicsContactBegin", CC_CALLBACK_1( RunLocomotionMode::OnPhysicsContactBeginEvent, this ) );
-    RenderSystem::m_activeScene->GetEventDispatcher()->addEventListenerWithFixedPriority( pContactPostSolveListener, 1 );
-    
-    cocos2d::EventListenerCustom* pGroundChangedListener = cocos2d::EventListenerCustom::create( "GroundChanged", CC_CALLBACK_1( RunLocomotionMode::OnGroundChangedEvent, this ) );
-    RenderSystem::m_activeScene->GetEventDispatcher()->addEventListenerWithFixedPriority( pGroundChangedListener, 1 );
+    EventManager::GetInstance()->RegisterForEvent( "PhysicsContactBegin", CC_CALLBACK_1( RunLocomotionMode::OnPhysicsContactBeginEvent, this ), this );
+    EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( RunLocomotionMode::OnGroundChangedEvent, this ), this );
+}
+
+RunLocomotionMode::~RunLocomotionMode()
+{
+    EventManager::GetInstance()->UnregisterForEvent( "PhysicsContactBegin", this );
+    EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
 }
 
 void RunLocomotionMode::MoveToPoint( cocos2d::Vec2 i_point, float i_speed )
@@ -126,7 +131,7 @@ void RunLocomotionMode::Update( float i_dt )
                 {
                     pDrawNode->drawPoint( pHitPoint, 3.0f, cocos2d::Color4F::GREEN );
                 }
-                RenderSystem::DebugDraw( pDrawNode, 0.0001f );
+                DebugDrawSystem::GetInstance()->DebugDraw( pDrawNode, 0.0001f );
             }
 #endif
             
@@ -185,7 +190,7 @@ void RunLocomotionMode::Update( float i_dt )
 void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_event )
 {
     PhysicsContactInfo* pPhysicsContactInfo = (PhysicsContactInfo*) i_event->getUserData();
-    if ( pPhysicsContactInfo && pPhysicsContactInfo->m_entityHandle == m_entityHandle )
+    if ( pPhysicsContactInfo && pPhysicsContactInfo->m_entityHandle == m_entityHandle && pPhysicsContactInfo->m_otherShape )
     {
         if ( PhysicsSystem::IsInBitmask( CollisionCategory::Bouncy, (CollisionCategory) pPhysicsContactInfo->m_otherShape->getCategoryBitmask() ) )
         {

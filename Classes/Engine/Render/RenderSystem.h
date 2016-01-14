@@ -22,19 +22,21 @@
 class RenderSystem : public System
 {
 public:
-    static void Update( float i_dt );
+    static RenderSystem* GetInstance();
+    static void DestroyInstance();
+
+    void Update( float i_dt );
     
-    static std::map<EntityHandle, Component*> m_components;
-    static void RegisterComponent( Component* i_component );
-    static void UnregisterComponent( Component* i_component );
+    std::map<EntityHandle, Component*> m_components;
+    void RegisterComponent( Component* i_component );
+    void UnregisterComponent( Component* i_component );
     
-    static GameScene* m_activeScene;
-    
-#ifdef DEBUG
-    static void DebugDraw( cocos2d::DrawNode* i_drawNode, float i_duration );
-    static void DebugText( std::string i_text, cocos2d::Vec2 i_position, float i_duration, cocos2d::Color4F i_color = cocos2d::Color4F::WHITE, int i_fontSize = 14, cocos2d::TextHAlignment i_hAlignment = cocos2d::TextHAlignment::CENTER );
-    static void DebugUpdate( float i_dt );
-#endif
+    GameScene* GetScene() { return m_activeScene; };
+    void SetScene( GameScene* i_scene ) { m_activeScene = i_scene; };
+
+private:
+    static RenderSystem* s_instance;
+    GameScene* m_activeScene;
 };
 
 #endif /* RenderSystem_hpp */

@@ -9,11 +9,12 @@
 #include "../Animation/AnimationComponent.h"
 #include "../Render/RenderComponent.h"
 #include "../Entity/EntitySystem.h"
+#include "../Event/EventManager.h"
 #include "GroundDetectComponent.h"
 #include "GroundDetectSystem.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Physics/PhysicsSystem.h"
-#include "../Render/RenderSystem.h"
+#include "../Render/DebugDrawSystem.h"
 
 std::map<EntityHandle, Component*> GroundDetectSystem::m_components;
 bool GroundDetectSystem::m_debug;
@@ -60,7 +61,7 @@ void GroundDetectSystem::Update( float i_dt )
                         {
                             pDrawNode->drawPoint( pHitPoint, 3.0f, cocos2d::Color4F::GREEN );
                         }
-                        RenderSystem::DebugDraw( pDrawNode, 0.0001f );
+                        DebugDrawSystem::GetInstance()->DebugDraw( pDrawNode, 0.0001f );
                     }
 #endif
                     
@@ -79,9 +80,7 @@ void GroundDetectSystem::Update( float i_dt )
                 // OnGroundChanged
                 if ( pHit )
                 {
-                    cocos2d::EventCustom event( "GroundChanged" );
-                    event.setUserData( &pComponent->m_entityHandle );
-                    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+                    EventManager::GetInstance()->SendEvent( "GroundChanged", &pComponent->m_entityHandle );
                 }
             }
         }

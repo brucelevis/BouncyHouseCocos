@@ -11,10 +11,10 @@
 
 #include "../Animation/AnimationComponent.h"
 #include "../Entity/EntitySystem.h"
+#include "../Event/EventManager.h"
 #include "HealthComponent.h"
 #include "HealthSystem.h"
 #include "../Render/RenderComponent.h"
-#include "../Render/RenderSystem.h"
 
 std::string HealthComponent::s_componentType = "HealthComponent";
 
@@ -53,9 +53,8 @@ void HealthComponent::BeginDeath()
     if ( !m_dying )
     {
         m_dying = true;
-        cocos2d::EventCustom event( "EntityDeath" );
-        event.setUserData( &m_entityHandle );
-        RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+        
+        EventManager::GetInstance()->SendEvent( "EntityDeath", &m_entityHandle );
         
 //        AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
 //        if ( pAnimationComponent )

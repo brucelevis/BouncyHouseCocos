@@ -10,8 +10,8 @@
 #include "AnimationSystem.h"
 #include "../Entity/EntitySystem.h"
 #include "../Physics/PhysicsComponent.h"
+#include "../Render/DebugDrawSystem.h"
 #include "../Render/RenderComponent.h"
-#include "../Render/RenderSystem.h"
 
 std::map<EntityHandle, Component*> AnimationSystem::m_components;
 bool AnimationSystem::m_debug;
@@ -82,12 +82,12 @@ void AnimationSystem::Update( float i_dt )
                 char pChar[200];
                 sprintf( pChar, "%06d", pComponent->m_entityHandle );
                 std::string pText = std::string( pChar );
-                RenderSystem::DebugText( pText, pPosition, 0.0001f, cocos2d::Color4F::RED, 16 );
+                DebugDrawSystem::GetInstance()->DebugText( pText, pPosition, 0.0001f, cocos2d::Color4F::RED, 16 );
                 
                 cocos2d::Vec2 pInfoPosition = cocos2d::Vec2( 1600.0f, 1010.0f - ( i * 20.0f ) );
                 sprintf( pChar, "%-10s (%06d): %-20s [%03d/%03d] %3d%%", EntitySystem::GetEntity( pComponent->m_entityHandle )->GetName().c_str(), pComponent->m_entityHandle, pAnimationName.c_str(), pFrameIndex, pFrameCount, (int) ( pAnimRate * 100.0f ) );
                 pText = std::string( pChar );
-                RenderSystem::DebugText( pText, pInfoPosition, 0.0001f, cocos2d::Color4F::WHITE, 14, cocos2d::TextHAlignment::LEFT );
+                DebugDrawSystem::GetInstance()->DebugText( pText, pInfoPosition, 0.0001f, cocos2d::Color4F::WHITE, 14, cocos2d::TextHAlignment::LEFT );
             }
 #endif
         }

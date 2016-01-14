@@ -27,8 +27,8 @@ bool GameScene::Start()
     this->getPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
     this->getPhysicsWorld()->setAutoStep( false );
     
-    RenderSystem::m_activeScene = this;
-    RenderSystem::m_activeScene->scheduleUpdate();
+    RenderSystem::GetInstance()->SetScene( this );
+    RenderSystem::GetInstance()->GetScene()->scheduleUpdate();
     
     ComponentSystem::DNADataInit();
     HealthSystem::DNADataInit();
@@ -40,7 +40,7 @@ bool GameScene::Start()
     auto eventListener = cocos2d::EventListenerKeyboard::create();
     eventListener->onKeyPressed = [](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event){
         cocos2d::Vec2 loc = event->getCurrentTarget()->getPosition();
-        switch(keyCode){
+        switch( keyCode ){
             case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
                 LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
@@ -55,11 +55,11 @@ bool GameScene::Start()
                 PhysicsSystem::m_debug = !PhysicsSystem::m_debug;
                 if ( PhysicsSystem::m_debug )
                 {
-                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
+                    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
                 }
                 else
                 {
-                    RenderSystem::m_activeScene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_NONE);
+                    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_NONE);
                 }
                 break;
             }
@@ -143,7 +143,7 @@ void GameScene::update( float i_dt )
     LightingSystem::Update( i_dt );
     HealthSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
-    RenderSystem::Update( i_dt );
+    RenderSystem::GetInstance()->Update( i_dt );
 }
 
 bool GameScene::OnContactBegin( cocos2d::PhysicsContact& i_contact )

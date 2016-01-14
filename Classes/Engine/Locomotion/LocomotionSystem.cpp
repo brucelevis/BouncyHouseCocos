@@ -9,11 +9,11 @@
 #include "cocos2d.h"
 
 #include "../Entity/EntitySystem.h"
+#include "../Event/EventManager.h"
 #include "LocomotionComponent.h"
 #include "LocomotionSystem.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
-#include "../Render/RenderSystem.h"
 #include "../../Game/Locomotion/LocomotionModes/RunLocomotionMode.h"
 
 std::map<EntityHandle, Component*> LocomotionSystem::m_components;
@@ -67,9 +67,7 @@ void LocomotionSystem::Update( float i_dt )
                 
                 if ( pJumpState == JumpState::FALLING && pComponent->m_jumpState == JumpState::JUMPING )
                 {
-                    cocos2d::EventCustom event( "VelocityApexReached" );
-                    event.setUserData( &pComponent->m_entityHandle );
-                    RenderSystem::m_activeScene->GetEventDispatcher()->dispatchEvent( &event );
+                    EventManager::GetInstance()->SendEvent( "VelocityApexReached", &pComponent->m_entityHandle );
                 }
                 
                 pComponent->m_jumpState = pJumpState;
