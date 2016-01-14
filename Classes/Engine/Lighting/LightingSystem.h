@@ -18,23 +18,27 @@
 
 class LightingSystem : public System
 {
-private:
-    static std::vector<LightEffect*> m_lightEffects;
-    static cocos2d::GLProgramState* m_GLProgramState;
 public:
-    static void Update( float i_dt );
+    static LightingSystem* GetInstance();
+    void DestroyInstance();
     
-    static std::map<EntityHandle, Component*> m_components;
-    static void RegisterComponent( Component* i_component );
-    static void UnregisterComponent( Component* i_component );
+    void Update( float i_dt );
     
-    static void AddLightEffect( LightEffect* i_lightEffect );
-    static void RemoveLightEffect( LightEffect* i_lightEffect );
-    static std::vector<LightEffect*> GetLightEffects() { return m_lightEffects; };
+    std::map<EntityHandle, Component*> m_components;
+    void RegisterComponent( Component* i_component );
+    void UnregisterComponent( Component* i_component );
     
-    static cocos2d::GLProgramState* GetGLProgramState();
+    void AddLightEffect( LightEffect* i_lightEffect );
+    void RemoveLightEffect( LightEffect* i_lightEffect );
+    std::vector<LightEffect*> GetLightEffects() { return m_lightEffects; };
     
-    static bool m_debug;
+    cocos2d::GLProgramState* GetGLProgramState();
+private:
+    static LightingSystem* s_instance;
+    bool m_debug;
+    
+    std::vector<LightEffect*> m_lightEffects;
+    cocos2d::GLProgramState* m_GLProgramState;
 };
 
 #endif /* LightingSystem_hpp */

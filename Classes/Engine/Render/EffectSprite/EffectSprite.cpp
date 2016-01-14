@@ -68,9 +68,9 @@ void EffectSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transf
 {
     if ( _normalmap )
     {
-        setGLProgramState( LightingSystem::GetGLProgramState() );
+        setGLProgramState( LightingSystem::GetInstance()->GetGLProgramState() );
         
-        std::vector<LightEffect*> pLightEffects = LightingSystem::GetLightEffects();
+        std::vector<LightEffect*> pLightEffects = LightingSystem::GetInstance()->GetLightEffects();
         int i = 0;
         for( std::vector<LightEffect*>::iterator it = pLightEffects.begin(); it != pLightEffects.end(); ++it ) {
             LightEffect* pLightEffect = *it;
@@ -82,7 +82,7 @@ void EffectSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transf
         }
         char pVarName[100];
         sprintf( pVarName, "u_lightActive%d", i );
-        LightingSystem::GetGLProgramState()->setUniformInt( pVarName, 0 );
+        //LightingSystem::GetInstance()->GetGLProgramState()->setUniformInt( pVarName, 0 );
     }
     
     

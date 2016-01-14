@@ -141,7 +141,7 @@ void GameScene::update( float i_dt )
     AnimationSystem::Update( i_dt );
     LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );
-    LightingSystem::Update( i_dt );
+    LightingSystem::GetInstance()->Update( i_dt );
     HealthSystem::Update( i_dt );
     EntitySystem::Update( i_dt );
     RenderSystem::GetInstance()->Update( i_dt );

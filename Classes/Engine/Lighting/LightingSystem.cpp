@@ -9,10 +9,25 @@
 #include "LightingComponent.h"
 #include "LightingSystem.h"
 
-std::map<EntityHandle, Component*> LightingSystem::m_components;
-std::vector<LightEffect*> LightingSystem::m_lightEffects;
-cocos2d::GLProgramState* LightingSystem::m_GLProgramState;
-bool LightingSystem::m_debug;
+LightingSystem* LightingSystem::s_instance;
+
+LightingSystem* LightingSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new LightingSystem();
+    }
+    return s_instance;
+}
+
+void LightingSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void LightingSystem::RegisterComponent( Component* i_component )
 {

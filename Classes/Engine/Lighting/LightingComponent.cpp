@@ -33,12 +33,12 @@ LightingComponent::~LightingComponent()
 
 void LightingComponent::OnActivate()
 {
-    LightingSystem::RegisterComponent( this );
+    LightingSystem::GetInstance()->RegisterComponent( this );
 }
 
 void LightingComponent::OnDeactivate()
 {
-    LightingSystem::UnregisterComponent( this );
+    LightingSystem::GetInstance()->UnregisterComponent( this );
 }
 
 void LightingComponent::Update( float i_dt )
@@ -62,5 +62,5 @@ void LightingComponent::SetLightEffect( cocos2d::Vec3 i_offset, float i_brightne
     m_lightEffect->setLightColor( i_color );
     m_lightEffect->setLightCutoffRadius( i_radius );
     m_lightEffect->setLightHalfRadius( i_halfRadius );
-    LightingSystem::AddLightEffect( m_lightEffect );
+    LightingSystem::GetInstance()->AddLightEffect( m_lightEffect );
 }

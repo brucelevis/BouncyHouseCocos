@@ -45,7 +45,7 @@ LightEffect* LightEffect::create()
 
 bool LightEffect::init()
 {
-    if ( LightingSystem::GetGLProgramState() )
+    if ( LightingSystem::GetInstance()->GetGLProgramState() )
     {
         setLightColor(cocos2d::Color3B::WHITE);
         setLightCutoffRadius(500.0f);

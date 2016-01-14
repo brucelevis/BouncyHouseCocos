@@ -32,7 +32,7 @@ void ShipLevel::initLevel()
     pLightEffect1->setLightCutoffRadius( 75.0f );
     pLightEffect1->setBrightness( 2.0f );
     pLightEffect1->setLightColor( cocos2d::Color3B( 255.0f, 0.0f, 0.0f ) );
-    LightingSystem::AddLightEffect( pLightEffect1 );
+    LightingSystem::GetInstance()->AddLightEffect( pLightEffect1 );
     
     LightEffect* pLightEffect = LightEffect::create();
     pLightEffect->retain();
@@ -41,7 +41,7 @@ void ShipLevel::initLevel()
     pLightEffect->setLightCutoffRadius( 9000.0 );
     pLightEffect->setBrightness( 2.0f );
     pLightEffect->setLightColor( cocos2d::Color3B( 255.0f, 255.0f, 255.0f ) ); //3.0f, 5.0f, 24.0f ) );
-    LightingSystem::AddLightEffect( pLightEffect );
+    LightingSystem::GetInstance()->AddLightEffect( pLightEffect );
     
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
