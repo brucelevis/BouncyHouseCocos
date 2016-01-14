@@ -32,7 +32,7 @@ bool GameScene::Start()
     RenderSystem::GetInstance()->GetScene()->scheduleUpdate();
     
     ComponentSystem::DNADataInit();
-    HealthSystem::DNADataInit();
+    HealthSystem::GetInstance()->DNADataInit();
     LocomotionSystem::GetInstance()->DNADataInit();
     PhysicsSystem::GetInstance()->DNADataInit();
     
@@ -142,7 +142,7 @@ void GameScene::update( float i_dt )
     LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::GetInstance()->Update( i_dt );
-    HealthSystem::Update( i_dt );
+    HealthSystem::GetInstance()->Update( i_dt );
     EntitySystem::Update( i_dt );
     RenderSystem::GetInstance()->Update( i_dt );
 }

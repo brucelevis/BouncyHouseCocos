@@ -38,14 +38,14 @@ HealthComponent::~HealthComponent()
 
 void HealthComponent::OnActivate()
 {
-    HealthSystem::RegisterComponent( this );
+    HealthSystem::GetInstance()->RegisterComponent( this );
     m_health = m_maxHealth;
     m_dying = false;
 }
 
 void HealthComponent::OnDeactivate()
 {
-    HealthSystem::UnregisterComponent( this );
+    HealthSystem::GetInstance()->UnregisterComponent( this );
 }
 
 void HealthComponent::BeginDeath()

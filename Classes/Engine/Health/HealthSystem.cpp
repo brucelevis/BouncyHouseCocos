@@ -9,8 +9,25 @@
 #include "HealthComponent.h"
 #include "HealthSystem.h"
 
-std::map<EntityHandle, Component*> HealthSystem::m_components;
-bool HealthSystem::m_debug;
+HealthSystem* HealthSystem::s_instance;
+
+HealthSystem* HealthSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new HealthSystem();
+    }
+    return s_instance;
+}
+
+void HealthSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void HealthSystem::DNADataInit()
 {
