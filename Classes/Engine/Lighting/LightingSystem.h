@@ -33,6 +33,9 @@ public:
     std::vector<LightEffect*> GetLightEffects() { return m_lightEffects; };
     
     cocos2d::GLProgramState* GetGLProgramState();
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
 private:
     static LightingSystem* s_instance;
     bool m_debug;
