@@ -45,7 +45,7 @@ void CaveLevel::update( float i_dt )
 {
     Level::update( i_dt );
     
-    Entity* pIcicle = EntitySystem::GetEntity( m_icicleHandle );
+    Entity* pIcicle = EntitySystem::GetInstance()->GetEntity( m_icicleHandle );
     if ( !pIcicle )
     {
         cocos2d::Size pScreenSize = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize();

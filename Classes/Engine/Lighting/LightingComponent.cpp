@@ -43,7 +43,7 @@ void LightingComponent::OnDeactivate()
 
 void LightingComponent::Update( float i_dt )
 {
-    PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
         cocos2d::Vec3 pPosition = cocos2d::Vec3( pPhysicsComponent->GetPosition().x, pPhysicsComponent->GetPosition().y, 0.0f );

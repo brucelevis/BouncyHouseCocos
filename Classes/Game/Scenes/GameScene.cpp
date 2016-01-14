@@ -44,7 +44,7 @@ bool GameScene::Start()
         switch( keyCode ){
             case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
-                LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+                LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
                 if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
                 {
                     pLocomotionComponent->m_locomotionMode->Jump();
@@ -103,7 +103,7 @@ bool GameScene::Start()
     
     auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
     touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
-        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+        LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
         if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
         {
             pLocomotionComponent->m_locomotionMode->Jump();
@@ -143,7 +143,7 @@ void GameScene::update( float i_dt )
     PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::GetInstance()->Update( i_dt );
     HealthSystem::GetInstance()->Update( i_dt );
-    EntitySystem::Update( i_dt );
+    EntitySystem::GetInstance()->Update( i_dt );
     RenderSystem::GetInstance()->Update( i_dt );
 }
 

@@ -44,7 +44,7 @@ void AnimationSystem::Update( float i_dt )
                 int pFrameIndex = -1;
                 int pFrameCount = -1;
                 float pAnimRate = 1.0f;
-                RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( pComponent->m_entityHandle );
+                RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( pComponent->m_entityHandle );
                 if ( pRenderComponent )
                 {
                     cocos2d::Action* pAction = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
@@ -73,7 +73,7 @@ void AnimationSystem::Update( float i_dt )
                     pFrameCount = pAnimation->getFrames().size();
                 }
                 
-                PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
+                PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
                 if ( pPhysicsComponent )
                 {
                     pPosition = pPhysicsComponent->GetPosition();
@@ -85,7 +85,7 @@ void AnimationSystem::Update( float i_dt )
                 DebugDrawSystem::GetInstance()->DebugText( pText, pPosition, 0.0001f, cocos2d::Color4F::RED, 16 );
                 
                 cocos2d::Vec2 pInfoPosition = cocos2d::Vec2( 1600.0f, 1010.0f - ( i * 20.0f ) );
-                sprintf( pChar, "%-10s (%06d): %-20s [%03d/%03d] %3d%%", EntitySystem::GetEntity( pComponent->m_entityHandle )->GetName().c_str(), pComponent->m_entityHandle, pAnimationName.c_str(), pFrameIndex, pFrameCount, (int) ( pAnimRate * 100.0f ) );
+                sprintf( pChar, "%-10s (%06d): %-20s [%03d/%03d] %3d%%", EntitySystem::GetInstance()->GetEntity( pComponent->m_entityHandle )->GetName().c_str(), pComponent->m_entityHandle, pAnimationName.c_str(), pFrameIndex, pFrameCount, (int) ( pAnimRate * 100.0f ) );
                 pText = std::string( pChar );
                 DebugDrawSystem::GetInstance()->DebugText( pText, pInfoPosition, 0.0001f, cocos2d::Color4F::WHITE, 14, cocos2d::TextHAlignment::LEFT );
             }

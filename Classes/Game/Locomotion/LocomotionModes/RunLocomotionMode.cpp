@@ -43,7 +43,7 @@ void RunLocomotionMode::MoveToPoint( cocos2d::Vec2 i_point, float i_speed )
 void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
 {
     bool pOnGround = false;
-    GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetComponent<GroundDetectComponent>( m_entityHandle );
+    GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
     if ( pGroundDetectComponent )
     {
         pOnGround = pGroundDetectComponent->GetOnGround();
@@ -53,7 +53,7 @@ void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
         }
     }
     
-    PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
         if ( pOnGround || i_force )
@@ -64,7 +64,7 @@ void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
             pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
             m_diving = false;
             
-            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
             if ( pAnimationComponent && i_playAnim )
             {
                 pAnimationComponent->StartMotion( "Jump" );
@@ -75,7 +75,7 @@ void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
             pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY * -2.0f ) );
             m_diving = true;
             
-            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
             if ( pAnimationComponent && i_playAnim )
             {
                 pAnimationComponent->StartMotion( "Dive" );
@@ -87,7 +87,7 @@ void RunLocomotionMode::Jump( bool i_force, bool i_playAnim )
 void RunLocomotionMode::Update( float i_dt )
 {
     float pRunSpeed = 0.0f;
-    LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( m_entityHandle );
+    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
     if ( pLocomotionComponent )
     {
         pRunSpeed = pLocomotionComponent->GetRunSpeed();
@@ -95,7 +95,7 @@ void RunLocomotionMode::Update( float i_dt )
     
     if ( m_diving )
     {
-        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetComponent<GroundDetectComponent>( m_entityHandle );
+        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
         if ( pGroundDetectComponent )
         {
             if ( pGroundDetectComponent->GetOnGround() )
@@ -105,7 +105,7 @@ void RunLocomotionMode::Update( float i_dt )
         }
     }
     
-    PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
         cocos2d::Vec2 pPosition;
@@ -177,7 +177,7 @@ void RunLocomotionMode::Update( float i_dt )
         pPhysicsComponent->ApplyImpulse( pImpulse );
     }
     
-    RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
     if ( pRenderComponent )
     {
         RenderComponent::FacingDirection pFacing = ( m_runDir == -1.0f ) ? RenderComponent::FacingDirection::LEFT : RenderComponent::FacingDirection::RIGHT;
@@ -194,17 +194,17 @@ void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
     {
         if ( PhysicsSystem::GetInstance()->IsInBitmask( CollisionCategory::Bouncy, (CollisionCategory) pPhysicsContactInfo->m_otherShape->getCategoryBitmask() ) )
         {
-            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
             if ( pPhysicsComponent )
             {
                 if ( pPhysicsContactInfo->m_normal.dot( cocos2d::Vec2( 0.0f, -1.0f ) ) > 0.5f )
                 {
-                    LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( m_entityHandle );
+                    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
                     if ( pLocomotionComponent )
                     {
                         if ( pLocomotionComponent->m_jumpState != JumpState::JUMPING )
                         {
-                            AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+                            AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
                             if ( pAnimationComponent )
                             {
                                 auto pCallback = cocos2d::CallFunc::create( CC_CALLBACK_0( RunLocomotionMode::AfterSmash, this ) );
@@ -212,7 +212,7 @@ void RunLocomotionMode::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
                             }
 
                             Jump( true, false );
-                            HealthComponent* pOtherHealthComponent = EntitySystem::GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
+                            HealthComponent* pOtherHealthComponent = EntitySystem::GetInstance()->GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
                             if ( pOtherHealthComponent )
                             {
                                 pOtherHealthComponent->ChangeHealth( -100.0f );
@@ -230,12 +230,12 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
     EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
     if ( m_entityHandle == pEntityHandle )
     {
-        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetComponent<GroundDetectComponent>( m_entityHandle );
+        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
         if ( pGroundDetectComponent )
         {
             if ( pGroundDetectComponent->GetOnGround() )
             {
-                AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+                AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
                 if ( pAnimationComponent )
                 {
                     pAnimationComponent->StartMotion( "Run", 999999 );
@@ -247,7 +247,7 @@ void RunLocomotionMode::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
 
 void RunLocomotionMode::AfterSmash()
 {
-    AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+    AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
     if ( pAnimationComponent )
     {
         pAnimationComponent->StartMotion( "Jump" );

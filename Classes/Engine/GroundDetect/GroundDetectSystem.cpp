@@ -56,7 +56,7 @@ void GroundDetectSystem::Update( float i_dt )
             cocos2d::Vec2 pPosition;
             cocos2d::Vec2 pEnd;
             cocos2d::Vec2 pHitPoint;
-            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
             if ( pPhysicsComponent )
             {
                 cocos2d::PhysicsRayCastInfo pInfo;

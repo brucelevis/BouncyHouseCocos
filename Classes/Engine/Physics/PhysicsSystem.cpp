@@ -77,7 +77,7 @@ void PhysicsSystem::Update( float i_dt )
             if ( pComponent->GetPosition().y < -100.0f )
             {
                 ASSERTS( false, "Entity below death plane!" );
-                EntitySystem::MarkForDelete( pComponent->m_entityHandle );
+                EntitySystem::GetInstance()->MarkForDelete( pComponent->m_entityHandle );
                 continue;
             }
         }
@@ -86,7 +86,7 @@ void PhysicsSystem::Update( float i_dt )
 
 bool PhysicsSystem::SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position )
 {
-    PhysicsComponent* pComponent = EntitySystem::GetComponent<PhysicsComponent>( i_entityHandle );
+    PhysicsComponent* pComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( i_entityHandle );
     if ( pComponent )
     {
         return pComponent->SetPosition( i_position );
@@ -122,13 +122,13 @@ bool PhysicsSystem::OnContactBegin( cocos2d::PhysicsContact& i_contact )
     cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
     EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
     
-    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleA );
+    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pEntityHandleA );
     if ( pPhysicsComponentA )
     {
         pPhysicsComponentA->OnContactBegin( PhysicsContactInfo( pEntityHandleA, pEntityHandleB, i_contact.getShapeA(), i_contact.getShapeB(), i_contact.getContactData()->normal ) );
     }
     
-    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleB );
+    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pEntityHandleB );
     if ( pPhysicsComponentB )
     {
         pPhysicsComponentB->OnContactBegin( PhysicsContactInfo( pEntityHandleB, pEntityHandleA, i_contact.getShapeB(), i_contact.getShapeA(), i_contact.getContactData()->normal * -1.0f ) );
@@ -144,13 +144,13 @@ bool PhysicsSystem::OnContactPostSolve( cocos2d::PhysicsContact& i_contact )
     cocos2d::PhysicsBody* bodyB = i_contact.getShapeB()->getBody();
     EntityHandle pEntityHandleB = bodyB->getNode()->getTag();
     
-    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleA );
+    PhysicsComponent* pPhysicsComponentA = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pEntityHandleA );
     if ( pPhysicsComponentA )
     {
         pPhysicsComponentA->OnContactPostSolve( PhysicsContactInfo( pEntityHandleA, pEntityHandleB, i_contact.getShapeA(), i_contact.getShapeB(), i_contact.getContactData()->normal ) );
     }
     
-    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetComponent<PhysicsComponent>( pEntityHandleB );
+    PhysicsComponent* pPhysicsComponentB = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pEntityHandleB );
     if ( pPhysicsComponentB )
     {
         pPhysicsComponentB->OnContactPostSolve( PhysicsContactInfo( pEntityHandleB, pEntityHandleA, i_contact.getShapeB(), i_contact.getShapeA(), i_contact.getContactData()->normal * -1.0f ) );

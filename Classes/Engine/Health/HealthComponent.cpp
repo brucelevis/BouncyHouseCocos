@@ -72,5 +72,5 @@ void HealthComponent::BeginDeath()
 
 void HealthComponent::DeathComplete()
 {
-    EntitySystem::MarkForDelete( m_entityHandle );
+    EntitySystem::GetInstance()->MarkForDelete( m_entityHandle );
 }

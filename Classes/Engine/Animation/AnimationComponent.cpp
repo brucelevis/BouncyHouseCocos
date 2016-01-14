@@ -89,7 +89,7 @@ void AnimationComponent::StartMotion( std::string i_motionName, float i_loops, c
             pAction = cocos2d::Sequence::create( (cocos2d::FiniteTimeAction*) pAction, i_nextAction, NULL);
         }
         
-        RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+        RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
         if ( pRenderComponent )
         {
             cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
@@ -108,14 +108,14 @@ void AnimationComponent::StartMotion( std::string i_motionName, float i_loops, c
 
 void AnimationComponent::SyncMotionRate()
 {
-    RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
     if ( pRenderComponent )
     {
         cocos2d::Action* pCurrentAnimation = pRenderComponent->m_sprite->getActionByTag( ActionTag::AnimationAction );
         cocos2d::Speed* pSpeedAction = dynamic_cast<cocos2d::Speed*>( pCurrentAnimation );
         if ( pCurrentAnimation && pSpeedAction )
         {
-            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
             if ( pPhysicsComponent )
             {
                 float pMovementRate = fabs( pPhysicsComponent->GetVelocity().x );

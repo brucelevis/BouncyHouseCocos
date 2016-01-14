@@ -24,22 +24,21 @@ typedef int EntityHandle;
 
 class EntitySystem : public System
 {
-private:
-    static std::vector<EntityHandle> m_markedForDelete;
-    static void RemoveEntity( EntityHandle i_entityHandle );
 public:
-    static std::map<EntityHandle, Entity*> m_entities;
-    static Entity* CreateEntity();
+    static EntitySystem* GetInstance();
+    static void DestroyInstance();
+
+    Entity* CreateEntity();
     
-    static void MarkForDelete( EntityHandle i_entityHandle );
-    static Entity* GetEntity( EntityHandle i_entityHandle );
+    void MarkForDelete( EntityHandle i_entityHandle );
+    Entity* GetEntity( EntityHandle i_entityHandle );
     
-    static void Update( float i_dt );
+    void Update( float i_dt );
     
     template<typename ComponentType>
-    static ComponentType* GetComponent( EntityHandle i_entityHandle )
+    ComponentType* GetComponent( EntityHandle i_entityHandle )
     {
-        Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
+        Entity* pEntity = EntitySystem::GetInstance()->GetEntity( i_entityHandle );
         for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
         {
             ComponentType* pComponent = dynamic_cast<ComponentType*>( it->second );
@@ -52,12 +51,23 @@ public:
         return NULL;
     }
     
-    static Component* AttachAndInitComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject );
-    static Component* AttachComponent( EntityHandle i_entityHandle, std::string i_componentType );
+    Component* AttachAndInitComponent( EntityHandle i_entityHandle, std::string i_componentType, const rapidjson::Value& i_dnaObject );
+    Component* AttachComponent( EntityHandle i_entityHandle, std::string i_componentType );
     
 #if DEBUG
     static std::string GetNameDoNotUseInCode( EntityHandle i_entityHandle );
 #endif
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
+private:
+    static EntitySystem* s_instance;
+    bool m_debug;
+    
+    std::map<EntityHandle, Entity*> m_entities;
+    
+    std::vector<EntityHandle> m_markedForDelete;
+    void RemoveEntity( EntityHandle i_entityHandle );
 };
 
 #endif /* EntitySystem_hpp */

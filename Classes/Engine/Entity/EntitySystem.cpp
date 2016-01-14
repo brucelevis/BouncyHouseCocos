@@ -10,9 +10,25 @@
 #include "EntitySystem.h"
 #include "../Event/EventManager.h"
 
-std::vector<EntityHandle> EntitySystem::m_markedForDelete;
-std::map<EntityHandle, Entity*> EntitySystem::m_entities;
+EntitySystem* EntitySystem::s_instance;
 
+EntitySystem* EntitySystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new EntitySystem();
+    }
+    return s_instance;
+}
+
+void EntitySystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 Entity* EntitySystem::CreateEntity()
 {
     EntityHandle newHandle = rand() % 10000;
@@ -108,7 +124,7 @@ void EntitySystem::Update( float i_dt )
 #ifdef DEBUG
 std::string EntitySystem::GetNameDoNotUseInCode( EntityHandle i_entityHandle )
 {
-    Entity* pEntity = EntitySystem::GetEntity( i_entityHandle );
+    Entity* pEntity = EntitySystem::GetInstance()->GetEntity( i_entityHandle );
     if ( pEntity )
     {
         return pEntity->GetName();

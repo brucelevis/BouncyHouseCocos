@@ -26,7 +26,7 @@ void StalactiteComponent::OnActivate()
 {
     m_timer = 3.0f;
     m_wiggling = true;
-    PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
         pPhysicsComponent->GetPhysicsBody()->setVelocityLimit( 0.0f );
@@ -45,7 +45,7 @@ void StalactiteComponent::Update( float i_dt )
     m_timer -= i_dt;
     if ( m_timer <= 0.0f && m_wiggling )
     {
-        PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( m_entityHandle );
+        PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
         if ( pPhysicsComponent )
         {
             pPhysicsComponent->GetPhysicsBody()->setVelocityLimit( 10000.0f );
@@ -56,7 +56,7 @@ void StalactiteComponent::Update( float i_dt )
     }
     if ( m_timer <= 0.0f && !m_wiggling )
     {
-        HealthComponent* pHealthComponent = EntitySystem::GetComponent<HealthComponent>( m_entityHandle );
+        HealthComponent* pHealthComponent = EntitySystem::GetInstance()->GetComponent<HealthComponent>( m_entityHandle );
         if ( pHealthComponent )
         {
             pHealthComponent->ChangeHealth( -999999.0f );
@@ -69,12 +69,12 @@ void StalactiteComponent::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
     EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
     if ( m_entityHandle == pEntityHandle )
     {
-        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetComponent<GroundDetectComponent>( m_entityHandle );
+        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
         if ( pGroundDetectComponent )
         {
             if ( pGroundDetectComponent->GetOnGround() )
             {
-                AnimationComponent* pAnimationComponent = EntitySystem::GetComponent<AnimationComponent>( m_entityHandle );
+                AnimationComponent* pAnimationComponent = EntitySystem::GetInstance()->GetComponent<AnimationComponent>( m_entityHandle );
                 if ( pAnimationComponent )
                 {
                     pAnimationComponent->StartMotion( "Crush" );

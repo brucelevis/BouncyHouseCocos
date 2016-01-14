@@ -80,7 +80,7 @@ void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson
 
 void PhysicsComponent::OnActivate()
 {
-    RenderComponent* pRenderComponent = EntitySystem::GetComponent<RenderComponent>( m_entityHandle );
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
     if ( pRenderComponent && pRenderComponent->m_sprite )
     {
         m_node = pRenderComponent->m_sprite;

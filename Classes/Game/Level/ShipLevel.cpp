@@ -46,7 +46,7 @@ void ShipLevel::initLevel()
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
     PhysicsSystem::GetInstance()->SetPosition( m_player->m_entityHandle, m_playerSpawner );
-    LightingComponent* pLightingComponent = (LightingComponent*) EntitySystem::AttachComponent( m_player->m_entityHandle, "LightingComponent" );
+    LightingComponent* pLightingComponent = (LightingComponent*) EntitySystem::GetInstance()->AttachComponent( m_player->m_entityHandle, "LightingComponent" );
     if ( pLightingComponent )
     {
         pLightingComponent->Activate();

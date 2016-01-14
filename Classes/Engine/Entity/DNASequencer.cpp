@@ -15,7 +15,7 @@
 
 Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
 {
-    Entity* pEntity = EntitySystem::CreateEntity();
+    Entity* pEntity = EntitySystem::GetInstance()->CreateEntity();
     
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename( i_dnaPath );
     ssize_t bufferSize = 0;
@@ -36,7 +36,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         
         if ( itr->value.GetType() == rapidjson::Type::kObjectType )
         {
-            EntitySystem::AttachAndInitComponent( pEntity->m_entityHandle, itr->name.GetString(), itr->value );
+            EntitySystem::GetInstance()->AttachAndInitComponent( pEntity->m_entityHandle, itr->name.GetString(), itr->value );
         }
     }
     

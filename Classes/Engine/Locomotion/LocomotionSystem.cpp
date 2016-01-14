@@ -63,7 +63,7 @@ void LocomotionSystem::Update( float i_dt )
             {
                 pComponent->m_locomotionMode->Update( i_dt );
             }
-            PhysicsComponent* pPhysicsComponent = EntitySystem::GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( pComponent->m_entityHandle );
             if ( pPhysicsComponent )
             {
                 float yVel = pPhysicsComponent->GetVelocity().y;
