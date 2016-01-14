@@ -11,6 +11,15 @@
             "ignoreEvents": [ "WIGGLE" ]
         },
         {
+            "name": "fall",
+            "defaultState": false,
+            "motion": "Fall",
+            "loop": true,
+            "onExit": "",
+            "events": [ "FALL" ],
+            "ignoreEvents": [ "WIGGLE", "FALL" ]
+        },
+        {
             "name": "crush",
             "defaultState": false,
             "motion": "Crush",

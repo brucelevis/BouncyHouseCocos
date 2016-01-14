@@ -16,6 +16,12 @@
                      "Name": "wiggle"
                  },
                  {
+                     "Motion": "Fall",
+                     "StartFrame": 6,
+                     "EndFrame": 6,
+                     "Name": "wiggle"
+                 },
+                 {
                      "Motion": "Crush",
                      "StartFrame": 0,
                      "EndFrame": 5,

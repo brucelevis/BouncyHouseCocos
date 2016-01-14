@@ -53,6 +53,7 @@ void StalactiteComponent::Update( float i_dt )
         } 
         m_wiggling = false;
         m_timer = 3.0f;
+        AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "FALL" );
     }
     if ( m_timer <= 0.0f && !m_wiggling )
     {
