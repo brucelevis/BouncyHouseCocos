@@ -46,13 +46,13 @@
             "WalkSpeed": 100.0
         },
         "PhysicsComponent": {
-            "Density": 10.0,
+            "Density": 1.0,
             "Restitution": 0.0,
             "Friction": 0.0,
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
             "YOffset": 0.0,
-            "Size": [ 100.0, 140.0 ],
+            "Size": [ 100.0, 155.0 ],
 
             "Category": [ "Player", "Bouncy" ],
             "Collision": [ "Solid", "Enemy", "Player" ],

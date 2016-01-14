@@ -33,6 +33,8 @@ public:
     void Deactivate() { OnDeactivate(); };
     virtual void OnActivate() { };
     virtual void OnDeactivate() { };
+    
+    virtual void Update( float i_dt ) { };
 };
 
 #endif /* Component_hpp */

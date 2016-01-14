@@ -10,6 +10,12 @@
 
 Level* LevelSystem::m_level;
 
+void LevelSystem::StartLevel( Level* i_level )
+{
+    m_level = i_level;
+    m_level->initLevel();
+}
+
 void LevelSystem::Update( float i_dt )
 {
     m_level->update( i_dt );

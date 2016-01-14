@@ -13,11 +13,11 @@
 
 #include "cocos2d.h"
 #include "../../Engine/Entity/Entity.h"
-#include "../../Engine/Lighting/LightEffect.h"
 #include "../../Engine/TypeDefs.h"
 
 class Level
 {
+protected:
     cocos2d::Vec2 m_playerSpawner;
     std::vector<cocos2d::Vec2> m_enemySpawners;
     
@@ -26,14 +26,11 @@ class Level
     std::map<EntityHandle, Entity*> m_staticEntities;
     int m_maxEnemyCount;
     float m_enemySpawnTimer;
-    
-    float m_flickerTimer;
-    float m_flickerTime;
-    float m_targetBrightness;
-    float m_startBrightness;
 public:
     Level();
     ~Level();
+    
+    virtual void initLevel();
     
     virtual void update( float i_dt );
     

@@ -26,14 +26,7 @@ void LightingSystem::UnregisterComponent( Component* i_component )
 
 void LightingSystem::Update( float i_dt )
 {
-    for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
-    {
-        LightingComponent* pComponent = (LightingComponent*) it->second;
-        if ( pComponent )
-        {
-            pComponent->Update( i_dt );
-        }
-    }
+
 }
 
 cocos2d::GLProgramState* LightingSystem::GetGLProgramState()
@@ -54,6 +47,7 @@ cocos2d::GLProgramState* LightingSystem::GetGLProgramState()
 
         return m_GLProgramState;
     }
+    return NULL;
 }
 
 void LightingSystem::AddLightEffect( LightEffect* i_lightEffect )

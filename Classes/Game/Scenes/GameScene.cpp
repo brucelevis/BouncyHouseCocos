@@ -13,8 +13,8 @@
 #include "GameScene.h"
 #include "../../Engine/GroundDetect/GroundDetectSystem.h"
 #include "../../Engine/Health/HealthSystem.h"
-#include "../Level/Level.h"
 #include "../Level/LevelSystem.h"
+#include "../Level/CaveLevel.h"
 #include "../../Engine/Lighting/LightingSystem.h"
 #include "../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../Engine/Locomotion/LocomotionSystem.h"
@@ -35,7 +35,7 @@ bool GameScene::Start()
     LocomotionSystem::DNADataInit();
     PhysicsSystem::DNADataInit();
     
-    LevelSystem::m_level = new Level();
+    LevelSystem::StartLevel( new CaveLevel() );
 
     auto eventListener = cocos2d::EventListenerKeyboard::create();
     eventListener->onKeyPressed = [](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event){
@@ -43,7 +43,7 @@ bool GameScene::Start()
         switch(keyCode){
             case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
-                LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
+                LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
                 if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
                 {
                     pLocomotionComponent->m_locomotionMode->Jump();
@@ -102,7 +102,7 @@ bool GameScene::Start()
     
     auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
     touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
-        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::m_level->GetPlayer()->m_entityHandle );
+        LocomotionComponent* pLocomotionComponent = EntitySystem::GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
         if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
         {
             pLocomotionComponent->m_locomotionMode->Jump();

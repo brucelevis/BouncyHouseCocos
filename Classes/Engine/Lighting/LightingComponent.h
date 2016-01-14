@@ -32,7 +32,7 @@ public:
     virtual void OnActivate() override;
     virtual void OnDeactivate() override;
     
-    void Update( float i_dt );
+    virtual void Update( float i_dt ) override;
     
     void SetLightEffect( cocos2d::Vec3 i_offset, float i_brightness, cocos2d::Color3B i_color, float i_radius, float i_halfRadius );
 };

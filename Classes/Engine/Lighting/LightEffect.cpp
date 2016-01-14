@@ -82,50 +82,54 @@ void LightEffect::setLightHalfRadius(float value)
 
 void LightEffect::prepareForRender(cocos2d::Sprite *sprite, cocos2d::Texture2D *normalmap, int i_lightNumber)
 {
-    auto gl = LightingSystem::GetGLProgramState();
+    //auto gl = LightingSystem::GetGLProgramState();
 
-    gl->setUniformVec2("u_contentSize", sprite->getContentSize());
-
-    cocos2d::Point posRelToSpriteOld = PointApplyAffineTransform(cocos2d::Point(_lightPos.x, _lightPos.y), sprite->getWorldToNodeAffineTransform());
-    
-    cocos2d::Vec2 pPos = sprite->getPosition();
-    cocos2d::Point posRelToSprite = cocos2d::Vec2( _lightPos.x, _lightPos.y ) - pPos;
-    float zOrder = sprite->getZOrder();
-    cocos2d::AffineTransform pTest = sprite->getWorldToNodeAffineTransform();
-    cocos2d::Vec2 pAffine = PointApplyAffineTransform( cocos2d::Point( 0.0, 0.0 ), sprite->getWorldToNodeAffineTransform() );
-
-    gl->setUniformTexture("u_normals", normalmap);
-
-    cocos2d::SpriteFrame *frame = sprite->getSpriteFrame();
-    cocos2d::Size untrimmedSize = frame->getOriginalSize();
-    cocos2d::Size trimmedSize = frame->getRect().size;
-    cocos2d::Vec2 framePos = frame->getRect().origin;
-    cocos2d::Size texSize = frame->getTexture()->getContentSize();
-    
-    // set sprite position in sheet
-    gl->setUniformVec2("u_spritePosInSheet", cocos2d::Vec2(framePos.x / texSize.width, framePos.y / texSize.height));
-    gl->setUniformVec2("u_spriteSizeRelToSheet", cocos2d::Vec2(untrimmedSize.width / texSize.width, untrimmedSize.height / texSize.height));
-    gl->setUniformInt("u_spriteRotated", frame->isRotated());
-    
-    // set offset of trimmed sprite
-    cocos2d::Vec2 bottomLeft = frame->getOffset() + (untrimmedSize - trimmedSize) / 2;
-    cocos2d::Vec2 cornerOffset = frame->isRotated() ? cocos2d::Vec2(bottomLeft.y, bottomLeft.x)
-                                           : cocos2d::Vec2(bottomLeft.x, untrimmedSize.height - trimmedSize.height - bottomLeft.y);
-    gl->setUniformVec2("u_spriteOffset", cornerOffset);
-    gl->setUniformFloat( "u_zOrder", sprite->getZOrder() );
-    
-    char pVarName[100];
-    sprintf( pVarName, "u_lightActive%d", i_lightNumber );
-    gl->setUniformInt( pVarName, 1 );
-    sprintf( pVarName, "u_lightPos%d", i_lightNumber );
-    gl->setUniformVec3( pVarName, cocos2d::Vec3(posRelToSprite.x, posRelToSprite.y, 0.0 )); //sprite->getZOrder() - _lightPos.z));
-    sprintf( pVarName, "u_lightColor%d", i_lightNumber );
-    gl->setUniformVec3( pVarName, cocos2d::Vec3(_lightColor.r,_lightColor.g,_lightColor.b)/255.0f);
-    sprintf( pVarName, "u_brightness%d", i_lightNumber );
-    gl->setUniformFloat( pVarName, _brightness);
-    sprintf( pVarName, "u_cutoffRadius%d", i_lightNumber );
-    gl->setUniformFloat( pVarName, _lightCutoffRadius);
-    sprintf( pVarName, "u_halfRadius%d", i_lightNumber );
-    gl->setUniformFloat( pVarName, _lightHalfRadius);
+//    gl->setUniformVec2("u_contentSize", sprite->getContentSize());
+//
+////    cocos2d::Point posRelToSpriteOld = PointApplyAffineTransform(cocos2d::Point(_lightPos.x, _lightPos.y), sprite->getWorldToNodeAffineTransform());
+////    
+////    cocos2d::Vec2 pPos = sprite->getPosition();
+////    cocos2d::Point posRelToSprite = cocos2d::Vec2( _lightPos.x, _lightPos.y ) - pPos;
+////    float zOrder = sprite->getZOrder();
+////    cocos2d::AffineTransform pTest = sprite->getWorldToNodeAffineTransform();
+////    cocos2d::Vec2 pAffine = PointApplyAffineTransform( cocos2d::Point( 0.0, 0.0 ), sprite->getWorldToNodeAffineTransform() );
+//
+//    cocos2d::Point posRelToSprite = PointApplyAffineTransform(cocos2d::Point(_lightPos.x, _lightPos.y), sprite->getWorldToNodeAffineTransform());
+//    float zOrder = sprite->getZOrder();
+//    float pLightZ = _lightPos.z - sprite->getZOrder();
+//
+//    gl->setUniformTexture("u_normals", normalmap);
+//
+//    cocos2d::SpriteFrame *frame = sprite->getSpriteFrame();
+//    cocos2d::Size untrimmedSize = frame->getOriginalSize();
+//    cocos2d::Size trimmedSize = frame->getRect().size;
+//    cocos2d::Vec2 framePos = frame->getRect().origin;
+//    cocos2d::Size texSize = frame->getTexture()->getContentSize();
+//    
+//    // set sprite position in sheet
+//    gl->setUniformVec2("u_spritePosInSheet", cocos2d::Vec2(framePos.x / texSize.width, framePos.y / texSize.height));
+//    gl->setUniformVec2("u_spriteSizeRelToSheet", cocos2d::Vec2(untrimmedSize.width / texSize.width, untrimmedSize.height / texSize.height));
+//    gl->setUniformInt("u_spriteRotated", frame->isRotated());
+//    
+//    // set offset of trimmed sprite
+//    cocos2d::Vec2 bottomLeft = frame->getOffset() + (untrimmedSize - trimmedSize) / 2;
+//    cocos2d::Vec2 cornerOffset = frame->isRotated() ? cocos2d::Vec2(bottomLeft.y, bottomLeft.x)
+//                                           : cocos2d::Vec2(bottomLeft.x, untrimmedSize.height - trimmedSize.height - bottomLeft.y);
+//    gl->setUniformVec2("u_spriteOffset", cornerOffset);
+//    gl->setUniformFloat( "u_zOrder", sprite->getZOrder() );
+//    
+//    char pVarName[100];
+//    sprintf( pVarName, "u_lightActive%d", i_lightNumber );
+//    gl->setUniformInt( pVarName, 1 );
+//    sprintf( pVarName, "u_lightPos%d", i_lightNumber );
+//    gl->setUniformVec3( pVarName, cocos2d::Vec3(posRelToSprite.x, posRelToSprite.y, pLightZ));
+//    sprintf( pVarName, "u_lightColor%d", i_lightNumber );
+//    gl->setUniformVec3( pVarName, cocos2d::Vec3(_lightColor.r,_lightColor.g,_lightColor.b)/255.0f);
+//    sprintf( pVarName, "u_brightness%d", i_lightNumber );
+//    gl->setUniformFloat( pVarName, _brightness);
+//    sprintf( pVarName, "u_cutoffRadius%d", i_lightNumber );
+//    gl->setUniformFloat( pVarName, _lightCutoffRadius);
+//    sprintf( pVarName, "u_halfRadius%d", i_lightNumber );
+//    gl->setUniformFloat( pVarName, _lightHalfRadius);
 
 }

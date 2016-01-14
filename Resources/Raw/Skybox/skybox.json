@@ -4,7 +4,7 @@
         "RenderComponent": {
             "SpriteSheet": "Skybox/SkyboxSheet",
             "DefaultSprite": "Skybox.png",
-            "ZOrder": -10
+            "ZOrder": -1000
         },
         "PhysicsComponent": {
             "AnchorPoint": [ 0.0, 0.0 ]

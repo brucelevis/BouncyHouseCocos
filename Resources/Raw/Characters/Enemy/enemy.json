@@ -2,8 +2,8 @@
     "Name": "Enemy",
     "Components": {
         "RenderComponent": {
-            "SpriteSheet": "Characters/Player/Motions/PlayerMotions",
-            "DefaultSprite": "Vik1_Run_00.png",
+            "SpriteSheet": "Characters/Enemy/Motions/EnemyMotions",
+            "DefaultSprite": "SmallEnemyWalk_00.png",
             "FacingLeft": true
         },
         "AnimationComponent": {
@@ -12,27 +12,9 @@
                 {
                     "Motion": "Run",
                     "StartFrame": 0,
-                    "EndFrame": 17,
-                    "Name": "Vik1_Run",
-                    "MotionRate": 275.0
-                },
-                {
-                    "Motion": "Jump",
-                    "StartFrame": 0,
-                    "EndFrame": 20,
-                    "Name": "Vik1_Jump"
-                },
-                {
-                    "Motion": "Dive",
-                    "StartFrame": 18,
-                    "EndFrame": 20,
-                    "Name": "Vik1_Jump"
-                },
-                {
-                    "Motion": "Smash",
-                    "StartFrame": 2,
-                    "EndFrame": 3,
-                    "Name": "Vik1_Smash"
+                    "EndFrame": 23,
+                    "Name": "SmallEnemyWalk",
+                    "MotionRate": 120.0
                 }
             ]
         },
@@ -42,8 +24,7 @@
         },
         "LocomotionComponent": {
             "LocomotionMode": "RunLocomotionMode",
-            "RunSpeed": 200.0,
-            "WalkSpeed": 100.0
+            "RunSpeed": 100.0
         },
         "PhysicsComponent": {
             "Density": 1.0,
@@ -52,7 +33,7 @@
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
             "YOffset": 0.0,
-            "Size": [ 100.0, 140.0 ],
+            "Size": [ 75.0, 150.0 ],
 
             "Category": [ "Enemy", "Bouncy" ],
             "Collision": [ "Solid", "Player" ],

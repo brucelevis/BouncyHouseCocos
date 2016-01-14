@@ -1,0 +1,44 @@
+{
+    "Name": "Icicle",
+    "Components": {
+        "RenderComponent": {
+            "SpriteSheet": "Characters/Icicle/Motions/IcicleMotions",
+            "DefaultSprite": "wiggle_00.png"
+        },
+        "AnimationComponent": {
+            "Motions":
+            [
+                 {
+                     "Motion": "Run",
+                     "StartFrame": 0,
+                     "EndFrame": 6,
+                     "Name": "wiggle"
+                 },
+                 {
+                     "Motion": "Crush",
+                     "StartFrame": 0,
+                     "EndFrame": 5,
+                     "Name": "crush"
+                 }
+            ]
+        },
+        "GroundDetectComponent": {},
+        "HealthComponent": {
+            "MaxHealth": 10000.0
+        },
+        "PhysicsComponent": {
+            "Density": 1000.0,
+            "Restitution": 0.0,
+            "Friction": 10.0,
+            "Dynamic": true,
+            "AnchorPoint": [ 0.5, 0.0 ],
+            "YOffset": 0.0,
+            "Size": [ 140.0, 300.0 ],
+
+            "Category": [ "Solid" ],
+            "Collision": [ "Solid", "Player", "Enemy" ],
+            "Contact": [ "Solid", "Player", "Enemy" ]
+        },
+        "StalactiteComponent": {}
+    }
+}

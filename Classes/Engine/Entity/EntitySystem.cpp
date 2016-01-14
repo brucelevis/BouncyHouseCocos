@@ -79,6 +79,22 @@ Entity* EntitySystem::GetEntity( EntityHandle i_entityHandle )
 
 void EntitySystem::Update( float i_dt )
 {
+    for ( std::map<EntityHandle, Entity*>::iterator it = m_entities.begin(); it != m_entities.end(); it++ )
+    {
+        Entity* pEntity = it->second;
+        if ( pEntity )
+        {
+            for ( std::map<std::string, Component*>::iterator cIt = pEntity->m_components.begin(); cIt != pEntity->m_components.end(); cIt++ )
+            {
+                Component* pComponent = cIt->second;
+                if (pComponent )
+                {
+                    pComponent->Update( i_dt );
+                }
+            }
+        }
+    }
+
     if ( m_markedForDelete.size() > 0 )
     {
         for ( int i = 0; i < m_markedForDelete.size(); i++ )
