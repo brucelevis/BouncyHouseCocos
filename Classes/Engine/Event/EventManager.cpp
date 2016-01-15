@@ -55,17 +55,20 @@ void EventManager::RegisterForEvent( const std::string i_name, const std::functi
 
 void EventManager::UnregisterForEvent( const std::string i_name, void* i_target )
 {
-    std::map<std::string, cocos2d::EventListenerCustom*> pListenerMap = m_listeners.at( i_target );
-    m_listeners.erase( i_target );
-    cocos2d::EventListenerCustom* pListener = pListenerMap.at( i_name );
-    ASSERTS( pListener, "Unregistering nonexistant event listener!");
-    if ( pListener )
+    //if ( m_listeners.find( i_target ) != m_listeners.end() )
     {
-        cocos2d::Director::getInstance()->getEventDispatcher()->removeEventListener( pListener );
-        pListenerMap.erase( i_name );
-    }
-    if ( pListenerMap.size() > 0 )
-    {
-        m_listeners.insert( { i_target, pListenerMap } );
+        std::map<std::string, cocos2d::EventListenerCustom*> pListenerMap = m_listeners.at( i_target );
+        m_listeners.erase( i_target );
+        cocos2d::EventListenerCustom* pListener = pListenerMap.at( i_name );
+        ASSERTS( pListener, "Unregistering nonexistant event listener!");
+        if ( pListener )
+        {
+            cocos2d::Director::getInstance()->getEventDispatcher()->removeEventListener( pListener );
+            pListenerMap.erase( i_name );
+        }
+        if ( pListenerMap.size() > 0 )
+        {
+            m_listeners.insert( { i_target, pListenerMap } );
+        }
     }
 }

@@ -55,12 +55,14 @@ void JumpBrainState::Exit()
 
 void JumpBrainState::OnActivate()
 {
+    m_active = true;
     EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( JumpBrainState::OnGroundChangedEvent, this ), this );
     EventManager::GetInstance()->RegisterForEvent( "AvatarAction_Jump", CC_CALLBACK_1( JumpBrainState::OnAvatarAction_Jump, this ), this );
 }
 
 void JumpBrainState::OnDeactivate()
 {
+    m_active = false;
     EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
     EventManager::GetInstance()->UnregisterForEvent( "AvatarAction_Jump", this );
 }

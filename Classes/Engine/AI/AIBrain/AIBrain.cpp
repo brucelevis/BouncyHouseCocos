@@ -52,12 +52,28 @@ void AIBrain::Update( float i_dt )
 void AIBrain::PopState()
 {
     m_shouldPop = true;
+    if ( m_states.size() > 0 )
+    {
+        AIBrainState* pState = m_states.top();
+        if ( pState && pState->GetActive() )
+        {
+            pState->OnDeactivate();
+        }
+    }
 }
 
 void AIBrain::PushState( std::string i_stateName )
 {
     m_shouldPush = true;
     m_pushStateName = i_stateName;
+    if ( m_states.size() > 0 )
+    {
+        AIBrainState* pState = m_states.top();
+        if ( pState && pState->GetActive() )
+        {
+            pState->OnDeactivate();
+        }
+    }
 }
 
 void AIBrain::PerformPopState()
@@ -67,7 +83,6 @@ void AIBrain::PerformPopState()
         AIBrainState* pState = m_states.top();
         if ( pState )
         {
-            pState->OnDeactivate();
             pState->Exit();
             delete pState;
         }
@@ -76,7 +91,7 @@ void AIBrain::PerformPopState()
     if ( m_states.size() > 0 )
     {
         AIBrainState* pState = m_states.top();
-        if ( pState )
+        if ( pState && !pState->GetActive() )
         {
             pState->OnActivate();
         }
@@ -89,7 +104,7 @@ void AIBrain::PerformPushState( std::string i_stateName )
     if ( m_states.size() > 0 )
     {
         AIBrainState* pState = m_states.top();
-        if ( pState )
+        if ( pState && pState->GetActive() )
         {
             pState->OnDeactivate();
         }

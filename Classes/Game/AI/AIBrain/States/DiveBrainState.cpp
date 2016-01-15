@@ -55,11 +55,13 @@ void DiveBrainState::Exit()
 
 void DiveBrainState::OnActivate()
 {
+    m_active = true;
     EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( DiveBrainState::OnGroundChangedEvent, this ), this );
 }
 
 void DiveBrainState::OnDeactivate()
 {
+    m_active = false;
     EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
 }
 
@@ -69,6 +71,7 @@ void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
     if ( m_entityHandle == pEntityHandle )
     {
         GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
+        ASSERTS( pGroundDetectComponent && pGroundDetectComponent->GetOnGround(), "How come we're not on the ground?" );
         if ( pGroundDetectComponent && pGroundDetectComponent->GetOnGround() )
         {
             AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
