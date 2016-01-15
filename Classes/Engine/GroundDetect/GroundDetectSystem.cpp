@@ -68,6 +68,10 @@ void GroundDetectSystem::Update( float i_dt )
                     pEnd = pPosition + cocos2d::Vec2( 0.0f, -14.0f * pPhysicsComponent->GetNode()->getScaleY() );
                     
                     pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );
+                    if ( pHit && !PhysicsSystem::GetInstance()->IsInBitmask( CollisionCategory::Ground, (CollisionCategory)pInfo.shape->getCategoryBitmask() ) )
+                    {
+                        pHit = false;
+                    }
                     
 #ifdef DEBUG
                     if ( m_debug )

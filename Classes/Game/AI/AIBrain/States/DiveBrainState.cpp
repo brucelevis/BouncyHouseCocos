@@ -14,6 +14,7 @@
 #include "../../../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../../../Engine/Locomotion/LocomotionSystem.h"
+#include "../../../../Engine/Munition/MunitionSystem.h"
 #include "../../../../Engine/Physics/PhysicsComponent.h"
 #include "../../../../Engine/Render/DebugDrawSystem.h"
 
@@ -57,12 +58,19 @@ void DiveBrainState::OnActivate()
 {
     m_active = true;
     EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( DiveBrainState::OnGroundChangedEvent, this ), this );
+    EventManager::GetInstance()->RegisterForEvent( "MunitionContact", CC_CALLBACK_1( DiveBrainState::OnMunitionContactEvent, this ), this );
+    
+    
+    m_munitionHandle = MunitionSystem::GetInstance()->CreateMeleeMunition( m_entityHandle, "Baked/Munitions/player_dive.dna" );
 }
 
 void DiveBrainState::OnDeactivate()
 {
     m_active = false;
     EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
+    EventManager::GetInstance()->UnregisterForEvent( "MunitionContact", this );
+    
+    MunitionSystem::GetInstance()->DestroyMunition( m_munitionHandle );
 }
 
 void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
@@ -81,6 +89,23 @@ void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
                 {
                     pAIComponent->GetBrain()->PopState();
                 }
+            }
+        }
+    }
+}
+
+void DiveBrainState::OnMunitionContactEvent( cocos2d::EventCustom *i_event )
+{
+    EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
+    if ( m_entityHandle == pEntityHandle )
+    {
+        AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
+        if ( pAIComponent )
+        {
+            if ( pAIComponent->GetBrain() )
+            {
+                pAIComponent->GetBrain()->PopState();
+                pAIComponent->GetBrain()->PushState( "JumpBrainState" );
             }
         }
     }

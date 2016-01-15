@@ -65,6 +65,7 @@ void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjs
 AnimationComponent::~AnimationComponent()
 {
     AnimationSystem::GetInstance()->UnregisterComponent( this );
+    delete m_animTree;
 }
 
 void AnimationComponent::OnActivate()

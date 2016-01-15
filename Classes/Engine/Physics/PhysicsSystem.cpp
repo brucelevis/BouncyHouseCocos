@@ -54,6 +54,9 @@ void PhysicsSystem::DNADataInit()
     m_collisionCategoryMap.insert( std::make_pair( "Player", CollisionCategory::Player ) );
     m_collisionCategoryMap.insert( std::make_pair( "Enemy", CollisionCategory::Enemy ) );
     m_collisionCategoryMap.insert( std::make_pair( "Bouncy", CollisionCategory::Bouncy ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Munition", CollisionCategory::Munition ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Damagable", CollisionCategory::Damagable ) );
+    m_collisionCategoryMap.insert( std::make_pair( "Ground", CollisionCategory::Ground ) );
     m_collisionCategoryMap.insert( std::make_pair( "All", CollisionCategory::All ) );
 }
 

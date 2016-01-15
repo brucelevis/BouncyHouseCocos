@@ -13,6 +13,7 @@
 #include "../Health/HealthComponent.h"
 #include "../Lighting/LightingComponent.h"
 #include "../Locomotion/LocomotionComponent.h"
+#include "../Munition/MunitionComponent.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
 
@@ -44,6 +45,7 @@ void ComponentSystem::DNADataInit()
     ComponentRegister<HealthComponent>( "HealthComponent" );
     ComponentRegister<LightingComponent>( "LightingComponent" );
     ComponentRegister<LocomotionComponent>( "LocomotionComponent" );
+    ComponentRegister<MunitionComponent>( "MunitionComponent" );
     ComponentRegister<PhysicsComponent>( "PhysicsComponent" );
     ComponentRegister<RenderComponent>( "RenderComponent" );
 }

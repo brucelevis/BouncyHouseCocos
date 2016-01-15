@@ -44,9 +44,9 @@
             "YOffset": 0.0,
             "Size": [ 75.0, 150.0 ],
 
-            "Category": [ "Enemy", "Bouncy" ],
+            "Category": [ "Damagable", "Enemy", "Bouncy" ],
             "Collision": [ "Solid", "Player" ],
-            "Contact": [ "Solid", "Player" ]
+            "Contact": [ "Solid", "Player", "Munition" ]
         }
     }
 }

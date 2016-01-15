@@ -13,6 +13,8 @@
 
 class JumpBrainState : public RunBrainState
 {
+private:
+    EntityHandle m_munitionHandle;
 public:
     JumpBrainState();
     virtual ~JumpBrainState() override;
@@ -24,6 +26,7 @@ public:
     
     void OnGroundChangedEvent( cocos2d::EventCustom* i_event );
     void OnAvatarAction_Jump( cocos2d::EventCustom* i_event );
+    void OnMunitionContactEvent( cocos2d::EventCustom* i_event );
 };
 
 #endif /* JumpBrainState_hpp */

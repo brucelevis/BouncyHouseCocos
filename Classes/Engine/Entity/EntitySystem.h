@@ -39,6 +39,10 @@ public:
     ComponentType* GetComponent( EntityHandle i_entityHandle )
     {
         Entity* pEntity = EntitySystem::GetInstance()->GetEntity( i_entityHandle );
+        if ( pEntity->GetBeingDestroyed() )
+        {
+            return NULL;
+        }
         for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
         {
             ComponentType* pComponent = dynamic_cast<ComponentType*>( it->second );

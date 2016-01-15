@@ -18,7 +18,10 @@
 class Entity
 {
     std::string m_name;
+private:
+    bool m_beingDestroyed;
 public:
+    Entity();
     ~Entity();
     
     EntityHandle m_entityHandle;
@@ -29,6 +32,8 @@ public:
     
     void SetName( std::string i_name ) { m_name = i_name; };
     std::string GetName() { return m_name; };
+    
+    bool GetBeingDestroyed() { return m_beingDestroyed; };
 };
 
 #endif /* Entity_hpp */

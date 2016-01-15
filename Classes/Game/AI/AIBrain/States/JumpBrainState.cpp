@@ -14,6 +14,7 @@
 #include "../../../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../../../Engine/Locomotion/LocomotionComponent.h"
 #include "../../../../Engine/Locomotion/LocomotionSystem.h"
+#include "../../../../Engine/Munition/MunitionSystem.h"
 #include "../../../../Engine/Physics/PhysicsComponent.h"
 #include "../../../../Engine/Render/DebugDrawSystem.h"
 
@@ -58,6 +59,9 @@ void JumpBrainState::OnActivate()
     m_active = true;
     EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( JumpBrainState::OnGroundChangedEvent, this ), this );
     EventManager::GetInstance()->RegisterForEvent( "AvatarAction_Jump", CC_CALLBACK_1( JumpBrainState::OnAvatarAction_Jump, this ), this );
+    EventManager::GetInstance()->RegisterForEvent( "MunitionContact", CC_CALLBACK_1( JumpBrainState::OnMunitionContactEvent, this ), this );
+    
+    m_munitionHandle = MunitionSystem::GetInstance()->CreateMeleeMunition( m_entityHandle, "Baked/Munitions/player_dive.dna" );
 }
 
 void JumpBrainState::OnDeactivate()
@@ -65,6 +69,9 @@ void JumpBrainState::OnDeactivate()
     m_active = false;
     EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
     EventManager::GetInstance()->UnregisterForEvent( "AvatarAction_Jump", this );
+    EventManager::GetInstance()->UnregisterForEvent( "MunitionContact", this );
+    
+    MunitionSystem::GetInstance()->DestroyMunition( m_munitionHandle );
 }
 
 void JumpBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
@@ -99,6 +106,23 @@ void JumpBrainState::OnAvatarAction_Jump( cocos2d::EventCustom *i_event )
             {
                 pAIComponent->GetBrain()->PopState();
                 pAIComponent->GetBrain()->PushState( "DiveBrainState" );
+            }
+        }
+    }
+}
+
+void JumpBrainState::OnMunitionContactEvent( cocos2d::EventCustom *i_event )
+{
+    EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
+    if ( m_entityHandle == pEntityHandle )
+    {
+        AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
+        if ( pAIComponent )
+        {
+            if ( pAIComponent->GetBrain() )
+            {
+                pAIComponent->GetBrain()->PopState();
+                pAIComponent->GetBrain()->PushState( "JumpBrainState" );
             }
         }
     }

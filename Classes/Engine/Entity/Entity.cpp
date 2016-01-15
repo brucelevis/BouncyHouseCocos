@@ -8,8 +8,14 @@
 
 #include "Entity.h"
 
+Entity::Entity()
+{
+    m_beingDestroyed = false;
+}
+
 Entity::~Entity()
 {
+    m_beingDestroyed = true;
     for ( std::map<std::string, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         Component* pComponent = it->second;

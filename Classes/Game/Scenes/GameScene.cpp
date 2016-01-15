@@ -107,16 +107,12 @@ bool GameScene::Start()
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
     
-//    auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
-//    touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
-//        LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
-//        if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
-//        {
-//            pLocomotionComponent->m_locomotionMode->Jump();
-//        }
-//        return true;
-//    };
-//    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+    auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+    touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
+        EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+        return true;
+    };
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
     
     auto contactBeginListener = cocos2d::EventListenerPhysicsContact::create();
     contactBeginListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );

@@ -22,6 +22,9 @@ enum CollisionCategory
     Player = (1 << 2),
     Enemy = (1 << 3),
     Bouncy = (1 << 4),
+    Munition = (1 << 5),
+    Damagable = (1 << 6),
+    Ground = (1 << 7),
     All = INT_MAX
 };
 
