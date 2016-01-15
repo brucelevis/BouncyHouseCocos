@@ -15,9 +15,6 @@
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
 
-// TODO Stop crossing game/engine lines
-#include "../../Game/Stalactite/StalactiteComponent.h"
-
 ComponentSystem* ComponentSystem::s_instance;
 
 ComponentSystem* ComponentSystem::GetInstance()
@@ -47,8 +44,6 @@ void ComponentSystem::DNADataInit()
     ComponentRegister<LocomotionComponent>( "LocomotionComponent" );
     ComponentRegister<PhysicsComponent>( "PhysicsComponent" );
     ComponentRegister<RenderComponent>( "RenderComponent" );
-    
-    ComponentRegister<StalactiteComponent>( "StalactiteComponent" );
 }
 
 Component* ComponentSystem::CreateComponent( std::string i_componentType )

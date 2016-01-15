@@ -139,18 +139,16 @@ void RunLocomotionMode::Update( float i_dt )
 
         if ( pHit )  
         {
-            cocos2d::Vec2 pRayDir = cocos2d::Vec2( pPosition - pEnd );
-            pRayDir.normalize();
-            
-            if ( pInfo.normal.dot( pRayDir ) <= -0.75f )
+            float pSideDot = pInfo.normal.dot( cocos2d::Vec2( m_runDir, 0.0f ) );
+            if ( pSideDot <= -0.75f )
             {
                 if ( pInfo.normal.x > 0.0f )
                 {
-                    m_runDir = -1.0f;
+                    m_runDir = 1.0f;
                 }
                 else
                 {
-                    m_runDir = 1.0f;
+                    m_runDir = -1.0f;
                 }
             }
         }

@@ -15,6 +15,7 @@
 AnimTree::AnimTree( EntityHandle i_entityHandle )
 {
     m_entityHandle = i_entityHandle;
+    m_activeState = NULL;
 }
 
 AnimTree::~AnimTree()
@@ -145,8 +146,15 @@ void AnimTree::ExitState( bool i_interrupted )
         pComponent->StopMotion();
     }
 
-    AnimTreeState* pNextState = GetState( m_activeState->GetExitState() );
-    m_activeState = NULL;
+    AnimTreeState* pNextState = NULL;
+    if ( m_activeState )
+    {
+        pNextState = GetState( m_activeState->GetExitState() );
+        if ( pNextState || m_activeState->ExitsAtEnd() )
+        {
+            m_activeState = NULL;
+        }
+    }
     if ( !i_interrupted && pNextState )
     {
         EnterState( pNextState );

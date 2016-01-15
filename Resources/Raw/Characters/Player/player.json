@@ -37,7 +37,7 @@
                 },
                 {
                     "Motion": "Smash",
-                    "StartFrame": 2,
+                    "StartFrame": 1,
                     "EndFrame": 3,
                     "Name": "Vik1_Smash"
                 }

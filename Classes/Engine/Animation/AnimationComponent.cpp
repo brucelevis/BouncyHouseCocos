@@ -111,6 +111,7 @@ void AnimationComponent::StartMotion( std::string i_motionName, int i_loops )
         m_currentMotionName = i_motionName;
 
     }
+    m_motionInterrupted = false;
 }
 
 void AnimationComponent::StopMotion()
@@ -155,7 +156,6 @@ void AnimationComponent::OnMotionEnd()
     {
         m_animTree->ExitState();
     }
-    m_motionInterrupted = false;
 }
 
 

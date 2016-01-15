@@ -7,6 +7,7 @@
             "motion": "Run",
             "loop": true,
             "onExit": "",
+            "exitAtEnd": false,
             "events": [ "RUN" ],
             "ignoreEvents": [ "RUN" ]
         },
@@ -16,6 +17,7 @@
             "motion": "Jump",
             "loop": false,
             "onExit": "",
+            "exitAtEnd": false,
             "events": [ "JUMP" ],
             "ignoreEvents": []
         },
@@ -24,7 +26,18 @@
             "defaultState": false,
             "motion": "Smash",
             "loop": false,
+            "onExit": "jump",
+            "exitAtEnd": true,
+            "events": [ "SMASH" ],
+            "ignoreEvents": [ "JUMP", "RUN" ]
+        },
+        {
+            "name": "dive",
+            "defaultState": false,
+            "motion": "Dive",
+            "loop": false,
             "onExit": "",
+            "exitAtEnd": true,
             "events": [ "DIVE" ],
             "ignoreEvents": []
         },
@@ -34,6 +47,7 @@
             "motion": "Idle",
             "loop": true,
             "onExit": "",
+            "exitAtEnd": true,
             "events": [ "IDLE" ],
             "ignoreEvents": []
         }

@@ -6,6 +6,7 @@
 //
 //
 
+#include "../GameSpecificInit.h"
 #include "../../Engine/Animation/AnimationSystem.h"
 #include "../../Engine/Entity/ComponentSystem.h"
 #include "../../Engine/Entity/DNASequencer.h"
@@ -24,6 +25,8 @@
 // on "init" you need to initialize your instance
 bool GameScene::Start()
 {
+    GameSpecificInit::Init();
+    
     PhysicsSystem::GetInstance()->SetPhysicsWorld( this->getPhysicsWorld() );
     PhysicsSystem::GetInstance()->GetPhysicsWorld()->setGravity( cocos2d::Vec2( 0.0f, GRAVITY ) );
     PhysicsSystem::GetInstance()->GetPhysicsWorld()->setAutoStep( false );

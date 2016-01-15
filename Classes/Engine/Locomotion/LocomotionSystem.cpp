@@ -38,7 +38,6 @@ void LocomotionSystem::DestroyInstance()
 
 void LocomotionSystem::DNADataInit()
 {
-    LocomotionModeRegister<RunLocomotionMode>( "RunLocomotionMode" );
     m_debug = false;
 }
 

@@ -7,6 +7,7 @@
             "motion": "Wiggle",
             "loop": true,
             "onExit": "",
+            "exitAtEnd": false,
             "events": [ "WIGGLE" ],
             "ignoreEvents": [ "WIGGLE" ]
         },
@@ -16,6 +17,7 @@
             "motion": "Fall",
             "loop": true,
             "onExit": "",
+            "exitAtEnd": false,
             "events": [ "FALL" ],
             "ignoreEvents": [ "WIGGLE", "FALL" ]
         },
@@ -25,6 +27,7 @@
             "motion": "Crush",
             "loop": false,
             "onExit": "",
+            "exitAtEnd": false,
             "events": [ "CRUSH" ],
             "ignoreEvents": [ "CRUSH" ]
         }

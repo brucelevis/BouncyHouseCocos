@@ -21,6 +21,7 @@ public:
     bool IsDefault() { return m_defaultState; };
     bool RespondsToEvent( std::string i_event );
     bool IgnoresEvent( std::string i_event );
+    bool ExitsAtEnd() { return m_exitAtEnd; };
     std::string GetName() { return m_name; };
     std::string GetExitState() { return m_onExit; };
     std::string GetMotionName() { return m_motionName; };
@@ -32,6 +33,7 @@ private:
     std::string m_motionName;
     bool m_loop;
     std::string m_onExit;
+    bool m_exitAtEnd;
     std::vector<std::string> m_events;
     std::vector<std::string> m_ignoreEvents;
 };

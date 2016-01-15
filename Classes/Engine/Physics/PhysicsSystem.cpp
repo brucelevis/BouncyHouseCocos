@@ -59,7 +59,11 @@ void PhysicsSystem::DNADataInit()
 
 void PhysicsSystem::Update( float i_dt )
 {
-    RenderSystem::GetInstance()->GetScene()->getPhysicsWorld()->step( i_dt );
+    GetPhysicsWorld()->step( i_dt * 0.2f );
+    GetPhysicsWorld()->step( i_dt * 0.2f );
+    GetPhysicsWorld()->step( i_dt * 0.2f );
+    GetPhysicsWorld()->step( i_dt * 0.2f );
+    GetPhysicsWorld()->step( i_dt * 0.2f );
     for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
     {
         PhysicsComponent* pComponent = (PhysicsComponent*) it->second;
@@ -85,7 +89,8 @@ void PhysicsSystem::Update( float i_dt )
     }
 }
 
-bool PhysicsSystem::SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position )
+bool PhysicsSystem::SetPosition( EntityHandle i_entityHandle, cocos2d::Vec2 i_position
+                                )
 {
     PhysicsComponent* pComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( i_entityHandle );
     if ( pComponent )

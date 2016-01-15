@@ -10,7 +10,7 @@
 #define DEFINES_hpp
 
 #define GRAVITY -4500.0f
-#define JUMP_VELOCITY 13500.0f
+#define JUMP_VELOCITY 17500.0f
 
 
 

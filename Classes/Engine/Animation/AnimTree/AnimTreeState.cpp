@@ -27,6 +27,7 @@ void AnimTreeState::DNADataInit( const rapidjson::Value& i_dnaObject )
     ASSERTS( i_dnaObject.HasMember( "motion" ), "AnimTreeState missing 'motion'!" );
     ASSERTS( i_dnaObject.HasMember( "loop" ), "AnimTreeState missing 'loop'!" );
     ASSERTS( i_dnaObject.HasMember( "onExit" ), "AnimTreeState missing 'onExit'!" );
+    ASSERTS( i_dnaObject.HasMember( "exitAtEnd" ), "AnimTreeState missing 'exitAtEnd'!" );
     ASSERTS( i_dnaObject.HasMember( "events" ), "AnimTreeState missing 'events'!" );
     ASSERTS( i_dnaObject.HasMember( "ignoreEvents" ), "AnimTreeState missing 'ignoreEvents'!" );
     
@@ -35,6 +36,7 @@ void AnimTreeState::DNADataInit( const rapidjson::Value& i_dnaObject )
     m_motionName = i_dnaObject["motion"].GetString();
     m_loop = i_dnaObject["loop"].GetBool();
     m_onExit = i_dnaObject["onExit"].GetString();
+    m_exitAtEnd = i_dnaObject["exitAtEnd"].GetBool();
     for ( rapidjson::Value::ConstValueIterator itr = i_dnaObject["events"].Begin(); itr != i_dnaObject["events"].End(); ++itr )
     {
         m_events.push_back( itr->GetString() );

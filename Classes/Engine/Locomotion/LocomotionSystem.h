@@ -48,7 +48,7 @@ private:
 template<typename T>
 struct LocomotionModeRegister : LocomotionSystem {
     LocomotionModeRegister(std::string const& s) {
-        LocomotionSystem::GetInstance()->m_locomotionModeTypes.insert(std::make_pair(s, &createT<T>));
+        LocomotionSystem::GetInstance()->m_locomotionModeTypes.insert( { s, &createT<T> });
     }
 };
 
