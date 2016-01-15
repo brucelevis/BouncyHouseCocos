@@ -7,6 +7,9 @@
             "FacingLeft": true,
             "ZOrder": 10
         },
+        "AIComponent": {
+            "DefaultBrainState": "RunBrainState"
+        },
         "AnimationComponent": {
             "AnimTree": "Characters/Character/Motions/animtree.dna",
             "Motions": [
@@ -48,9 +51,7 @@
             "MaxHealth": 10.0
         },
         "LocomotionComponent": {
-            "LocomotionMode": "RunLocomotionMode",
-            "RunSpeed": 350.0,
-            "WalkSpeed": 100.0
+            "RunSpeed": 350.0
         },
         "PhysicsComponent": {
             "Density": 1.0,

@@ -64,9 +64,9 @@ public:
     CollisionCategory GetCollisionMask() { return m_collision; };
     CollisionCategory GetContactMask() { return m_contact; };
     
-    void SetCategoryMask( CollisionCategory i_category ) { m_category = i_category; };
-    void SetCollisionMask( CollisionCategory i_collision ) { m_collision = i_collision; };
-    void SetContactMask( CollisionCategory i_contact ) { m_contact = i_contact; };
+    void SetCategoryMask( CollisionCategory i_category );
+    void SetCollisionMask( CollisionCategory i_collision );
+    void SetContactMask( CollisionCategory i_contact );
     
     void ApplyImpulse( cocos2d::Vec2 i_impulse );
     void DisableCollision();

@@ -38,7 +38,7 @@ private:
 template<typename T>
 struct ComponentRegister : ComponentSystem {
     ComponentRegister(std::string const& s) {
-        ComponentSystem::GetInstance()->m_componentTypes.insert(std::make_pair(s, &createT<T>));
+        ComponentSystem::GetInstance()->m_componentTypes.insert( { s, &createT<T> } );
     }
 };
 

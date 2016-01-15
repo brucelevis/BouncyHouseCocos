@@ -16,6 +16,7 @@ void LocomotionComponent::DNADataInit( EntityHandle i_entityHandle, const rapidj
 {
     m_entityHandle = i_entityHandle;
     m_jumpState = JumpState::NOT_JUMPING;
+    m_locomotionMode = NULL;
     
     if ( i_dnaObject.HasMember( "RunSpeed" ) )
     {
@@ -25,11 +26,6 @@ void LocomotionComponent::DNADataInit( EntityHandle i_entityHandle, const rapidj
     if ( i_dnaObject.HasMember( "WalkSpeed" ) )
     {
         m_walkSpeed = i_dnaObject["WalkSpeed"].GetDouble();
-    }
-    
-    if ( i_dnaObject.HasMember( "LocomotionMode" ) )
-    {
-        m_locomotionModeName = i_dnaObject["LocomotionMode"].GetString();
     }
 }
 
@@ -41,12 +37,6 @@ LocomotionComponent::~LocomotionComponent()
 void LocomotionComponent::OnActivate()
 {
     LocomotionSystem::GetInstance()->RegisterComponent( this );
-    
-    m_locomotionMode = LocomotionSystem::GetInstance()->CreateLocomotionMode( m_locomotionModeName );
-    if ( m_locomotionMode )
-    {
-        m_locomotionMode->Init( m_entityHandle );
-    }
 }
 
 void LocomotionComponent::OnDeactivate()
@@ -58,4 +48,18 @@ void LocomotionComponent::OnDeactivate()
     }
     
     LocomotionSystem::GetInstance()->UnregisterComponent( this );
+}
+
+void LocomotionComponent::SetLocomotionMode( std::string i_locomotionModeName )
+{
+    if ( m_locomotionMode )
+    {
+        delete m_locomotionMode;
+    }
+    
+    m_locomotionMode = LocomotionSystem::GetInstance()->CreateLocomotionMode( i_locomotionModeName );
+    if ( m_locomotionMode )
+    {
+        m_locomotionMode->Init( m_entityHandle );
+    }
 }

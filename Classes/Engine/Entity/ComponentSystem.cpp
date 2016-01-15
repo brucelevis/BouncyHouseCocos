@@ -6,6 +6,7 @@
 //
 //
 
+#include "../AI/AIComponent.h"
 #include "../Animation/AnimationComponent.h"
 #include "ComponentSystem.h"
 #include "../GroundDetect/GroundDetectComponent.h"
@@ -37,6 +38,7 @@ void ComponentSystem::DestroyInstance()
 
 void ComponentSystem::DNADataInit()
 {
+    ComponentRegister<AIComponent>( "AIComponent" );
     ComponentRegister<AnimationComponent>( "AnimationComponent" );
     ComponentRegister<GroundDetectComponent>( "GroundDetectComponent" );
     ComponentRegister<HealthComponent>( "HealthComponent" );

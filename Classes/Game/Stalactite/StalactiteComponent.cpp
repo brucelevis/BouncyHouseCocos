@@ -13,7 +13,7 @@
 #include "../../Engine/Health/HealthComponent.h"
 #include "../../Engine/Physics/PhysicsComponent.h"
 #include "../../Engine/Entity/EntitySystem.h"
-#include "../../Engine/Render/RenderSystem.h"
+#include "../../Engine/Render/RenderComponent.h"
 
 std::string StalactiteComponent::s_componentType = "StalactiteComponent";
 
@@ -84,12 +84,10 @@ void StalactiteComponent::OnGroundChangedEvent( cocos2d::EventCustom* i_event )
 void StalactiteComponent::BeginCrush()
 {
     AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "CRUSH" );
-    
-    PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
-    if ( pPhysicsComponent )
+    auto fadeOut = cocos2d::FadeOut::create(2.0f);
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
+    if ( pRenderComponent )
     {
-        pPhysicsComponent->SetCategoryMask( CollisionCategory::Environment );
-        pPhysicsComponent->SetCollisionMask( CollisionCategory::Environment );
-        pPhysicsComponent->SetContactMask( CollisionCategory::Environment );
+        pRenderComponent->m_sprite->runAction(fadeOut);
     }
 }

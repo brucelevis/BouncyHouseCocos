@@ -6,6 +6,9 @@
             "DefaultSprite": "SmallEnemyWalk_00.png",
             "FacingLeft": true
         },
+        "AIComponent": {
+            "DefaultBrainState": "RunBrainState"
+        },
         "AnimationComponent": {
             "AnimTree": "Characters/Character/Motions/animtree.dna",
             "Motions":
@@ -30,7 +33,6 @@
             "MaxHealth": 10.0
         },
         "LocomotionComponent": {
-            "LocomotionMode": "RunLocomotionMode",
             "RunSpeed": 100.0
         },
         "PhysicsComponent": {

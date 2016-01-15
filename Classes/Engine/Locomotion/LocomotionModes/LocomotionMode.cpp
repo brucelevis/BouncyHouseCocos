@@ -13,12 +13,7 @@ void LocomotionMode::Init( EntityHandle i_entityHandle )
     m_entityHandle = i_entityHandle;
 }
 
-void LocomotionMode::MoveToPoint( cocos2d::Vec2 i_point, float i_speed )
-{
-    
-}
-
-void LocomotionMode::Jump( bool i_force, bool i_playAnim )
+void LocomotionMode::MoveAtSpeed( cocos2d::Vec2 i_moveDir, float i_speed )
 {
     
 }

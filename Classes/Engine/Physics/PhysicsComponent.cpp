@@ -226,6 +226,33 @@ void PhysicsComponent::DisableCollision() {
     }
 }
 
+void PhysicsComponent::SetCategoryMask( CollisionCategory i_category )
+{
+    m_category = i_category;
+    if ( m_physicsBody )
+    {
+        m_physicsBody->setCategoryBitmask( m_category );
+    }
+}
+
+void PhysicsComponent::SetCollisionMask( CollisionCategory i_collision )
+{
+    m_collision = i_collision;
+    if ( m_physicsBody )
+    {
+        m_physicsBody->setCollisionBitmask( m_collision );
+    }
+}
+
+void PhysicsComponent::SetContactMask( CollisionCategory i_contact )
+{
+    m_contact = i_contact;
+    if ( m_physicsBody )
+    {
+        m_physicsBody->setContactTestBitmask( m_contact );
+    }
+}
+
 bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )
 {
     EventManager::GetInstance()->SendEvent( "PhysicsContactBegin", &i_contact );

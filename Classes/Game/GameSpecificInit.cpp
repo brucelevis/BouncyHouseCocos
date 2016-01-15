@@ -6,15 +6,21 @@
 //
 //
 
+#include "AI/AIBrain/States/DiveBrainState.h"
+#include "AI/AIBrain/States/JumpBrainState.h"
+#include "AI/AIBrain/States/RunBrainState.h"
+
 #include "GameSpecificInit.h"
+#include "../Engine/AI/AISystem.h"
 #include "../Engine/Entity/ComponentSystem.h"
 #include "../Engine/Locomotion/LocomotionSystem.h"
-#include "Locomotion/LocomotionModes/RunLocomotionMode.h"
 #include "Stalactite/StalactiteComponent.h"
 
 void GameSpecificInit::Init()
 {
     ComponentRegister<StalactiteComponent>( "StalactiteComponent" );
     
-    LocomotionModeRegister<RunLocomotionMode>( "RunLocomotionMode" );
+    AIBrainStateRegister<DiveBrainState>( "DiveBrainState" );
+    AIBrainStateRegister<JumpBrainState>( "JumpBrainState" );
+    AIBrainStateRegister<RunBrainState>( "RunBrainState" );
 }

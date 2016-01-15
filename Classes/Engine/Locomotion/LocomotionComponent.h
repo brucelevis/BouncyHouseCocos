@@ -33,6 +33,8 @@ public:
     float GetWalkSpeed() { return m_walkSpeed; };
     void SetWalkSpeed( float i_walkSpeed ) { m_walkSpeed = i_walkSpeed; };
     
+    void SetLocomotionMode( std::string i_locomotionModeName );
+    
     LocomotionMode* m_locomotionMode;
     JumpState m_jumpState;
 };

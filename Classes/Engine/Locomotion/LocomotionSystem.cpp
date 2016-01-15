@@ -11,10 +11,10 @@
 #include "../Entity/EntitySystem.h"
 #include "../Event/EventManager.h"
 #include "LocomotionComponent.h"
+#include "LocomotionModes/SideScrollerLocomotionMode.h"
 #include "LocomotionSystem.h"
 #include "../Physics/PhysicsComponent.h"
 #include "../Render/RenderComponent.h"
-#include "../../Game/Locomotion/LocomotionModes/RunLocomotionMode.h"
 
 LocomotionSystem* LocomotionSystem::s_instance;
 
@@ -39,6 +39,7 @@ void LocomotionSystem::DestroyInstance()
 void LocomotionSystem::DNADataInit()
 {
     m_debug = false;
+    LocomotionModeRegister<SideScrollerLocomotionMode>( "SideScrollerLocomotionMode" );
 }
 
 void LocomotionSystem::RegisterComponent( Component* i_component )

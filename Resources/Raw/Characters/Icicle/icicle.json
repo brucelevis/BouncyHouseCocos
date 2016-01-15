@@ -42,9 +42,9 @@
             "YOffset": 0.0,
             "Size": [ 140.0, 300.0 ],
 
-            "Category": [ "Environment", "Solid" ],
-            "Collision": [ "Solid", "Player", "Enemy" ],
-            "Contact": [ "Solid", "Player", "Enemy" ]
+            "Category": [ "Environment" ],
+            "Collision": [ "Environment" ],
+            "Contact": [ "Player" ]
         },
         "StalactiteComponent": {}
     }

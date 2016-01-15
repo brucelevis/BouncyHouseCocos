@@ -7,10 +7,12 @@
 //
 
 #include "../GameSpecificInit.h"
+#include "../../Engine/AI/AISystem.h"
 #include "../../Engine/Animation/AnimationSystem.h"
 #include "../../Engine/Entity/ComponentSystem.h"
 #include "../../Engine/Entity/DNASequencer.h"
 #include "../../Engine/Entity/EntitySystem.h"
+#include "../../Engine/Event/EventManager.h"
 #include "GameScene.h"
 #include "../../Engine/GroundDetect/GroundDetectSystem.h"
 #include "../../Engine/Health/HealthSystem.h"
@@ -47,11 +49,7 @@ bool GameScene::Start()
         switch( keyCode ){
             case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
-                LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
-                if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
-                {
-                    pLocomotionComponent->m_locomotionMode->Jump();
-                }
+                EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
                 break;
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_C:
@@ -99,21 +97,26 @@ bool GameScene::Start()
                 {
                     cocos2d::Director::getInstance()->getScheduler()->setTimeScale( 1.0f );
                 }
+                break;
+            }
+            default:
+            {
+                break;
             }
         }
     };
     this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
     
-    auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
-    touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
-        LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
-        if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
-        {
-            pLocomotionComponent->m_locomotionMode->Jump();
-        }
-        return true;
-    };
-    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+//    auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+//    touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
+//        LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+//        if ( pLocomotionComponent && pLocomotionComponent->m_locomotionMode )
+//        {
+//            pLocomotionComponent->m_locomotionMode->Jump();
+//        }
+//        return true;
+//    };
+//    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
     
     auto contactBeginListener = cocos2d::EventListenerPhysicsContact::create();
     contactBeginListener->onContactBegin = CC_CALLBACK_1( GameScene::OnContactBegin, this );
@@ -142,6 +145,7 @@ void GameScene::update( float i_dt )
     
     GroundDetectSystem::GetInstance()->Update( i_dt );
     AnimationSystem::GetInstance()->Update( i_dt );
+    AISystem::GetInstance()->Update( i_dt );
     LocomotionSystem::GetInstance()->Update( i_dt );
     PhysicsSystem::GetInstance()->Update( i_dt );
     LightingSystem::GetInstance()->Update( i_dt );
