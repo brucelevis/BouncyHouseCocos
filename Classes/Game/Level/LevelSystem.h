@@ -13,13 +13,17 @@
 #include "../../Engine/System/System.h"
 class LevelSystem : public System
 {
-private:
-    static Level* m_level;
-    
 public:
-    static void Update( float i_dt );
-    static Level* GetLevel() { return m_level; };
-    static void StartLevel( Level* i_level );
+    static LevelSystem* GetInstance();
+    static void DestroyInstance();
+    
+    void Update( float i_dt );
+    Level* GetLevel() { return m_level; };
+    void StartLevel( Level* i_level );
+    
+private:
+    static LevelSystem* s_instance;
+    Level* m_level;
 };
 
 #endif /* LevelSystem_hpp */

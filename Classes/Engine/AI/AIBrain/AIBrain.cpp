@@ -64,16 +64,21 @@ void AIBrain::PopState()
 
 void AIBrain::PushState( std::string i_stateName )
 {
-    m_shouldPush = true;
-    m_pushStateName = i_stateName;
     if ( m_states.size() > 0 )
     {
         AIBrainState* pState = m_states.top();
+        if ( pState && strcmp( pState->GetStateName().c_str(), i_stateName.c_str() ) == 0 )
+        {
+            //ASSERTS( false, "AIBrain: Tried to push same state on top of itself." );
+            return;
+        }
         if ( pState && pState->GetActive() )
         {
             pState->OnDeactivate();
         }
     }
+    m_shouldPush = true;
+    m_pushStateName = i_stateName;
 }
 
 void AIBrain::PerformPopState()
@@ -119,4 +124,17 @@ void AIBrain::PerformPushState( std::string i_stateName )
         m_states.push( pState );
     }
     m_shouldPush = false;
+}
+
+AIBrainState* AIBrain::GetCurrentState()
+{
+    if ( m_states.size() > 0 )
+    {
+        AIBrainState* pState = m_states.top();
+        if ( pState)
+        {
+            return pState;
+        }
+    }
+    return NULL;
 }

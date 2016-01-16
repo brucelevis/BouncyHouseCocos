@@ -8,7 +8,25 @@
 
 #include "LevelSystem.h"
 
-Level* LevelSystem::m_level;
+LevelSystem* LevelSystem::s_instance;
+
+LevelSystem* LevelSystem::GetInstance()
+{
+    if ( !s_instance )
+    {
+        s_instance = new LevelSystem();
+    }
+    return s_instance;
+}
+
+void LevelSystem::DestroyInstance()
+{
+    if ( s_instance )
+    {
+        delete s_instance;
+        s_instance = NULL;
+    }
+}
 
 void LevelSystem::StartLevel( Level* i_level )
 {

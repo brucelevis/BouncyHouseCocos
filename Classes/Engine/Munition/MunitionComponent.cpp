@@ -9,6 +9,7 @@
 #include "MunitionComponent.h"
 #include "cocos2d.h"
 
+#include "../AI/AIComponent.h"
 #include "../Entity/EntitySystem.h"
 #include "../Event/EventManager.h"
 #include "../Health/HealthComponent.h"
@@ -21,12 +22,24 @@ void MunitionComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjso
 {
     m_entityHandle = i_entityHandle;
     m_ownerHandle = -1;
+    m_damage = 0;
+    m_hitOnce = true;
     MunitionSystem::GetInstance()->RegisterComponent( this );
     
     if ( i_dnaObject.HasMember( "Damage" ) )
     {
         m_damage = i_dnaObject["Damage"].GetDouble();
     }
+    if ( i_dnaObject.HasMember( "InflictState" ) )
+    {
+        m_inflictState = i_dnaObject["InflictState"].GetString();
+    }
+    if ( i_dnaObject.HasMember( "HitOnce" ) )
+    {
+        m_hitOnce = i_dnaObject["HitOnce"].GetBool();
+    }
+    
+    EventManager::GetInstance()->RegisterForEvent( "RemovingEntity", CC_CALLBACK_1( MunitionComponent::OnRemovingEntityEvent, this ), this );
 }
 
 void MunitionComponent::OnActivate()
@@ -42,6 +55,8 @@ void MunitionComponent::OnDeactivate()
 MunitionComponent::~MunitionComponent()
 {
     MunitionSystem::GetInstance()->UnregisterComponent( this );
+    
+    EventManager::GetInstance()->UnregisterForEvent( "RemovingEntity", this );
 }
 
 void MunitionComponent::Update( float i_dt )
@@ -86,12 +101,36 @@ void MunitionComponent::OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_even
     {
         if ( pPhysicsContactInfo->m_otherEntityHandle != m_ownerHandle )
         {
-            HealthComponent* pHealthComponent = EntitySystem::GetInstance()->GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
-            if ( pHealthComponent )
+            if ( !m_hitOnce || std::find( m_hitEntities.begin(), m_hitEntities.end(), pPhysicsContactInfo->m_otherEntityHandle ) == m_hitEntities.end() )
             {
-                pHealthComponent->ChangeHealth( -m_damage );
+                m_hitEntities.push_back( pPhysicsContactInfo->m_otherEntityHandle );
+                HealthComponent* pHealthComponent = EntitySystem::GetInstance()->GetComponent<HealthComponent>( pPhysicsContactInfo->m_otherEntityHandle );
+                if ( pHealthComponent )
+                {
+                    pHealthComponent->ChangeHealth( -m_damage );
+                }
+                
+                if ( strcmp( m_inflictState.c_str(), "" ) != 0 )
+                {
+                    AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( pPhysicsContactInfo->m_otherEntityHandle );
+                    if ( pAIComponent && pAIComponent->GetBrain() )
+                    {
+                        pAIComponent->GetBrain()->PushState( m_inflictState );
+                    }
+                }
+                
+                
+                EventManager::GetInstance()->SendEvent( "MunitionContact", &m_ownerHandle );
             }
-            EventManager::GetInstance()->SendEvent( "MunitionContact", &m_ownerHandle );
         }
+    }
+}
+
+void MunitionComponent::OnRemovingEntityEvent( cocos2d::EventCustom* i_event )
+{
+    EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
+    if ( pEntityHandle == m_ownerHandle )
+    {
+        EntitySystem::GetInstance()->MarkForDelete( m_entityHandle );
     }
 }

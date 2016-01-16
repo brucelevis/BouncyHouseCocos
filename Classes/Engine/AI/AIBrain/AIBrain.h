@@ -33,6 +33,8 @@ public:
     
     void Update( float i_dt );
     
+    AIBrainState* GetCurrentState();
+    
     
     EntityHandle m_entityHandle;
 };

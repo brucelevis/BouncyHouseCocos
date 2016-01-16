@@ -56,7 +56,7 @@ void LocomotionComponent::SetLocomotionMode( std::string i_locomotionModeName )
     {
         delete m_locomotionMode;
     }
-    
+
     m_locomotionMode = LocomotionSystem::GetInstance()->CreateLocomotionMode( i_locomotionModeName );
     if ( m_locomotionMode )
     {

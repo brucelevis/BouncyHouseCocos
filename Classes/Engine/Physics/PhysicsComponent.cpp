@@ -39,9 +39,9 @@ void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson
     {
         m_anchorPoint = cocos2d::Vec2( i_dnaObject["AnchorPoint"][0].GetDouble(), i_dnaObject["AnchorPoint"][1].GetDouble() );
     }
-    if ( i_dnaObject.HasMember( "YOffset" ) )
+    if ( i_dnaObject.HasMember( "Offset" ) )
     {
-        m_offset = cocos2d::Vec2( 0.0f, i_dnaObject["YOffset"].GetDouble() );
+        m_offset = cocos2d::Vec2( i_dnaObject["Offset"][0].GetDouble(), i_dnaObject["Offset"][1].GetDouble() );
     }
     if ( i_dnaObject.HasMember( "Size" ) )
     {

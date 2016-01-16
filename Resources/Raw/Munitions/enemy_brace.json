@@ -1,21 +1,23 @@
 {
-    "Name": "Player_Dive_Munition",
+    "Name": "Enemy_Brace_Munition",
     "Components": {
         "MunitionComponent": {
             "Type": "melee",
-            "Damage": 9999.0
+            "Damage": 0.0,
+            "InflictState": "JumpBrainState"
         },
         "PhysicsComponent": {
             "Density": 0.0,
             "Restitution": 0.0,
             "Friction": 0.0,
             "Dynamic": false,
-            "AnchorPoint": [ 0.5, 0.0 ],
-            "Size": [ 80.0, 10.0 ],
+            "AnchorPoint": [ 0.5, 0.5 ],
+            "Offset": [ 48.0, 75.0 ],
+            "Size": [ 10.0, 120.0 ],
 
             "Category": [ "Munition" ],
             "Collision": [ ],
-            "Contact": [ "Damagable" ]
+            "Contact": [ "Player" ]
         }
     }
 }

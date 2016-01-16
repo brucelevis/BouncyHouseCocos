@@ -30,11 +30,6 @@ DiveBrainState::~DiveBrainState()
 
 void DiveBrainState::Enter()
 {
-    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
-    if ( pLocomotionComponent )
-    {
-        pLocomotionComponent->SetLocomotionMode( "SideScrollerLocomotionMode" );
-    }
     PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
@@ -62,6 +57,12 @@ void DiveBrainState::OnActivate()
     
     
     m_munitionHandle = MunitionSystem::GetInstance()->CreateMeleeMunition( m_entityHandle, "Baked/Munitions/player_dive.dna" );
+    
+    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
+    if ( pLocomotionComponent )
+    {
+        pLocomotionComponent->SetLocomotionMode( "SideScrollerLocomotionMode" );
+    }
 }
 
 void DiveBrainState::OnDeactivate()
@@ -71,6 +72,12 @@ void DiveBrainState::OnDeactivate()
     EventManager::GetInstance()->UnregisterForEvent( "MunitionContact", this );
     
     MunitionSystem::GetInstance()->DestroyMunition( m_munitionHandle );
+    
+    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
+    if ( pLocomotionComponent )
+    {
+        pLocomotionComponent->SetLocomotionMode( "" );
+    }
 }
 
 void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )

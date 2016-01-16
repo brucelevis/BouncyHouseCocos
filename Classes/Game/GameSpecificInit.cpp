@@ -7,8 +7,11 @@
 //
 
 #include "AI/AIBrain/States/DiveBrainState.h"
+#include "AI/AIBrain/States/EnemyBraceBrainState.h"
+#include "AI/AIBrain/States/EnemyRunBrainState.h"
 #include "AI/AIBrain/States/JumpBrainState.h"
 #include "AI/AIBrain/States/RunBrainState.h"
+#include "AI/AIBrain/States/StunBrainState.h"
 
 #include "GameSpecificInit.h"
 #include "../Engine/AI/AISystem.h"
@@ -21,6 +24,9 @@ void GameSpecificInit::Init()
     ComponentRegister<StalactiteComponent>( "StalactiteComponent" );
     
     AIBrainStateRegister<DiveBrainState>( "DiveBrainState" );
+    AIBrainStateRegister<EnemyRunBrainState>( "EnemyRunBrainState" );
+    AIBrainStateRegister<EnemyBraceBrainState>( "EnemyBraceBrainState" );
     AIBrainStateRegister<JumpBrainState>( "JumpBrainState" );
     AIBrainStateRegister<RunBrainState>( "RunBrainState" );
+    AIBrainStateRegister<StunBrainState>( "StunBrainState" );
 }

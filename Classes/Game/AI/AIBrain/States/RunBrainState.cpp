@@ -58,6 +58,12 @@ void RunBrainState::OnDeactivate()
 {
     m_active = false;
     EventManager::GetInstance()->UnregisterForEvent( "AvatarAction_Jump", this );
+    
+    LocomotionComponent* pLocomotionComponent = EntitySystem::GetInstance()->GetComponent<LocomotionComponent>( m_entityHandle );
+    if ( pLocomotionComponent )
+    {
+        pLocomotionComponent->SetLocomotionMode( "" );
+    }
 }
 
 void RunBrainState::Update( float i_dt )

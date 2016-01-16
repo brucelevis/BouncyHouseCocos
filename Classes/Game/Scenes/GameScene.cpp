@@ -41,7 +41,7 @@ bool GameScene::Start()
     LocomotionSystem::GetInstance()->DNADataInit();
     PhysicsSystem::GetInstance()->DNADataInit();
     
-    LevelSystem::StartLevel( new CaveLevel() );
+    LevelSystem::GetInstance()->StartLevel( new CaveLevel() );
 
     auto eventListener = cocos2d::EventListenerKeyboard::create();
     eventListener->onKeyPressed = [](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event){
@@ -49,7 +49,7 @@ bool GameScene::Start()
         switch( keyCode ){
             case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
             {
-                EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+                EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetInstance()->GetLevel()->GetPlayer()->m_entityHandle );
                 break;
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_C:
@@ -73,6 +73,11 @@ bool GameScene::Start()
             case cocos2d::EventKeyboard::KeyCode::KEY_A:
             {
                 AnimationSystem::GetInstance()->SetDebug( !AnimationSystem::GetInstance()->GetDebug() );
+                break;
+            }
+            case cocos2d::EventKeyboard::KeyCode::KEY_I:
+            {
+                AISystem::GetInstance()->SetDebug( !AISystem::GetInstance()->GetDebug() );
                 break;
             }
             case cocos2d::EventKeyboard::KeyCode::KEY_S:
@@ -109,7 +114,7 @@ bool GameScene::Start()
     
     auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
     touchListener->onTouchBegan = touchListener->onTouchBegan = [](cocos2d::Touch* touch, cocos2d::Event* event){
-        EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetLevel()->GetPlayer()->m_entityHandle );
+        EventManager::GetInstance()->SendEvent("AvatarAction_Jump", &LevelSystem::GetInstance()->GetLevel()->GetPlayer()->m_entityHandle );
         return true;
     };
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
@@ -137,7 +142,7 @@ void GameScene::menuCloseCallback(Ref* pSender)
 
 void GameScene::update( float i_dt )
 {
-    LevelSystem::Update( i_dt );
+    LevelSystem::GetInstance()->Update( i_dt );
     
     GroundDetectSystem::GetInstance()->Update( i_dt );
     AnimationSystem::GetInstance()->Update( i_dt );

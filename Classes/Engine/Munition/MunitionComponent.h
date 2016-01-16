@@ -19,6 +19,9 @@ class MunitionComponent : public Component
 private:
     EntityHandle m_ownerHandle;
     float m_damage;
+    std::string m_inflictState;
+    bool m_hitOnce;
+    std::vector<EntityHandle> m_hitEntities;
 public:
     static std::string s_componentType;
     
@@ -35,7 +38,7 @@ public:
     void MunitionDeactivate();
     
     void OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_event );
-
+    void OnRemovingEntityEvent( cocos2d::EventCustom* i_event );
 };
 
 
