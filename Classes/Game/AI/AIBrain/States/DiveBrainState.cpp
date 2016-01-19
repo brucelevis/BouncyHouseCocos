@@ -21,6 +21,7 @@
 DiveBrainState::DiveBrainState()
 {
     m_runDir = -1.0f;
+    m_interruptible = false;
 }
 
 DiveBrainState::~DiveBrainState()

@@ -19,6 +19,7 @@
 RunBrainState::RunBrainState()
 {
     m_runDir = -1.0f;
+    m_interruptible = true;
 }
 
 RunBrainState::~RunBrainState()
@@ -80,7 +81,7 @@ void RunBrainState::Update( float i_dt )
         for ( int i = -1; i <= 1; i++ )
         {
             float pOffset = ((float) i) * 0.33f * pPhysicsComponent->GetHeight();
-            pPosition = pPhysicsComponent->GetPosition() - pPhysicsComponent->GetOffset() + ( cocos2d::Vec2( m_runDir * ( pPhysicsComponent->GetWidth() * fabs( pPhysicsComponent->GetNode()->getScaleX() ) * 0.5f - 1.0f ), pPhysicsComponent->GetHeight() * fabs( pPhysicsComponent->GetNode()->getScaleY() ) * 0.5f + pOffset ) );
+            pPosition = pPhysicsComponent->GetPosition() - pPhysicsComponent->GetPositionOffset() + ( cocos2d::Vec2( m_runDir * ( pPhysicsComponent->GetWidth() * fabs( pPhysicsComponent->GetNode()->getScaleX() ) * 0.5f - 1.0f ), pPhysicsComponent->GetHeight() * fabs( pPhysicsComponent->GetNode()->getScaleY() ) * 0.5f + pOffset ) );
             pEnd = pPosition + cocos2d::Vec2( m_runDir * 9.0f, 0.0f );
             
             pHit = pPhysicsComponent->RayCast( pPosition, pEnd, pInfo );

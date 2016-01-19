@@ -8,6 +8,7 @@
 
 #include "AIBrain.h"
 #include "../AISystem.h"
+#include "../../Entity/EntitySystem.h"
 
 AIBrain::AIBrain( EntityHandle i_entityHandle )
 {
@@ -67,7 +68,11 @@ void AIBrain::PushState( std::string i_stateName )
     if ( m_states.size() > 0 )
     {
         AIBrainState* pState = m_states.top();
-        if ( pState && strcmp( pState->GetStateName().c_str(), i_stateName.c_str() ) == 0 )
+        if ( pState && !pState->GetInterruptible() )
+        {
+            return;
+        }
+        if ( pState && strcmp( pState->GetStateName().c_str(), i_stateName.c_str() ) == 0 && !m_shouldPop )
         {
             //ASSERTS( false, "AIBrain: Tried to push same state on top of itself." );
             return;

@@ -39,6 +39,7 @@ public:
     
     void OnPhysicsContactBeginEvent( cocos2d::EventCustom* i_event );
     void OnRemovingEntityEvent( cocos2d::EventCustom* i_event );
+    void OnFacingChangedEvent( cocos2d::EventCustom* i_event );
 };
 
 

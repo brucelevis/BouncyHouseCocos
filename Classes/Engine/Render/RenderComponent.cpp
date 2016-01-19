@@ -10,6 +10,7 @@
 
 #include "EffectSprite/EffectSprite.h"
 #include "../Lighting/LightEffect.h"
+#include "../Event/EventManager.h"
 #include "RenderComponent.h"
 #include "RenderSystem.h"
 
@@ -112,6 +113,7 @@ bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
             ASSERTS( !isnan( pScaleX ), "NaN entering RenderSystem!" );
 #endif
             m_sprite->setScaleX( pScaleX );
+            EventManager::GetInstance()->SendEvent( "FacingChanged", &m_entityHandle );
         }
         return true;
     }

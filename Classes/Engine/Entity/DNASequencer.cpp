@@ -27,12 +27,12 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
     
     
     pEntity->SetName( pDocument["Name"].GetString() );
-    printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
+    //printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
     
     for (rapidjson::Value::ConstMemberIterator itr = pDocument["Components"].MemberBegin();
          itr != pDocument["Components"].MemberEnd(); ++itr)
     {
-        printf( "  Attaching component %s\n", itr->name.GetString() );
+        //printf( "  Attaching component %s\n", itr->name.GetString() );
         
         if ( itr->value.GetType() == rapidjson::Type::kObjectType )
         {
@@ -42,7 +42,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
     
     for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
     {
-        printf( "  Activating component %s\n", it->first.c_str() );
+        //printf( "  Activating component %s\n", it->first.c_str() );
         
         it->second->Activate();
     }

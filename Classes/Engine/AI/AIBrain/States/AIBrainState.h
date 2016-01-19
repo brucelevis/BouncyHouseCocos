@@ -18,6 +18,7 @@ protected:
 protected:
     EntityHandle m_entityHandle;
     bool m_active;
+    bool m_interruptible;
 public:
     AIBrainState() { m_stateName = "BLANK STATE"; };
     virtual ~AIBrainState() { };
@@ -40,6 +41,8 @@ public:
     
     void SetStateName( std::string i_stateName ) { m_stateName = i_stateName; };
     std::string GetStateName() { return m_stateName; };
+    
+    bool GetInterruptible() { return m_interruptible; };
 };
 
 #endif /* AIBrainState_hpp */

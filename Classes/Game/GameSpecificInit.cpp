@@ -13,6 +13,10 @@
 #include "AI/AIBrain/States/RunBrainState.h"
 #include "AI/AIBrain/States/StunBrainState.h"
 
+#include "AI/AIBrain/States/StalactiteWiggleBrainState.h"
+#include "AI/AIBrain/States/StalactiteFallBrainState.h"
+#include "AI/AIBrain/States/StalactiteCrushBrainState.h"
+
 #include "GameSpecificInit.h"
 #include "../Engine/AI/AISystem.h"
 #include "../Engine/Entity/ComponentSystem.h"
@@ -29,4 +33,8 @@ void GameSpecificInit::Init()
     AIBrainStateRegister<JumpBrainState>( "JumpBrainState" );
     AIBrainStateRegister<RunBrainState>( "RunBrainState" );
     AIBrainStateRegister<StunBrainState>( "StunBrainState" );
+    
+    AIBrainStateRegister<StalactiteWiggleBrainState>( "StalactiteWiggleBrainState" );
+    AIBrainStateRegister<StalactiteFallBrainState>( "StalactiteFallBrainState" );
+    AIBrainStateRegister<StalactiteCrushBrainState>( "StalactiteCrushBrainState" );
 }

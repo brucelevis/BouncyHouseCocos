@@ -21,6 +21,7 @@
 JumpBrainState::JumpBrainState()
 {
     m_runDir = -1.0f;
+    m_interruptible = true;
 }
 
 JumpBrainState::~JumpBrainState()

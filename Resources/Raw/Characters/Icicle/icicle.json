@@ -5,6 +5,9 @@
             "SpriteSheet": "Characters/Icicle/Motions/IcicleMotions",
             "DefaultSprite": "wiggle_00.png"
         },
+        "AIComponent": {
+            "DefaultBrainState": "StalactiteWiggleBrainState"
+        },
         "AnimationComponent": {
             "AnimTree": "Characters/Icicle/Motions/animtree.dna",
             "Motions":
@@ -44,7 +47,6 @@
             "Category": [ "Environment" ],
             "Collision": [ "Environment" ],
             "Contact": [ "Player" ]
-        },
-        "StalactiteComponent": {}
+        }
     }
 }

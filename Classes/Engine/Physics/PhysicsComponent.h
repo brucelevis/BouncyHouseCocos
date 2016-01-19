@@ -58,7 +58,8 @@ public:
     float GetWidth() { return m_width; };
     float GetHeight() { return m_height; };
     
-    cocos2d::Vec2 GetOffset() { return m_offset; };
+    void SetPositionOffset( cocos2d::Vec2 i_offset );
+    cocos2d::Vec2 GetPositionOffset();
     
     CollisionCategory GetCategoryMask() { return m_category; };
     CollisionCategory GetCollisionMask() { return m_collision; };

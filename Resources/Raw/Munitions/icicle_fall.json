@@ -1,10 +1,10 @@
 {
-    "Name": "Enemy_Brace_Munition",
+    "Name": "Icicle_Fall_Munition",
     "Components": {
         "MunitionComponent": {
             "Type": "melee",
             "Damage": 0.0,
-            "InflictState": "JumpBrainState"
+            "InflictState": "StunBrainState"
         },
         "PhysicsComponent": {
             "Density": 0.0,
@@ -12,9 +12,9 @@
             "Friction": 0.0,
             "Dynamic": false,
             "AnchorPoint": [ 0.5, 0.5 ],
-            "Offset": [ -48.0, 75.0 ],
-            "Size": [ 10.0, 120.0 ],
-
+            "Offset": [ 0.0, 0.0 ],
+            "Size": [ 140.0, 20.0 ],
+            
             "Category": [ "Munition" ],
             "Collision": [ ],
             "Contact": [ "Player" ]

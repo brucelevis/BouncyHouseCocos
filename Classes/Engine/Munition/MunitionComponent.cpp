@@ -45,11 +45,13 @@ void MunitionComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjso
 void MunitionComponent::OnActivate()
 {
     EventManager::GetInstance()->RegisterForEvent( "PhysicsContactBegin", CC_CALLBACK_1( MunitionComponent::OnPhysicsContactBeginEvent, this ), this );
+    EventManager::GetInstance()->RegisterForEvent( "FacingChanged", CC_CALLBACK_1( MunitionComponent::OnFacingChangedEvent, this ), this );
 }
 
 void MunitionComponent::OnDeactivate()
 {
     EventManager::GetInstance()->UnregisterForEvent( "PhysicsContactBegin", this );
+    EventManager::GetInstance()->UnregisterForEvent( "FacingChanged", this );
 }
 
 MunitionComponent::~MunitionComponent()
@@ -85,6 +87,13 @@ void MunitionComponent::MunitionActivate( EntityHandle i_ownerHandle )
             pPC->GetNode()->removeFromParentAndCleanup( false );
             pOPC->GetNode()->addChild( pPC->GetNode() );
             pPC->SetPosition( cocos2d::Vec2( pOPC->GetNode()->getContentSize().width * 0.5f, 0.0f ) );
+            
+            if ( pOPC->GetNode()->getScaleX() < 0.0f )
+            {
+                cocos2d::Vec2 pOffset = pPC->GetPositionOffset();
+                pOffset.x *= -1.0f;
+                pPC->SetPositionOffset( pOffset );
+            }
         }
     }
 }
@@ -132,5 +141,21 @@ void MunitionComponent::OnRemovingEntityEvent( cocos2d::EventCustom* i_event )
     if ( pEntityHandle == m_ownerHandle )
     {
         EntitySystem::GetInstance()->MarkForDelete( m_entityHandle );
+    }
+}
+
+
+void MunitionComponent::OnFacingChangedEvent( cocos2d::EventCustom* i_event )
+{
+    EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
+    if ( pEntityHandle == m_ownerHandle )
+    {
+        PhysicsComponent* pPC = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+        if ( pPC )
+        {
+            cocos2d::Vec2 pOffset = pPC->GetPositionOffset();
+            pOffset.x *= -1.0f;
+            pPC->SetPositionOffset( pOffset );
+        }
     }
 }

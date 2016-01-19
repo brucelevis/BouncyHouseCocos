@@ -22,7 +22,7 @@ void CaveLevel::initLevel()
     m_enemySpawners.push_back( cocos2d::Vec2( 200.0f, 50.0f ) );
     m_enemySpawners.push_back( cocos2d::Vec2( pScreenSize.width - 200.0f, 50.0f ) );
     
-    m_maxEnemyCount = 3;
+    m_maxEnemyCount = 5;
     
     m_player = DNASequencer::CreateEntity( "Baked/Characters/Player/player.dna" );
     PhysicsSystem::GetInstance()->SetPosition( m_player->m_entityHandle, m_playerSpawner );
@@ -51,7 +51,8 @@ void CaveLevel::update( float i_dt )
         cocos2d::Size pScreenSize = cocos2d::Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
         
         pIcicle = DNASequencer::CreateEntity( "Baked/Characters/Icicle/icicle.dna" );
-        PhysicsSystem::GetInstance()->SetPosition( pIcicle->m_entityHandle, cocos2d::Vec2( pScreenSize.width * 0.5f, pScreenSize.height - 328.0f ) );
+        float xPos = cocos2d::RandomHelper::random_real( 200.0f, pScreenSize.width - 200.0f );
+        PhysicsSystem::GetInstance()->SetPosition( pIcicle->m_entityHandle, cocos2d::Vec2( xPos, pScreenSize.height - 328.0f ) );
         m_staticEntities.insert( std::make_pair( pIcicle->m_entityHandle, pIcicle ) );
         m_icicleHandle = pIcicle->m_entityHandle;
     }

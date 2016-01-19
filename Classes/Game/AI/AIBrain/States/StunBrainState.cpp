@@ -14,7 +14,7 @@
 
 StunBrainState::StunBrainState()
 {
-    
+    m_interruptible = false;
 }
 
 StunBrainState::~StunBrainState()

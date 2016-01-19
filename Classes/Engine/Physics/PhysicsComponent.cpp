@@ -179,6 +179,20 @@ cocos2d::Vec2 PhysicsComponent::GetVelocity()
     }
 }
 
+cocos2d::Vec2 PhysicsComponent::GetPositionOffset()
+{
+    return m_offset;
+}
+
+void PhysicsComponent::SetPositionOffset( cocos2d::Vec2 i_offset )
+{
+    m_offset = i_offset;
+    if ( m_physicsBody )
+    {
+        m_physicsBody->setPositionOffset( m_offset );
+    }
+}
+
 void PhysicsComponent::ApplyImpulse( cocos2d::Vec2 i_impulse )
 {
     if ( m_physicsBody )

@@ -16,7 +16,7 @@
 
 EnemyBraceBrainState::EnemyBraceBrainState()
 {
-    
+    m_interruptible = true;
 }
 
 EnemyBraceBrainState::~EnemyBraceBrainState()
