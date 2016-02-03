@@ -1,13 +1,13 @@
 {
     "Name": "Skybox",
     "Components": {
+        "PhysicsComponent": {
+            "AnchorPoint": [ 0.0, 0.0 ]
+        },
         "RenderComponent": {
             "SpriteSheet": "Skybox/SkyboxSheet",
             "DefaultSprite": "Skybox.png",
             "ZOrder": -1000
-        },
-        "PhysicsComponent": {
-            "AnchorPoint": [ 0.0, 0.0 ]
         }
     }
 }

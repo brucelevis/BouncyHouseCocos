@@ -10,9 +10,11 @@
 
 #include "EffectSprite/EffectSprite.h"
 #include "../Lighting/LightEffect.h"
+#include "../Entity/EntitySystem.h"
 #include "../Event/EventManager.h"
 #include "RenderComponent.h"
 #include "RenderSystem.h"
+#include "../Physics/PhysicsComponent.h"
 
 std::string RenderComponent::s_componentType = "RenderComponent";
 
@@ -20,29 +22,59 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
 {
     m_entityHandle = i_entityHandle;
     RenderSystem::GetInstance()->RegisterComponent( this );
+    m_scale = 1.0f;
+    m_zOrder = 0;
     
+    if ( i_dnaObject.HasMember( "DefaultSprite" ) )
+    {
+        m_defaultSpriteName = i_dnaObject["DefaultSprite"].GetString();
+    }
     if ( i_dnaObject.HasMember( "FacingLeft" ) )
     {
         m_facingLeft = i_dnaObject["FacingLeft"].GetBool();
     }
     
-    int pZOrder = 0;
     if ( i_dnaObject.HasMember( "ZOrder" ) )
     {
-        pZOrder = i_dnaObject["ZOrder"].GetInt();
+        m_zOrder = i_dnaObject["ZOrder"].GetInt();
     }
     
     if ( i_dnaObject.HasMember( "Sprite" ) )
     {
-        std::string pSpritePath = std::string( i_dnaObject["Sprite"].GetString() );
+        m_spriteName = i_dnaObject["Sprite"].GetString();
+    }
+    if ( i_dnaObject.HasMember( "SpriteSheet" ) )
+    {
+        m_spriteSheetName = i_dnaObject["SpriteSheet"].GetString();
+    }
+    
+    if ( i_dnaObject.HasMember( "Scale" ) )
+    {
+        m_scale = i_dnaObject["Scale"].GetDouble();
+    }
+}
+
+void RenderComponent::OnActivate()
+{
+    if ( !m_spriteName.empty() )
+    {
+        std::string pSpritePath = std::string( m_spriteName );
         pSpritePath.insert( 0, "Baked/" );
         
         m_sprite = EffectSprite::create( pSpritePath );
-        RenderSystem::GetInstance()->GetScene()->addChild( m_sprite, pZOrder );
+        
+        PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+        if ( pPhysicsComponent && pPhysicsComponent->GetNode() )
+        {
+            
+            m_sprite->setAnchorPoint( pPhysicsComponent->GetAnchorPoint() );
+            pPhysicsComponent->GetNode()->addChild( m_sprite );
+            pPhysicsComponent->GetNode()->setZOrder( m_zOrder );
+            m_sprite->setPosition( cocos2d::Vec2( pPhysicsComponent->GetWidth() * pPhysicsComponent->GetAnchorPoint().x, pPhysicsComponent->GetHeight() * pPhysicsComponent->GetAnchorPoint().y ) );
+        }
     }
-    else if ( i_dnaObject.HasMember( "SpriteSheet" ) )
+    else if ( !m_spriteSheetName.empty() )
     {
-        m_spriteSheetName = i_dnaObject["SpriteSheet"].GetString();
         std::string pSpriteSheetPath = std::string( m_spriteSheetName );
         pSpriteSheetPath.insert( 0, "Baked/" );
         pSpriteSheetPath.insert( pSpriteSheetPath.length(), ".png" );
@@ -55,12 +87,32 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
         
         cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pSpriteSheetPlistPath );
         
-        m_sprite = EffectSprite::createWithSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( i_dnaObject["DefaultSprite"].GetString() ) );
+        m_sprite = EffectSprite::createWithSpriteFrame( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( m_defaultSpriteName ) );
         m_sprite->setNormalMap( m_spriteSheetNormalPath );
-        RenderSystem::GetInstance()->GetScene()->addChild( m_sprite, pZOrder );
+        
+        PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+        if ( pPhysicsComponent && pPhysicsComponent->GetNode() )
+        {
+            m_sprite->setAnchorPoint( pPhysicsComponent->GetAnchorPoint() );
+            pPhysicsComponent->GetNode()->addChild( m_sprite );
+            pPhysicsComponent->GetNode()->setZOrder( m_zOrder );
+            m_sprite->setPosition( cocos2d::Vec2( pPhysicsComponent->GetWidth() * pPhysicsComponent->GetAnchorPoint().x, pPhysicsComponent->GetHeight() * pPhysicsComponent->GetAnchorPoint().y ) );
+        }
     }
-    SetFacing( RenderComponent::FacingDirection::LEFT );
-    m_sprite->setTag( i_entityHandle );
+    
+    if ( m_sprite )
+    {
+        m_sprite->setTag( m_entityHandle );
+        if ( m_scale != 0.0f )
+        {
+            m_sprite->setScale( m_scale );
+        }
+        
+        if ( m_facingLeft )
+        {
+            m_sprite->setScale( m_scale * -1.0f, m_scale );
+        }
+    }
 }
 
 RenderComponent::~RenderComponent()
@@ -69,53 +121,16 @@ RenderComponent::~RenderComponent()
     RenderSystem::GetInstance()->UnregisterComponent( this );
 }
 
-RenderComponent::FacingDirection RenderComponent::GetFacing()
+float RenderComponent::GetScale()
 {
-    FacingDirection pFacing = FacingDirection::NONE;
-    if ( m_sprite )
-    {
-        float pScaleX = m_sprite->getScaleX();
-        if ( ( pScaleX < 0.0f && !m_facingLeft ) || ( pScaleX > 0.0f && m_facingLeft ) )
-        {
-            return FacingDirection::LEFT;
-        }
-        else if ( ( pScaleX > 0.0f && !m_facingLeft ) || ( pScaleX < 0.0f && m_facingLeft ) )
-        {
-            return FacingDirection::RIGHT;
-        }
-    }
-    return pFacing;
+    return m_scale;
 }
 
-bool RenderComponent::SetFacing( FacingDirection i_facingDirection )
+void RenderComponent::SetScale( float i_scale )
 {
-    float pScaleX = m_sprite->getScaleX();
-    switch ( i_facingDirection )
-    {
-        case FacingDirection::LEFT:
-            pScaleX = -1.0f * fabs( pScaleX );
-            break;
-        case FacingDirection::RIGHT:
-            pScaleX = 1.0f * fabs( pScaleX );
-            break;
-        default:
-            break;
-    }
-    if ( m_facingLeft )
-    {
-        pScaleX *= -1.0f;
-    }
+    m_scale = i_scale;
     if ( m_sprite )
     {
-        if ( m_sprite->getScaleX() != pScaleX )
-        {
-#ifdef DEBUG_NAN
-            ASSERTS( !isnan( pScaleX ), "NaN entering RenderSystem!" );
-#endif
-            m_sprite->setScaleX( pScaleX );
-            EventManager::GetInstance()->SendEvent( "FacingChanged", &m_entityHandle );
-        }
-        return true;
+        m_sprite->setScale( i_scale );
     }
-    return false;
 }

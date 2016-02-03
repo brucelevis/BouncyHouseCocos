@@ -35,12 +35,18 @@ void JumpBrainState::Enter()
     if ( pPhysicsComponent )
     {
         m_runDir = pPhysicsComponent->GetVelocity().x > 0.0f ? 1.0f : -1.0f;
+        
+        cocos2d::Vec2 pVelocity = pPhysicsComponent->GetVelocity();
+        pVelocity.y = 0.0f;
+        pPhysicsComponent->SetVelocity( pVelocity );
+        //pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
+        
+        cocos2d::Vec2 pGravity = pPhysicsComponent->GetGravity();
+        float pJumpHeight = 150.0f;
+        float pJumpImpulseAmt = sqrtf( -2.0f * pGravity.y * pJumpHeight );
+        
+        pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, pJumpImpulseAmt * pPhysicsComponent->GetMass() ) );
     }
-    
-    cocos2d::Vec2 pVelocity = pPhysicsComponent->GetVelocity();
-    pVelocity.y = 0.0f;
-    pPhysicsComponent->SetVelocity( pVelocity );
-    pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
     
     AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "JUMP" );
 }

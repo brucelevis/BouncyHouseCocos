@@ -1,11 +1,6 @@
 {
     "Name": "Icicle_Fall_Munition",
     "Components": {
-        "MunitionComponent": {
-            "Type": "melee",
-            "Damage": 0.0,
-            "InflictState": "StunBrainState"
-        },
         "PhysicsComponent": {
             "Density": 0.0,
             "Restitution": 0.0,
@@ -18,6 +13,11 @@
             "Category": [ "Munition" ],
             "Collision": [ ],
             "Contact": [ "Player" ]
+        },
+        "MunitionComponent": {
+            "Type": "melee",
+            "Damage": 0.0,
+            "InflictState": "StunBrainState"
         }
     }
 }

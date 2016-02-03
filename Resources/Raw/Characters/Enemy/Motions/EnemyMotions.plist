@@ -4,365 +4,365 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>SmallEnemyWalk_00.png</key>
+            <key>Grunt_Walk_00.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-20,-2}</string>
+                <string>{-10,-5}</string>
                 <key>spriteSize</key>
-                <string>{126,156}</string>
+                <string>{80,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{577,1},{126,156}}</string>
+                <string>{{1,1},{80,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_01.png</key>
+            <key>Grunt_Walk_01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-20,-3}</string>
+                <string>{-10,-5}</string>
                 <key>spriteSize</key>
-                <string>{130,154}</string>
+                <string>{82,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{979,155},{130,154}}</string>
+                <string>{{98,1},{82,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_02.png</key>
+            <key>Grunt_Walk_02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-19,-4}</string>
+                <string>{-10,-6}</string>
                 <key>spriteSize</key>
-                <string>{136,152}</string>
+                <string>{86,93}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{839,313},{136,152}}</string>
+                <string>{{1,169},{86,93}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_03.png</key>
+            <key>Grunt_Walk_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-22,-3}</string>
+                <string>{-12,-5}</string>
                 <key>spriteSize</key>
-                <string>{130,154}</string>
+                <string>{82,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{847,157},{130,154}}</string>
+                <string>{{195,1},{82,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_04.png</key>
+            <key>Grunt_Walk_04.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-15,-1}</string>
+                <string>{-7,-4}</string>
                 <key>spriteSize</key>
-                <string>{136,156}</string>
+                <string>{86,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{439,1},{136,156}}</string>
+                <string>{{195,171},{86,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_05.png</key>
+            <key>Grunt_Walk_05.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-6,-2}</string>
+                <string>{-1,-4}</string>
                 <key>spriteSize</key>
-                <string>{138,156}</string>
+                <string>{86,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{295,161},{138,156}}</string>
+                <string>{{294,173},{86,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_06.png</key>
+            <key>Grunt_Walk_06.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{1,-1}</string>
+                <string>{3,-4}</string>
                 <key>spriteSize</key>
-                <string>{140,156}</string>
+                <string>{88,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{281,321},{140,156}}</string>
+                <string>{{199,261},{88,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_07.png</key>
+            <key>Grunt_Walk_07.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{7,1}</string>
+                <string>{7,-4}</string>
                 <key>spriteSize</key>
-                <string>{138,156}</string>
+                <string>{86,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{423,319},{138,156}}</string>
+                <string>{{393,173},{86,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_08.png</key>
+            <key>Grunt_Walk_08.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{9,1}</string>
+                <string>{8,-3}</string>
                 <key>spriteSize</key>
-                <string>{144,158}</string>
+                <string>{90,99}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{149,161},{144,158}}</string>
+                <string>{{1,347},{90,99}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_09.png</key>
+            <key>Grunt_Walk_09.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{11,1}</string>
+                <string>{9,-3}</string>
                 <key>spriteSize</key>
-                <string>{146,158}</string>
+                <string>{92,99}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{1,163},{146,158}}</string>
+                <string>{{205,351},{92,99}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_10.png</key>
+            <key>Grunt_Walk_10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{12,1}</string>
+                <string>{10,-2}</string>
                 <key>spriteSize</key>
-                <string>{146,158}</string>
+                <string>{92,101}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{145,1},{146,158}}</string>
+                <string>{{306,351},{92,101}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_11.png</key>
+            <key>Grunt_Walk_11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{13,1}</string>
+                <string>{11,-2}</string>
                 <key>spriteSize</key>
-                <string>{144,158}</string>
+                <string>{90,101}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{293,1},{144,158}}</string>
+                <string>{{102,351},{90,101}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_12.png</key>
+            <key>Grunt_Walk_12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{14,0}</string>
+                <string>{11,-3}</string>
                 <key>spriteSize</key>
-                <string>{142,160}</string>
+                <string>{88,99}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{142,160}}</string>
+                <string>{{298,261},{88,99}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_13.png</key>
+            <key>Grunt_Walk_13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{15,-2}</string>
+                <string>{12,-4}</string>
                 <key>spriteSize</key>
-                <string>{138,156}</string>
+                <string>{86,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{435,161},{138,156}}</string>
+                <string>{{1,257},{86,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_14.png</key>
+            <key>Grunt_Walk_14.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{16,-4}</string>
+                <string>{12,-5}</string>
                 <key>spriteSize</key>
-                <string>{132,152}</string>
+                <string>{84,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{979,1},{132,152}}</string>
+                <string>{{391,1},{84,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_15.png</key>
+            <key>Grunt_Walk_15.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{14,-3}</string>
+                <string>{11,-5}</string>
                 <key>spriteSize</key>
-                <string>{134,154}</string>
+                <string>{84,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{703,317},{134,154}}</string>
+                <string>{{1,83},{84,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_16.png</key>
+            <key>Grunt_Walk_16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{12,-2}</string>
+                <string>{10,-5}</string>
                 <key>spriteSize</key>
-                <string>{134,154}</string>
+                <string>{84,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{711,157},{134,154}}</string>
+                <string>{{98,85},{84,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_17.png</key>
+            <key>Grunt_Walk_17.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{8,-1}</string>
+                <string>{8,-4}</string>
                 <key>spriteSize</key>
-                <string>{136,154}</string>
+                <string>{84,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{143,323},{136,154}}</string>
+                <string>{{195,85},{84,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_18.png</key>
+            <key>Grunt_Walk_18.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{2,-1}</string>
+                <string>{4,-4}</string>
                 <key>spriteSize</key>
-                <string>{138,156}</string>
+                <string>{86,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{563,319},{138,156}}</string>
+                <string>{{100,259},{86,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_19.png</key>
+            <key>Grunt_Walk_19.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,1}</string>
+                <string>{-2,-3}</string>
                 <key>spriteSize</key>
-                <string>{140,154}</string>
+                <string>{88,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{1,323},{140,154}}</string>
+                <string>{{399,261},{88,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_20.png</key>
+            <key>Grunt_Walk_20.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-16,2}</string>
+                <string>{-7,-3}</string>
                 <key>spriteSize</key>
-                <string>{136,154}</string>
+                <string>{84,95}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{705,1},{136,154}}</string>
+                <string>{{294,85},{84,95}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_21.png</key>
+            <key>Grunt_Walk_21.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-20,2}</string>
+                <string>{-10,-2}</string>
                 <key>spriteSize</key>
-                <string>{134,154}</string>
+                <string>{84,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{843,1},{134,154}}</string>
+                <string>{{391,87},{84,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_22.png</key>
+            <key>Grunt_Walk_22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-19,2}</string>
+                <string>{-9,-3}</string>
                 <key>spriteSize</key>
-                <string>{134,156}</string>
+                <string>{84,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{575,159},{134,156}}</string>
+                <string>{{96,171},{84,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
-            <key>SmallEnemyWalk_23.png</key>
+            <key>Grunt_Walk_23.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-19,0}</string>
+                <string>{-9,-4}</string>
                 <key>spriteSize</key>
-                <string>{130,154}</string>
+                <string>{82,97}</string>
                 <key>spriteSourceSize</key>
-                <string>{174,160}</string>
+                <string>{114,105}</string>
                 <key>textureRect</key>
-                <string>{{979,311},{130,154}}</string>
+                <string>{{292,1},{82,97}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -372,9 +372,9 @@
             <key>realTextureFileName</key>
             <string>EnemyMotions.png</string>
             <key>size</key>
-            <string>{1112,478}</string>
+            <string>{497,444}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:703fbaf8395227319e9f24bfe5f4cdb4:7546c4600ca6ea3bfe4904fe23edee41:3c5aaf2ad2fca6c908b93c505f3bffc0$</string>
+            <string>$TexturePacker:SmartUpdate:26810464ee5cbf9e042fff1addea3669:c4cb25162a5d54195284445b14dfa995:3c5aaf2ad2fca6c908b93c505f3bffc0$</string>
             <key>textureFileName</key>
             <string>EnemyMotions.png</string>
         </dict>

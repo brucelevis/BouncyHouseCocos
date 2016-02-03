@@ -1,11 +1,24 @@
 {
     "Name": "Player",
     "Components": {
+        "PhysicsComponent": {
+            "Density": 10.0,
+            "Restitution": 0.0,
+            "Friction": 0.1,
+            "Dynamic": true,
+            "AnchorPoint": [ 0.5, 0.0 ],
+            "Size": [ 64.0, 100.0 ],
+            
+            "Category": [ "Damagable", "Player", "Bouncy" ],
+            "Collision": [ "Solid", "Enemy", "Player" ],
+            "Contact": [ "Solid", "Enemy", "Player", "Munition" ]
+        },
         "RenderComponent": {
             "SpriteSheet": "Characters/Player/Motions/PlayerMotions",
-            "DefaultSprite": "Vik1_Run_00.png",
+            "DefaultSprite": "Viking1_Run_00.png",
             "FacingLeft": true,
-            "ZOrder": 10
+            "ZOrder": 10,
+            "Offset": [ 0.0, -10.0 ]
         },
         "AIComponent": {
             "DefaultBrainState": "RunBrainState"
@@ -17,26 +30,26 @@
                     "Motion": "Idle",
                     "StartFrame": 0,
                     "EndFrame": 0,
-                    "Name": "Vik1_Run"
+                    "Name": "Viking1_Run"
                 },
                 {
                     "Motion": "Run",
                     "StartFrame": 0,
                     "EndFrame": 17,
-                    "Name": "Vik1_Run",
+                    "Name": "Viking1_Run",
                     "MotionRate": 275.0
                 },
                 {
                     "Motion": "Jump",
                     "StartFrame": 0,
                     "EndFrame": 20,
-                    "Name": "Vik1_Jump"
+                    "Name": "Viking1_Jump"
                 },
                 {
                     "Motion": "Dive",
                     "StartFrame": 18,
                     "EndFrame": 20,
-                    "Name": "Vik1_Jump"
+                    "Name": "Viking1_Jump"
                 },
                 {
                     "Motion": "Smash",
@@ -52,19 +65,6 @@
         },
         "LocomotionComponent": {
             "RunSpeed": 350.0
-        },
-        "PhysicsComponent": {
-            "Density": 10.0,
-            "Restitution": 0.0,
-            "Friction": 0.1,
-            "Dynamic": true,
-            "AnchorPoint": [ 0.5, 0.0 ],
-            "Offset": [ 0.0, -10.0 ],
-            "Size": [ 100.0, 155.0 ],
-
-            "Category": [ "Damagable", "Player", "Bouncy" ],
-            "Collision": [ "Solid", "Enemy", "Player" ],
-            "Contact": [ "Solid", "Enemy", "Player", "Munition" ]
         }
     }
 }

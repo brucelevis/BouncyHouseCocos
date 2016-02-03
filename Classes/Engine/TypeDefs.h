@@ -44,10 +44,13 @@ class MotionInfo
 {
 public:
     std::string m_animationName;
+    std::string m_spriteName;
     float m_motionRate;
+    int m_startFrame;
+    int m_endFrame;
     
-    MotionInfo( std::string i_animationName, float i_motionRate )
-    : m_animationName( i_animationName ), m_motionRate( i_motionRate ) { };
+    MotionInfo( std::string i_animationName, std::string i_spriteName, float i_motionRate, int i_startFrame, int i_endFrame )
+    : m_animationName( i_animationName ), m_spriteName( i_spriteName ), m_motionRate( i_motionRate ), m_startFrame( i_startFrame ), m_endFrame( i_endFrame ) { };
 };
 
 

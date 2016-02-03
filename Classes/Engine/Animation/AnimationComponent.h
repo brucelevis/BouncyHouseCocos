@@ -16,6 +16,7 @@
 #include "../Locomotion/LocomotionModes/LocomotionMode.h"
 #include "../TypeDefs.h"
 
+
 class AnimationComponent : public Component
 {
 public:

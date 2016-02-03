@@ -26,11 +26,13 @@ void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson
 //    m_node = NULL;
 //    m_physicsBody = NULL;
     
+    m_mass = 1.0f;
     m_width = 0.0f;
     m_height = 0.0f;
     m_density = 0.0f;
     m_restitution = 0.0f;
     m_friction = 0.0f;
+    m_scale = 1.0f;
     m_category = CollisionCategory::None;
     m_collision = CollisionCategory::None;
     m_contact = CollisionCategory::None;
@@ -76,41 +78,38 @@ void PhysicsComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson
     {
         m_contact = (CollisionCategory) DNASequencer::CreateCollisionCategory( i_dnaObject["Contact"] );
     }
+    if ( i_dnaObject.HasMember( "Scale" ) )
+    {
+        m_scale = i_dnaObject["Scale"].GetDouble();
+    }
 }
 
 void PhysicsComponent::OnActivate()
 {
-    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
-    if ( pRenderComponent && pRenderComponent->m_sprite )
+    m_node = cocos2d::Node::create();
+    m_node->setTag( m_entityHandle );
+    m_node->setScale( m_scale );
+    m_node->setVisible( true );
+    RenderSystem::GetInstance()->GetScene()->addChild( m_node );
+    m_node->setContentSize( cocos2d::Size( m_width, m_height ) );
+    
+    if ( m_width != 0.0f && m_height != 0.0f )
     {
-        m_node = pRenderComponent->m_sprite;
-    }
-    else
-    {
-        m_node = cocos2d::Node::create();
-        m_node->setTag( m_entityHandle );
-        RenderSystem::GetInstance()->GetScene()->addChild( m_node );
-    }
+        m_physicsBody = cocos2d::PhysicsBody::createBox( cocos2d::Size( m_width, m_height ), cocos2d::PhysicsMaterial( m_density, m_restitution, m_friction ) );
+        m_physicsBody->setPositionOffset( m_offset );
+        m_physicsBody->setDynamic( m_dynamic );
+        m_physicsBody->setMass( m_mass );
+        m_physicsBody->setRotationEnable( false );
         
-    if ( m_node )
-    {
-        m_node->setAnchorPoint( m_anchorPoint );
+        m_physicsBody->setCategoryBitmask( m_category );
+        m_physicsBody->setCollisionBitmask( m_collision );
+        m_physicsBody->setContactTestBitmask( m_contact );
         
-        if ( m_width != 0.0f && m_height != 0.0f )
-        {
-            m_physicsBody = cocos2d::PhysicsBody::createBox( cocos2d::Size( m_width, m_height ), cocos2d::PhysicsMaterial( m_density, m_restitution, m_friction ) );
-            m_physicsBody->setPositionOffset( m_offset );
-            m_physicsBody->setDynamic( m_dynamic );
-            m_physicsBody->setMass( 10.0f );
-            m_physicsBody->setRotationEnable( false );
-            
-            m_physicsBody->setCategoryBitmask( m_category );
-            m_physicsBody->setCollisionBitmask( m_collision );
-            m_physicsBody->setContactTestBitmask( m_contact );
-            
-            m_node->setPhysicsBody( m_physicsBody );
-        }
+        m_node->setPhysicsBody( m_physicsBody );
     }
+    m_node->setAnchorPoint( m_anchorPoint );
+    
+    SetFacing( PhysicsComponent::FacingDirection::LEFT );
 }
 
 void PhysicsComponent::OnDeactivate()
@@ -179,17 +178,57 @@ cocos2d::Vec2 PhysicsComponent::GetVelocity()
     }
 }
 
+void PhysicsComponent::SetScale( float i_scale )
+{
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
+    if ( pRenderComponent )
+    {
+        pRenderComponent->SetScale( i_scale );
+    }
+    else
+    {
+        m_scale = i_scale;
+        if ( m_node )
+        {
+            m_node->setScale( m_scale );
+        }
+    }
+}
+
+float PhysicsComponent::GetScale()
+{
+    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
+    if ( pRenderComponent )
+    {
+        return pRenderComponent->GetScale();
+    }
+    return m_scale;
+}
+
 cocos2d::Vec2 PhysicsComponent::GetPositionOffset()
+{
+    if ( m_physicsBody )
+    {
+        return m_physicsBody->getPositionOffset();
+    }
+    return cocos2d::Vec2::ZERO;
+}
+
+cocos2d::Vec2 PhysicsComponent::GetDefaultPositionOffset()
 {
     return m_offset;
 }
 
+cocos2d::Vec2 PhysicsComponent::GetGravity()
+{
+    return PhysicsSystem::GetInstance()->GetPhysicsWorld()->getGravity();
+}
+
 void PhysicsComponent::SetPositionOffset( cocos2d::Vec2 i_offset )
 {
-    m_offset = i_offset;
     if ( m_physicsBody )
     {
-        m_physicsBody->setPositionOffset( m_offset );
+        m_physicsBody->setPositionOffset( i_offset );
     }
 }
 
@@ -265,6 +304,53 @@ void PhysicsComponent::SetContactMask( CollisionCategory i_contact )
     {
         m_physicsBody->setContactTestBitmask( m_contact );
     }
+}
+
+PhysicsComponent::FacingDirection PhysicsComponent::GetFacing()
+{
+    FacingDirection pFacing = FacingDirection::NONE;
+    if ( m_node )
+    {
+        float pScaleX = m_node->getScaleX();
+        if ( pScaleX < 0.0f )
+        {
+            return FacingDirection::LEFT;
+        }
+        else if ( pScaleX > 0.0f )
+        {
+            return FacingDirection::RIGHT;
+        }
+    }
+    return pFacing;
+}
+
+bool PhysicsComponent::SetFacing( FacingDirection i_facingDirection )
+{
+    float pScaleX = m_node->getScaleX();
+    switch ( i_facingDirection )
+    {
+        case FacingDirection::LEFT:
+            pScaleX = -1.0f * fabs( pScaleX );
+            break;
+        case FacingDirection::RIGHT:
+            pScaleX = 1.0f * fabs( pScaleX );
+            break;
+        default:
+            break;
+    }
+    if ( m_node )
+    {
+        if ( m_node->getScaleX() != pScaleX )
+        {
+#ifdef DEBUG_NAN
+            ASSERTS( !isnan( pScaleX ), "NaN entering RenderSystem!" );
+#endif
+            m_node->setScaleX( pScaleX );
+            EventManager::GetInstance()->SendEvent( "FacingChanged", &m_entityHandle );
+        }
+        return true;
+    }
+    return false;
 }
 
 bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )

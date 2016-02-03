@@ -84,7 +84,7 @@ void PhysicsSystem::Update( float i_dt )
             // Death plane at -100.0f y
             if ( pComponent->GetPosition().y < -100.0f )
             {
-                ASSERTS( false, "Entity below death plane!" );
+                //ASSERTS( false, "Entity below death plane!" );
                 EntitySystem::GetInstance()->MarkForDelete( pComponent->m_entityHandle );
                 continue;
             }

@@ -48,15 +48,12 @@ void SideScrollerLocomotionMode::MoveAtSpeed( cocos2d::Vec2 i_moveDir, float i_s
         ASSERTS( fabs( pImpulseAmount ) <= pRunSpeed, "Impulse is too fast!" );
         cocos2d::Vec2 pImpulse = cocos2d::Vec2( pImpulseAmount, 0.0f );
         pPhysicsComponent->ApplyImpulse( pImpulse );
-    }
-
-    RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
-    if ( pRenderComponent )
-    {
-        RenderComponent::FacingDirection pFacing = ( i_moveDir.x == -1.0f ) ? RenderComponent::FacingDirection::LEFT : RenderComponent::FacingDirection::RIGHT;
-        pRenderComponent->SetFacing( pFacing );
         
-        ASSERTS( pRenderComponent->GetFacing() == pFacing, "Sprite facing wrong way!" );
+        PhysicsComponent::FacingDirection pFacing = ( i_moveDir.x == -1.0f ) ? PhysicsComponent::FacingDirection::LEFT : PhysicsComponent::FacingDirection::RIGHT;
+        pPhysicsComponent->SetFacing( pFacing );
+        
+        ASSERTS( pPhysicsComponent->GetFacing() == pFacing, "Sprite facing wrong way!" );
+
     }
 }
 

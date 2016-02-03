@@ -104,6 +104,11 @@ bool GameScene::Start()
                 }
                 break;
             }
+            case cocos2d::EventKeyboard::KeyCode::KEY_R:
+            {
+                RenderSystem::GetInstance()->SetDebug( !RenderSystem::GetInstance()->GetDebug() );
+                break;
+            }
             default:
             {
                 break;

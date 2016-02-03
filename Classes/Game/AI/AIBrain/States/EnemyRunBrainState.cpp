@@ -17,7 +17,7 @@ void EnemyRunBrainState::Update( float i_dt )
     if ( pPlayer )
     {
         float pDistanceToPlayerSquared = GetDistanceToEntitySquared( pPlayer->m_entityHandle );
-        if ( pDistanceToPlayerSquared <= 90000.0f )
+        if ( pDistanceToPlayerSquared <= 30000.0f )
         {
             AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
             if ( pAIComponent )

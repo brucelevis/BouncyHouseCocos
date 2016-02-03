@@ -1,9 +1,21 @@
 {
     "Name": "Enemy",
     "Components": {
+        "PhysicsComponent": {
+            "Density": 10.0,
+            "Restitution": 0.0,
+            "Friction": 0.1,
+            "Dynamic": true,
+            "AnchorPoint": [ 0.5, 0.0 ],
+            "Size": [ 48.0, 95.0 ],
+            
+            "Category": [ "Damagable", "Enemy", "Bouncy" ],
+            "Collision": [ "Solid", "Player" ],
+            "Contact": [ "Solid", "Player", "Munition" ]
+        },
         "RenderComponent": {
             "SpriteSheet": "Characters/Enemy/Motions/EnemyMotions",
-            "DefaultSprite": "SmallEnemyWalk_00.png",
+            "DefaultSprite": "Grunt_Walk_00.png",
             "FacingLeft": true
         },
         "AIComponent": {
@@ -17,13 +29,13 @@
                     "Motion": "Idle",
                     "StartFrame": 0,
                     "EndFrame": 0,
-                    "Name": "SmallEnemyWalk"
+                    "Name": "Grunt_Walk"
                 },
                 {
                     "Motion": "Run",
                     "StartFrame": 0,
                     "EndFrame": 23,
-                    "Name": "SmallEnemyWalk",
+                    "Name": "Grunt_Walk",
                     "MotionRate": 120.0
                 }
             ]
@@ -34,18 +46,6 @@
         },
         "LocomotionComponent": {
             "RunSpeed": 100.0
-        },
-        "PhysicsComponent": {
-            "Density": 10.0,
-            "Restitution": 0.0,
-            "Friction": 0.1,
-            "Dynamic": true,
-            "AnchorPoint": [ 0.5, 0.0 ],
-            "Size": [ 75.0, 150.0 ],
-
-            "Category": [ "Damagable", "Enemy", "Bouncy" ],
-            "Collision": [ "Solid", "Player" ],
-            "Contact": [ "Solid", "Player", "Munition" ]
         }
     }
 }

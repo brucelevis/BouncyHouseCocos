@@ -19,6 +19,10 @@ class RenderComponent : public Component
 {
 private:
     bool m_facingLeft;
+    float m_scale;
+    int m_zOrder;
+    std::string m_defaultSpriteName;
+    std::string m_spriteName;
     std::string m_spriteSheetName;
     std::string m_spriteSheetNormalPath;
 public:
@@ -27,16 +31,13 @@ public:
     RenderComponent() {};
     virtual ~RenderComponent();
     
-    void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject );
+    virtual void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
+    virtual void OnActivate() override;
     
-    enum FacingDirection
-    {
-        NONE,
-        LEFT,
-        RIGHT
-    };
-    FacingDirection GetFacing();
-    bool SetFacing( FacingDirection i_facingDirection );
+    float GetScale();
+    void SetScale( float i_scale );
+    
+    bool GetFacingLeft() { return m_facingLeft; };
     
     EffectSprite* m_sprite;
 };

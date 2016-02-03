@@ -68,7 +68,7 @@ void AIBrain::PushState( std::string i_stateName )
     if ( m_states.size() > 0 )
     {
         AIBrainState* pState = m_states.top();
-        if ( pState && !pState->GetInterruptible() )
+        if ( pState && pState->GetActive() && !pState->GetInterruptible() )
         {
             return;
         }

@@ -1,0 +1,13 @@
+{
+    "Name": "Sky",
+    "Components": {
+        "PhysicsComponent": {
+            "Dynamic": false,
+            "AnchorPoint": [ 0.5, 0.0 ]
+        },
+        "RenderComponent": {
+            "Sprite": "Levels/Sky/Sky.png",
+            "ZOrder": -1000
+        }
+    }
+}

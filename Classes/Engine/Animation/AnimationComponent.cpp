@@ -34,29 +34,17 @@ void AnimationComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjs
             std::string pSpriteName = i_dnaObject["Motions"][i]["Name"].GetString();
             int pStartFrame = i_dnaObject["Motions"][i]["StartFrame"].GetInt();
             int pEndFrame = i_dnaObject["Motions"][i]["EndFrame"].GetInt();
-            int pFrameCount = pEndFrame - pStartFrame + 1;
             float pMotionRate = -1.0f;
             if ( i_dnaObject["Motions"][i].HasMember("MotionRate") )
             {
                 pMotionRate = i_dnaObject["Motions"][i]["MotionRate"].GetDouble();
             }
             
-            cocos2d::Vector<cocos2d::SpriteFrame*> pFrames( pFrameCount );
-            for ( int i = pStartFrame; i <= pEndFrame; i++ )
-            {
-                char pFrameName[100] = {0};
-                sprintf( pFrameName, "%s_%02d.png", pSpriteName.c_str(), i );
-                pFrames.pushBack( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
-            }
-            
             char pChar[200];
             sprintf( pChar, "%s_%s", pMotionName.c_str(), pSpriteName.c_str() );
             std::string pAnimationName = std::string( pChar );
-            cocos2d::Animation* pAnimation = cocos2d::Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
-            cocos2d::AnimationCache::getInstance()->addAnimation( pAnimation, pAnimationName );
-            
-            MotionInfo pMotionInfo = MotionInfo( pAnimationName, pMotionRate );
-            
+        
+            MotionInfo pMotionInfo = MotionInfo( pAnimationName, pSpriteName, pMotionRate, pStartFrame, pEndFrame );
             m_motions.insert( std::make_pair( pMotionName, pMotionInfo ) );
         }
     }
@@ -70,6 +58,24 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::OnActivate()
 {
+    for ( std::map<std::string, MotionInfo>::iterator it = m_motions.begin(); it != m_motions.end(); it++ )
+    {
+        MotionInfo pMotionInfo = it->second;
+        
+        int pFrameCount = pMotionInfo.m_endFrame - pMotionInfo.m_startFrame + 1;
+        
+        cocos2d::Vector<cocos2d::SpriteFrame*> pFrames( pFrameCount );
+        for ( int i = pMotionInfo.m_startFrame; i <= pMotionInfo.m_endFrame; i++ )
+        {
+            char pFrameName[100] = {0};
+            sprintf( pFrameName, "%s_%02d.png", pMotionInfo.m_spriteName.c_str(), i );
+            pFrames.pushBack( cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName( pFrameName ) );
+        }
+        
+        cocos2d::Animation* pAnimation = cocos2d::Animation::createWithSpriteFrames( pFrames, 1.0f / 30.0f );
+        cocos2d::AnimationCache::getInstance()->addAnimation( pAnimation, pMotionInfo.m_animationName );
+    }
+
     if ( m_animTree )
     {
         m_animTree->Start();

@@ -40,7 +40,8 @@ void DiveBrainState::Enter()
     cocos2d::Vec2 pVelocity = pPhysicsComponent->GetVelocity();
     pVelocity.y = 0.0f;
     pPhysicsComponent->SetVelocity( pVelocity );
-    pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, -2.0f * JUMP_VELOCITY ) );
+    
+    pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, -5000.0f * pPhysicsComponent->GetMass() ) );
     
     AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "DIVE" );
 }
@@ -95,7 +96,7 @@ void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
             {
                 if ( pAIComponent->GetBrain() )
                 {
-                    pAIComponent->GetBrain()->PopState();
+                     pAIComponent->GetBrain()->PopState();
                 }
             }
         }
@@ -112,6 +113,8 @@ void DiveBrainState::OnMunitionContactEvent( cocos2d::EventCustom *i_event )
         {
             if ( pAIComponent->GetBrain() )
             {
+                AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "SMASH" );
+                
                 pAIComponent->GetBrain()->PopState();
                 pAIComponent->GetBrain()->PushState( "JumpBrainState" );
             }

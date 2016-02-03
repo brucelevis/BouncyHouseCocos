@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "RenderComponent.h"
 #include "RenderSystem.h"
 #ifdef DEBUG
 #include "DebugDrawSystem.h"
@@ -45,6 +46,23 @@ void RenderSystem::UnregisterComponent( Component* i_component )
 void RenderSystem::Update( float i_dt )
 {
 #ifdef DEBUG
+    if ( m_debug )
+    {
+        for ( std::map<EntityHandle, Component*>::iterator it = m_components.begin(); it != m_components.end(); it++ )
+        {
+            RenderComponent* pComponent = (RenderComponent*) it->second;
+            if ( pComponent )
+            {
+                if ( pComponent->m_sprite )
+                {
+                    cocos2d::DrawNode* pDrawNode = cocos2d::DrawNode::create();
+                    pDrawNode->drawPoint( pComponent->m_sprite->getPosition(), 155.0f, cocos2d::Color4F::GREEN );
+                    DebugDrawSystem::GetInstance()->DebugDraw( pDrawNode, i_dt * 0.25f );
+                }
+            }
+        }
+    }
+    
     DebugDrawSystem::GetInstance()->Update( i_dt );
 #endif
 }

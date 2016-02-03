@@ -27,12 +27,12 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
     
     
     pEntity->SetName( pDocument["Name"].GetString() );
-    //printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
+    printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
     
     for (rapidjson::Value::ConstMemberIterator itr = pDocument["Components"].MemberBegin();
          itr != pDocument["Components"].MemberEnd(); ++itr)
     {
-        //printf( "  Attaching component %s\n", itr->name.GetString() );
+        printf( "  Attaching component %s\n", itr->name.GetString() );
         
         if ( itr->value.GetType() == rapidjson::Type::kObjectType )
         {
@@ -40,9 +40,32 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         }
     }
     
+    if ( pEntity->m_components.find( "PhysicsComponent" ) != pEntity->m_components.end() )
+    {
+        Component* pPhysicsComponent = pEntity->m_components.at( "PhysicsComponent" );
+        if ( pPhysicsComponent )
+        {
+            printf( "  Activating component PhysicsComponent\n" );
+            pPhysicsComponent->Activate();
+        }
+    }
+    if ( pEntity->m_components.find( "RenderComponent" ) != pEntity->m_components.end() )
+    {
+        Component* pRenderComponent = pEntity->m_components.at( "RenderComponent" );
+        if ( pRenderComponent )
+        {
+            printf( "  Activating component RenderComponent\n" );
+            pRenderComponent->Activate();
+        }
+    }
+    
     for ( std::map<std::string, Component*>::iterator it = pEntity->m_components.begin(); it != pEntity->m_components.end(); it++ )
     {
-        //printf( "  Activating component %s\n", it->first.c_str() );
+        if ( strcmp( it->first.c_str(), "PhysicsComponent" ) == 0 || strcmp( it->first.c_str(), "RenderComponent" ) == 0 )
+        {
+            continue;
+        }
+        printf( "  Activating component %s\n", it->first.c_str() );
         
         it->second->Activate();
     }

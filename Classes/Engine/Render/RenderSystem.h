@@ -33,9 +33,13 @@ public:
     
     GameScene* GetScene() { return m_activeScene; };
     void SetScene( GameScene* i_scene ) { m_activeScene = i_scene; };
+    
+    bool GetDebug() { return m_debug; };
+    void SetDebug( bool i_debug ) { m_debug = i_debug; };
 
 private:
     static RenderSystem* s_instance;
+    bool m_debug;
     GameScene* m_activeScene;
 };
 

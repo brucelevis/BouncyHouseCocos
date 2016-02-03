@@ -11,7 +11,7 @@
 #include "../../../../Engine/AI/AIComponent.h"
 #include "../../../../Engine/Entity/EntitySystem.h"
 #include "../../../../Engine/Munition/MunitionSystem.h"
-#include "../../../../Engine/Render/RenderComponent.h"
+#include "../../../../Engine/Physics/PhysicsComponent.h"
 #include "../../../Level/LevelSystem.h"
 
 EnemyBraceBrainState::EnemyBraceBrainState()
@@ -55,7 +55,7 @@ void EnemyBraceBrainState::Update( float i_dt )
     if ( pPlayer )
     {
         float pDistanceToPlayerSquared = GetDistanceToEntitySquared( pPlayer->m_entityHandle );
-        if ( pDistanceToPlayerSquared >= 120000.0f )
+        if ( pDistanceToPlayerSquared >= 40000.0f )
         {
             AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
             if ( pAIComponent )
@@ -68,17 +68,17 @@ void EnemyBraceBrainState::Update( float i_dt )
         }
         else
         {
-            RenderComponent* pRenderComponent = EntitySystem::GetInstance()->GetComponent<RenderComponent>( m_entityHandle );
-            if ( pRenderComponent )
+            PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+            if ( pPhysicsComponent )
             {
                 cocos2d::Vec2 pDirectionToPlayer = GetDirectionToEntity( pPlayer->m_entityHandle );
                 if ( pDirectionToPlayer.x > 0.0f )
                 {
-                    pRenderComponent->SetFacing( RenderComponent::FacingDirection::RIGHT );
+                    pPhysicsComponent->SetFacing( PhysicsComponent::FacingDirection::RIGHT );
                 }
                 else if ( pDirectionToPlayer.x < 0.0f )
                 {
-                    pRenderComponent->SetFacing( RenderComponent::FacingDirection::LEFT );
+                    pPhysicsComponent->SetFacing( PhysicsComponent::FacingDirection::LEFT );
                 }
             }
         }

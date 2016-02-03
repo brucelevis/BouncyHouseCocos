@@ -25,11 +25,13 @@ private:
     
     cocos2d::Vec2 m_anchorPoint;
     cocos2d::Vec2 m_offset;
+    float m_mass;
     float m_width;
     float m_height;
     float m_density;
     float m_restitution;
     float m_friction;
+    float m_scale;
     bool m_dynamic;
     
     CollisionCategory m_category;
@@ -55,11 +57,21 @@ public:
     
     cocos2d::Vec2 GetVelocity();
     bool SetVelocity( cocos2d::Vec2 i_velocity );
+    
+    float GetScale();
+    void SetScale( float i_scale );
+    
     float GetWidth() { return m_width; };
     float GetHeight() { return m_height; };
+    float GetMass() { return m_mass; };
     
     void SetPositionOffset( cocos2d::Vec2 i_offset );
     cocos2d::Vec2 GetPositionOffset();
+    cocos2d::Vec2 GetDefaultPositionOffset();
+    
+    cocos2d::Vec2 GetAnchorPoint() { return m_anchorPoint; };
+    
+    cocos2d::Vec2 GetGravity();
     
     CollisionCategory GetCategoryMask() { return m_category; };
     CollisionCategory GetCollisionMask() { return m_collision; };
@@ -73,6 +85,15 @@ public:
     void DisableCollision();
     
     bool RayCast( cocos2d::Vec2 i_start, cocos2d::Vec2 i_end, cocos2d::PhysicsRayCastInfo& o_info );
+    
+    enum FacingDirection
+    {
+        NONE,
+        LEFT,
+        RIGHT
+    };
+    FacingDirection GetFacing();
+    bool SetFacing( FacingDirection i_facingDirection );
     
     bool OnContactBegin( PhysicsContactInfo i_contact );
     void OnContactPostSolve( PhysicsContactInfo i_contact );

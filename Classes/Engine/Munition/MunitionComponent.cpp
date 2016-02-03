@@ -78,6 +78,8 @@ void MunitionComponent::MunitionActivate( EntityHandle i_ownerHandle )
 {
     m_ownerHandle = i_ownerHandle;
     
+    
+    
     PhysicsComponent* pOPC = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_ownerHandle );
     if ( pOPC )
     {
@@ -86,11 +88,12 @@ void MunitionComponent::MunitionActivate( EntityHandle i_ownerHandle )
         {
             pPC->GetNode()->removeFromParentAndCleanup( false );
             pOPC->GetNode()->addChild( pPC->GetNode() );
-            pPC->SetPosition( cocos2d::Vec2( pOPC->GetNode()->getContentSize().width * 0.5f, 0.0f ) );
             
-            if ( pOPC->GetNode()->getScaleX() < 0.0f )
+            pPC->SetPosition( cocos2d::Vec2( pOPC->GetWidth() * pOPC->GetAnchorPoint().x, pOPC->GetHeight() * pOPC->GetAnchorPoint().y ) );
+            
+            if ( pOPC->GetFacing() == PhysicsComponent::FacingDirection::LEFT )
             {
-                cocos2d::Vec2 pOffset = pPC->GetPositionOffset();
+                cocos2d::Vec2 pOffset = pPC->GetDefaultPositionOffset();
                 pOffset.x *= -1.0f;
                 pPC->SetPositionOffset( pOffset );
             }
@@ -150,12 +153,22 @@ void MunitionComponent::OnFacingChangedEvent( cocos2d::EventCustom* i_event )
     EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
     if ( pEntityHandle == m_ownerHandle )
     {
-        PhysicsComponent* pPC = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
-        if ( pPC )
+        PhysicsComponent* pOPC = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_ownerHandle );
+        if ( pOPC )
         {
-            cocos2d::Vec2 pOffset = pPC->GetPositionOffset();
-            pOffset.x *= -1.0f;
-            pPC->SetPositionOffset( pOffset );
+            PhysicsComponent* pPC = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
+            if ( pPC )
+            {
+                float pDir = -1.0f;
+                if ( pOPC->GetFacing() == PhysicsComponent::FacingDirection::RIGHT )
+                {
+                    pDir = 1.0f;
+                }
+                    
+                cocos2d::Vec2 pOffset = pPC->GetDefaultPositionOffset();
+                pOffset.x *= pDir;
+                pPC->SetPositionOffset( pOffset );
+            }
         }
     }
 }
