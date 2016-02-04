@@ -29,7 +29,7 @@ RunBrainState::~RunBrainState()
 
 void RunBrainState::Enter()
 {
-    
+
 }
 
 void RunBrainState::Exit()
@@ -45,10 +45,14 @@ void RunBrainState::OnActivate()
     {
         pLocomotionComponent->SetLocomotionMode( "SideScrollerLocomotionMode" );
     }
+    
     PhysicsComponent* pPhysicsComponent = EntitySystem::GetInstance()->GetComponent<PhysicsComponent>( m_entityHandle );
     if ( pPhysicsComponent )
     {
-        m_runDir = pPhysicsComponent->GetVelocity().x > 0.0f ? 1.0f : -1.0f;
+        if ( fabs( pPhysicsComponent->GetVelocity().x ) > 5.0f )
+        {
+            m_runDir = pPhysicsComponent->GetVelocity().x > 0.0f ? 1.0f : -1.0f;
+        }
     }
     
     EventManager::GetInstance()->RegisterForEvent( "AvatarAction_Jump", CC_CALLBACK_1( RunBrainState::OnAvatarAction_Jump, this ), this );
@@ -80,7 +84,7 @@ void RunBrainState::Update( float i_dt )
         
         for ( int i = -1; i <= 1; i++ )
         {
-            float pOffset = ((float) i) * 0.33f * pPhysicsComponent->GetHeight();
+            float pOffset = ((float) i) * 0.25f * pPhysicsComponent->GetHeight();
             pPosition = pPhysicsComponent->GetPosition() - pPhysicsComponent->GetPositionOffset() + ( cocos2d::Vec2( m_runDir * ( pPhysicsComponent->GetWidth() * fabs( pPhysicsComponent->GetNode()->getScaleX() ) * 0.5f - 1.0f ), pPhysicsComponent->GetHeight() * fabs( pPhysicsComponent->GetNode()->getScaleY() ) * 0.5f + pOffset ) );
             pEnd = pPosition + cocos2d::Vec2( m_runDir * 9.0f, 0.0f );
             

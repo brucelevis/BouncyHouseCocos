@@ -4,10 +4,10 @@
         "PhysicsComponent": {
             "Density": 10.0,
             "Restitution": 0.0,
-            "Friction": 0.1,
+            "Friction": 0.2,
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
-            "Size": [ 64.0, 100.0 ],
+            "Size": [ 96.0, 150.0 ],
             
             "Category": [ "Damagable", "Player", "Bouncy" ],
             "Collision": [ "Solid", "Enemy", "Player" ],
@@ -18,7 +18,8 @@
             "DefaultSprite": "Viking1_Run_00.png",
             "FacingLeft": true,
             "ZOrder": 10,
-            "Offset": [ 0.0, -10.0 ]
+            "Offset": [ 0.0, -10.0 ],
+            "Scale": 1.0
         },
         "AIComponent": {
             "DefaultBrainState": "RunBrainState"
@@ -37,7 +38,7 @@
                     "StartFrame": 0,
                     "EndFrame": 17,
                     "Name": "Viking1_Run",
-                    "MotionRate": 275.0
+                    "MotionRate": 400.0
                 },
                 {
                     "Motion": "Jump",
@@ -53,7 +54,7 @@
                 },
                 {
                     "Motion": "Smash",
-                    "StartFrame": 1,
+                    "StartFrame": 2,
                     "EndFrame": 3,
                     "Name": "Vik1_Smash"
                 }

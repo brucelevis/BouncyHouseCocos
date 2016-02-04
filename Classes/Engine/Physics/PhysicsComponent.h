@@ -94,9 +94,6 @@ public:
     };
     FacingDirection GetFacing();
     bool SetFacing( FacingDirection i_facingDirection );
-    
-    bool OnContactBegin( PhysicsContactInfo i_contact );
-    void OnContactPostSolve( PhysicsContactInfo i_contact );
 };
 
 #endif /* PhysicsComponent_hpp */

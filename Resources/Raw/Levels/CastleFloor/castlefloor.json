@@ -11,7 +11,7 @@
             
             "Category": [ "Environment", "Solid", "Ground" ],
             "Collision": [ "All" ],
-            "Contact": [ "All" ]
+            "Contact": []
         },
         "RenderComponent": {
             "Sprite": "Levels/CastleFloor/BeamH.png",

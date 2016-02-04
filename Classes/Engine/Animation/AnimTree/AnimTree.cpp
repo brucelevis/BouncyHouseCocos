@@ -35,11 +35,10 @@ AnimTree* AnimTree::CreateWithDNA( EntityHandle i_entityHandle, std::string i_fi
 {
     std::string pPath = "Baked/" + i_fileName;
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename( pPath );
-    ssize_t bufferSize = 0;
-    const char* pFileData = (const char*) cocos2d::FileUtils::getInstance()->getFileData( fullPath.c_str(), "r", &bufferSize );
+    std::string pFileData = cocos2d::FileUtils::getInstance()->getStringFromFile( fullPath );
     
     rapidjson::Document pDocument;
-    pDocument.Parse<rapidjson::kParseStopWhenDoneFlag>( pFileData );
+    pDocument.Parse<rapidjson::kParseStopWhenDoneFlag>( pFileData.c_str() );
     ASSERTS(!pDocument.HasParseError(), "AnimTree DNA parse error!");
     
     AnimTree* pAnimTree = new AnimTree( i_entityHandle );

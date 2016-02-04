@@ -4,10 +4,10 @@
         "PhysicsComponent": {
             "Density": 10.0,
             "Restitution": 0.0,
-            "Friction": 0.1,
+            "Friction": 0.2,
             "Dynamic": true,
             "AnchorPoint": [ 0.5, 0.0 ],
-            "Size": [ 48.0, 95.0 ],
+            "Size": [ 72.0, 142.0 ],
             
             "Category": [ "Damagable", "Enemy", "Bouncy" ],
             "Collision": [ "Solid", "Player" ],
@@ -16,10 +16,11 @@
         "RenderComponent": {
             "SpriteSheet": "Characters/Enemy/Motions/EnemyMotions",
             "DefaultSprite": "Grunt_Walk_00.png",
-            "FacingLeft": true
+            "FacingLeft": true,
+            "Scale": 1.0
         },
         "AIComponent": {
-            "DefaultBrainState": "EnemyRunBrainState"
+            "DefaultBrainState": "EnemySpawnBrainState"
         },
         "AnimationComponent": {
             "AnimTree": "Characters/Character/Motions/animtree.dna",
@@ -36,7 +37,7 @@
                     "StartFrame": 0,
                     "EndFrame": 23,
                     "Name": "Grunt_Walk",
-                    "MotionRate": 120.0
+                    "MotionRate": 115.2
                 }
             ]
         },
@@ -45,7 +46,7 @@
             "MaxHealth": 10.0
         },
         "LocomotionComponent": {
-            "RunSpeed": 100.0
+            "RunSpeed": 150.0
         }
     }
 }

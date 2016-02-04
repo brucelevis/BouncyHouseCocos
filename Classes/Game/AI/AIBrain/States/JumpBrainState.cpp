@@ -42,7 +42,7 @@ void JumpBrainState::Enter()
         //pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, JUMP_VELOCITY ) );
         
         cocos2d::Vec2 pGravity = pPhysicsComponent->GetGravity();
-        float pJumpHeight = 150.0f;
+        float pJumpHeight = JUMP_HEIGHT;
         float pJumpImpulseAmt = sqrtf( -2.0f * pGravity.y * pJumpHeight );
         
         pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, pJumpImpulseAmt * pPhysicsComponent->GetMass() ) );
@@ -133,6 +133,8 @@ void JumpBrainState::OnMunitionContactEvent( cocos2d::EventCustom *i_event )
         AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
         if ( pAIComponent )
         {
+            AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "SMASH" );
+            
             if ( pAIComponent->GetBrain() )
             {
                 pAIComponent->GetBrain()->PopState();

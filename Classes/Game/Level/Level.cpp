@@ -17,7 +17,7 @@
 #include "../../Engine/Render/RenderComponent.h"
 #include "../../Engine/Render/RenderSystem.h" 
 
-#define ENEMY_SPAWN_INTERVAL 0.75f
+#define ENEMY_SPAWN_INTERVAL 0.05f
 
 Level::Level()
 {

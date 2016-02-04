@@ -45,6 +45,7 @@ private:
     static PhysicsSystem* s_instance;
     cocos2d::PhysicsWorld* m_physicsWorld;
     bool m_debug;
+    float m_deathPlaneTimer;
 };
 
 struct PhysicsContactInfo

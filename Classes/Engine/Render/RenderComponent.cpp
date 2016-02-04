@@ -24,6 +24,7 @@ void RenderComponent::DNADataInit( EntityHandle i_entityHandle, const rapidjson:
     RenderSystem::GetInstance()->RegisterComponent( this );
     m_scale = 1.0f;
     m_zOrder = 0;
+    m_facingLeft = false;
     
     if ( i_dnaObject.HasMember( "DefaultSprite" ) )
     {
@@ -112,12 +113,24 @@ void RenderComponent::OnActivate()
         {
             m_sprite->setScale( m_scale * -1.0f, m_scale );
         }
+        
+        m_sprite->setCascadeOpacityEnabled( true );
+        
+        m_sprite->retain();
+    }
+}
+
+void RenderComponent::OnDeactivate()
+{
+    if ( m_sprite )
+    {
+        m_sprite->removeFromParent();
+        m_sprite->release();
     }
 }
 
 RenderComponent::~RenderComponent()
 {
-    m_sprite->removeFromParent();
     RenderSystem::GetInstance()->UnregisterComponent( this );
 }
 

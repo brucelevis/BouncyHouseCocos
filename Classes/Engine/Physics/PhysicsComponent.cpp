@@ -108,6 +108,7 @@ void PhysicsComponent::OnActivate()
         m_node->setPhysicsBody( m_physicsBody );
     }
     m_node->setAnchorPoint( m_anchorPoint );
+    m_node->retain();
     
     SetFacing( PhysicsComponent::FacingDirection::LEFT );
 }
@@ -118,6 +119,11 @@ void PhysicsComponent::OnDeactivate()
         m_physicsBody->removeAllShapes();
     if ( m_physicsBody && m_physicsBody->getWorld() )
         m_physicsBody->removeFromWorld();
+    if ( m_node )
+    {
+        m_node->removeFromParent();
+        m_node->release();
+    }
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -326,14 +332,14 @@ PhysicsComponent::FacingDirection PhysicsComponent::GetFacing()
 
 bool PhysicsComponent::SetFacing( FacingDirection i_facingDirection )
 {
-    float pScaleX = m_node->getScaleX();
+    float pScaleX = 1.0f;
     switch ( i_facingDirection )
     {
         case FacingDirection::LEFT:
-            pScaleX = -1.0f * fabs( pScaleX );
+            pScaleX = -1.0f;
             break;
         case FacingDirection::RIGHT:
-            pScaleX = 1.0f * fabs( pScaleX );
+            pScaleX = 1.0f;
             break;
         default:
             break;
@@ -351,15 +357,4 @@ bool PhysicsComponent::SetFacing( FacingDirection i_facingDirection )
         return true;
     }
     return false;
-}
-
-bool PhysicsComponent::OnContactBegin( PhysicsContactInfo i_contact )
-{
-    EventManager::GetInstance()->SendEvent( "PhysicsContactBegin", &i_contact );
-    return true;
-}
-
-void PhysicsComponent::OnContactPostSolve( PhysicsContactInfo i_contact )
-{
-    EventManager::GetInstance()->SendEvent( "PhysicsContactPostSolve", &i_contact );
 }

@@ -18,21 +18,20 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
     Entity* pEntity = EntitySystem::GetInstance()->CreateEntity();
     
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename( i_dnaPath );
-    ssize_t bufferSize = 0;
-    const char* pFileData = (const char*) cocos2d::FileUtils::getInstance()->getFileData( fullPath.c_str(), "r", &bufferSize );
+    std::string pFileData = cocos2d::FileUtils::getInstance()->getStringFromFile( fullPath );
 
     rapidjson::Document pDocument;
-    pDocument.Parse<rapidjson::kParseStopWhenDoneFlag>( pFileData );
+    pDocument.Parse<rapidjson::kParseStopWhenDoneFlag>( pFileData.c_str() );
     ASSERTS(!pDocument.HasParseError(), "DNA parse error!");
     
     
     pEntity->SetName( pDocument["Name"].GetString() );
-    printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
+    //printf( "Creating Entity '%s'\n", pEntity->GetName().c_str() );
     
     for (rapidjson::Value::ConstMemberIterator itr = pDocument["Components"].MemberBegin();
          itr != pDocument["Components"].MemberEnd(); ++itr)
     {
-        printf( "  Attaching component %s\n", itr->name.GetString() );
+        //printf( "  Attaching component %s\n", itr->name.GetString() );
         
         if ( itr->value.GetType() == rapidjson::Type::kObjectType )
         {
@@ -45,7 +44,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         Component* pPhysicsComponent = pEntity->m_components.at( "PhysicsComponent" );
         if ( pPhysicsComponent )
         {
-            printf( "  Activating component PhysicsComponent\n" );
+            //printf( "  Activating component PhysicsComponent\n" );
             pPhysicsComponent->Activate();
         }
     }
@@ -54,7 +53,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         Component* pRenderComponent = pEntity->m_components.at( "RenderComponent" );
         if ( pRenderComponent )
         {
-            printf( "  Activating component RenderComponent\n" );
+            //printf( "  Activating component RenderComponent\n" );
             pRenderComponent->Activate();
         }
     }
@@ -65,7 +64,7 @@ Entity* DNASequencer::CreateEntity( std::string i_dnaPath )
         {
             continue;
         }
-        printf( "  Activating component %s\n", it->first.c_str() );
+        //printf( "  Activating component %s\n", it->first.c_str() );
         
         it->second->Activate();
     }

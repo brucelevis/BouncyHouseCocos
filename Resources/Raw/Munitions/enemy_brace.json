@@ -7,8 +7,8 @@
             "Friction": 0.0,
             "Dynamic": false,
             "AnchorPoint": [ 1.0, 0.0 ],
-            "Offset": [ 24.0, 10.0 ],
-            "Size": [ 10.0, 70.0 ],
+            "Offset": [ 36.0, 15.0 ],
+            "Size": [ 10.0, 105.0 ],
             
             "Category": [ "Munition" ],
             "Collision": [ ],

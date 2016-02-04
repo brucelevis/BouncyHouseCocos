@@ -23,8 +23,8 @@ public:
     virtual void Exit() override;
     virtual void OnActivate() override;
     virtual void OnDeactivate() override;
+    virtual void Update( float i_dt ) override;
     
-    void OnGroundChangedEvent( cocos2d::EventCustom* i_event );
     void OnMunitionContactEvent( cocos2d::EventCustom* i_event );
 };
 

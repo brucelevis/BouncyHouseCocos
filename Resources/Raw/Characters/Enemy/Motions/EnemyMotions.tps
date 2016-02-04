@@ -197,30 +197,30 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Frames/SmallEnemyWalk_00.png</filename>
-            <filename>Frames/SmallEnemyWalk_01.png</filename>
-            <filename>Frames/SmallEnemyWalk_02.png</filename>
-            <filename>Frames/SmallEnemyWalk_03.png</filename>
-            <filename>Frames/SmallEnemyWalk_04.png</filename>
-            <filename>Frames/SmallEnemyWalk_05.png</filename>
-            <filename>Frames/SmallEnemyWalk_06.png</filename>
-            <filename>Frames/SmallEnemyWalk_07.png</filename>
-            <filename>Frames/SmallEnemyWalk_08.png</filename>
-            <filename>Frames/SmallEnemyWalk_09.png</filename>
-            <filename>Frames/SmallEnemyWalk_10.png</filename>
-            <filename>Frames/SmallEnemyWalk_11.png</filename>
-            <filename>Frames/SmallEnemyWalk_12.png</filename>
-            <filename>Frames/SmallEnemyWalk_13.png</filename>
-            <filename>Frames/SmallEnemyWalk_14.png</filename>
-            <filename>Frames/SmallEnemyWalk_15.png</filename>
-            <filename>Frames/SmallEnemyWalk_16.png</filename>
-            <filename>Frames/SmallEnemyWalk_17.png</filename>
-            <filename>Frames/SmallEnemyWalk_18.png</filename>
-            <filename>Frames/SmallEnemyWalk_19.png</filename>
-            <filename>Frames/SmallEnemyWalk_20.png</filename>
-            <filename>Frames/SmallEnemyWalk_21.png</filename>
-            <filename>Frames/SmallEnemyWalk_22.png</filename>
-            <filename>Frames/SmallEnemyWalk_23.png</filename>
+            <filename>Frames/Grunt_Walk_00.png</filename>
+            <filename>Frames/Grunt_Walk_01.png</filename>
+            <filename>Frames/Grunt_Walk_02.png</filename>
+            <filename>Frames/Grunt_Walk_03.png</filename>
+            <filename>Frames/Grunt_Walk_04.png</filename>
+            <filename>Frames/Grunt_Walk_05.png</filename>
+            <filename>Frames/Grunt_Walk_06.png</filename>
+            <filename>Frames/Grunt_Walk_07.png</filename>
+            <filename>Frames/Grunt_Walk_08.png</filename>
+            <filename>Frames/Grunt_Walk_09.png</filename>
+            <filename>Frames/Grunt_Walk_10.png</filename>
+            <filename>Frames/Grunt_Walk_11.png</filename>
+            <filename>Frames/Grunt_Walk_12.png</filename>
+            <filename>Frames/Grunt_Walk_13.png</filename>
+            <filename>Frames/Grunt_Walk_14.png</filename>
+            <filename>Frames/Grunt_Walk_15.png</filename>
+            <filename>Frames/Grunt_Walk_16.png</filename>
+            <filename>Frames/Grunt_Walk_17.png</filename>
+            <filename>Frames/Grunt_Walk_18.png</filename>
+            <filename>Frames/Grunt_Walk_19.png</filename>
+            <filename>Frames/Grunt_Walk_20.png</filename>
+            <filename>Frames/Grunt_Walk_21.png</filename>
+            <filename>Frames/Grunt_Walk_22.png</filename>
+            <filename>Frames/Grunt_Walk_23.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

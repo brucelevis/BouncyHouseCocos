@@ -33,6 +33,7 @@ public:
     
     virtual void DNADataInit( EntityHandle i_entityHandle, const rapidjson::Value& i_dnaObject ) override;
     virtual void OnActivate() override;
+    virtual void OnDeactivate() override;
     
     float GetScale();
     void SetScale( float i_scale );

@@ -41,7 +41,7 @@ void DiveBrainState::Enter()
     pVelocity.y = 0.0f;
     pPhysicsComponent->SetVelocity( pVelocity );
     
-    pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, -5000.0f * pPhysicsComponent->GetMass() ) );
+    pPhysicsComponent->ApplyImpulse( cocos2d::Vec2( 0.0f, -3000.0f * pPhysicsComponent->GetMass() ) );
     
     AnimationSystem::GetInstance()->SendEvent( m_entityHandle, "DIVE" );
 }
@@ -54,7 +54,6 @@ void DiveBrainState::Exit()
 void DiveBrainState::OnActivate()
 {
     m_active = true;
-    EventManager::GetInstance()->RegisterForEvent( "GroundChanged", CC_CALLBACK_1( DiveBrainState::OnGroundChangedEvent, this ), this );
     EventManager::GetInstance()->RegisterForEvent( "MunitionContact", CC_CALLBACK_1( DiveBrainState::OnMunitionContactEvent, this ), this );
     
     
@@ -70,7 +69,6 @@ void DiveBrainState::OnActivate()
 void DiveBrainState::OnDeactivate()
 {
     m_active = false;
-    EventManager::GetInstance()->UnregisterForEvent( "GroundChanged", this );
     EventManager::GetInstance()->UnregisterForEvent( "MunitionContact", this );
     
     MunitionSystem::GetInstance()->DestroyMunition( m_munitionHandle );
@@ -82,22 +80,17 @@ void DiveBrainState::OnDeactivate()
     }
 }
 
-void DiveBrainState::OnGroundChangedEvent( cocos2d::EventCustom *i_event )
+void DiveBrainState::Update( float i_dt )
 {
-    EntityHandle pEntityHandle = *((int*)(i_event->getUserData()));
-    if ( m_entityHandle == pEntityHandle )
+    GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
+    if ( pGroundDetectComponent && pGroundDetectComponent->GetOnGround() )
     {
-        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( m_entityHandle );
-        ASSERTS( pGroundDetectComponent && pGroundDetectComponent->GetOnGround(), "How come we're not on the ground?" );
-        if ( pGroundDetectComponent && pGroundDetectComponent->GetOnGround() )
+        AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
+        if ( pAIComponent )
         {
-            AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
-            if ( pAIComponent )
+            if ( pAIComponent->GetBrain() )
             {
-                if ( pAIComponent->GetBrain() )
-                {
-                     pAIComponent->GetBrain()->PopState();
-                }
+                pAIComponent->GetBrain()->PopState();
             }
         }
     }

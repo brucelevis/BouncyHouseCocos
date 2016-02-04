@@ -90,8 +90,3 @@ void EffectSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transf
     renderer->render();
     
 }
-
-EffectSprite::~EffectSprite()
-{
-
-}

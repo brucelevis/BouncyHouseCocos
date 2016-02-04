@@ -9,13 +9,13 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-10,-5}</string>
+                <string>{-15,-8}</string>
                 <key>spriteSize</key>
-                <string>{80,95}</string>
+                <string>{118,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{80,95}}</string>
+                <string>{{919,379},{118,145}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -24,43 +24,43 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-10,-5}</string>
+                <string>{-15,-8}</string>
                 <key>spriteSize</key>
-                <string>{82,95}</string>
+                <string>{122,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{98,1},{82,95}}</string>
+                <string>{{795,274},{122,145}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-10,-6}</string>
+                <string>{-15,-9}</string>
                 <key>spriteSize</key>
-                <string>{86,93}</string>
+                <string>{130,143}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{1,169},{86,93}}</string>
+                <string>{{537,1},{130,143}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-12,-5}</string>
+                <string>{-18,-8}</string>
                 <key>spriteSize</key>
-                <string>{82,95}</string>
+                <string>{124,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{195,1},{82,95}}</string>
+                <string>{{921,129},{124,145}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -69,178 +69,178 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,-4}</string>
+                <string>{-11,-7}</string>
                 <key>spriteSize</key>
-                <string>{86,97}</string>
+                <string>{128,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{195,171},{86,97}}</string>
+                <string>{{407,1},{128,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_05.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,-4}</string>
+                <string>{-2,-7}</string>
                 <key>spriteSize</key>
-                <string>{86,97}</string>
+                <string>{130,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{294,173},{86,97}}</string>
+                <string>{{141,154},{130,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_06.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{3,-4}</string>
+                <string>{5,-7}</string>
                 <key>spriteSize</key>
-                <string>{88,97}</string>
+                <string>{130,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{199,261},{88,97}}</string>
+                <string>{{273,154},{130,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_07.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{7,-4}</string>
+                <string>{11,-6}</string>
                 <key>spriteSize</key>
-                <string>{86,97}</string>
+                <string>{130,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{393,173},{86,97}}</string>
+                <string>{{275,1},{130,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_08.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{8,-3}</string>
+                <string>{12,-5}</string>
                 <key>spriteSize</key>
-                <string>{90,99}</string>
+                <string>{136,149}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{1,347},{90,99}}</string>
+                <string>{{139,307},{136,149}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_09.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{9,-3}</string>
+                <string>{13,-4}</string>
                 <key>spriteSize</key>
-                <string>{92,99}</string>
+                <string>{138,151}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{205,351},{92,99}}</string>
+                <string>{{1,1},{138,151}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{10,-2}</string>
+                <string>{15,-4}</string>
                 <key>spriteSize</key>
-                <string>{92,101}</string>
+                <string>{138,151}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{306,351},{92,101}}</string>
+                <string>{{1,154},{138,151}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{11,-2}</string>
+                <string>{16,-4}</string>
                 <key>spriteSize</key>
-                <string>{90,101}</string>
+                <string>{136,151}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{102,351},{90,101}}</string>
+                <string>{{1,307},{136,151}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{11,-3}</string>
+                <string>{17,-5}</string>
                 <key>spriteSize</key>
-                <string>{88,99}</string>
+                <string>{132,151}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{298,261},{88,99}}</string>
+                <string>{{141,1},{132,151}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{12,-4}</string>
+                <string>{18,-7}</string>
                 <key>spriteSize</key>
-                <string>{86,97}</string>
+                <string>{128,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{1,257},{86,97}}</string>
+                <string>{{409,297},{128,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_14.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{12,-5}</string>
+                <string>{18,-9}</string>
                 <key>spriteSize</key>
-                <string>{84,95}</string>
+                <string>{126,143}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{391,1},{84,95}}</string>
+                <string>{{793,129},{126,143}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_15.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{11,-5}</string>
+                <string>{17,-9}</string>
                 <key>spriteSize</key>
-                <string>{84,95}</string>
+                <string>{126,143}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{1,83},{84,95}}</string>
+                <string>{{816,1},{126,143}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -249,28 +249,28 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{10,-5}</string>
+                <string>{15,-8}</string>
                 <key>spriteSize</key>
-                <string>{84,95}</string>
+                <string>{126,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{98,85},{84,95}}</string>
+                <string>{{665,146},{126,145}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_17.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{8,-4}</string>
+                <string>{12,-7}</string>
                 <key>spriteSize</key>
-                <string>{84,97}</string>
+                <string>{126,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{195,85},{84,97}}</string>
+                <string>{{669,1},{126,145}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -279,88 +279,88 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{4,-4}</string>
+                <string>{6,-7}</string>
                 <key>spriteSize</key>
-                <string>{86,97}</string>
+                <string>{130,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{100,259},{86,97}}</string>
+                <string>{{277,303},{130,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_19.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-2,-3}</string>
+                <string>{-2,-5}</string>
                 <key>spriteSize</key>
-                <string>{88,97}</string>
+                <string>{130,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{399,261},{88,97}}</string>
+                <string>{{405,150},{130,145}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_20.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-7,-3}</string>
+                <string>{-11,-5}</string>
                 <key>spriteSize</key>
-                <string>{84,95}</string>
+                <string>{126,145}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{294,85},{84,95}}</string>
+                <string>{{667,293},{126,145}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_21.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-10,-2}</string>
+                <string>{-15,-4}</string>
                 <key>spriteSize</key>
-                <string>{84,97}</string>
+                <string>{126,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{391,87},{84,97}}</string>
+                <string>{{537,146},{126,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-9,-3}</string>
+                <string>{-14,-4}</string>
                 <key>spriteSize</key>
-                <string>{84,97}</string>
+                <string>{126,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{96,171},{84,97}}</string>
+                <string>{{539,295},{126,147}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>Grunt_Walk_23.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-9,-4}</string>
+                <string>{-14,-6}</string>
                 <key>spriteSize</key>
-                <string>{82,97}</string>
+                <string>{122,147}</string>
                 <key>spriteSourceSize</key>
-                <string>{114,105}</string>
+                <string>{174,161}</string>
                 <key>textureRect</key>
-                <string>{{292,1},{82,97}}</string>
+                <string>{{921,255},{122,147}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -372,9 +372,9 @@
             <key>realTextureFileName</key>
             <string>EnemyMotions.png</string>
             <key>size</key>
-            <string>{497,444}</string>
+            <string>{1069,498}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26810464ee5cbf9e042fff1addea3669:c4cb25162a5d54195284445b14dfa995:3c5aaf2ad2fca6c908b93c505f3bffc0$</string>
+            <string>$TexturePacker:SmartUpdate:03d5aed25cf2cc1f8ac3847d0f8f64a9:9141f7ed8c31bd505fb71b23005b654b:3c5aaf2ad2fca6c908b93c505f3bffc0$</string>
             <key>textureFileName</key>
             <string>EnemyMotions.png</string>
         </dict>

@@ -7,7 +7,7 @@
             "Friction": 0.0,
             "Dynamic": false,
             "AnchorPoint": [ 0.5, 1.0 ],
-            "Size": [ 44.0, 10.0 ],
+            "Size": [ 90.0, 10.0 ],
             
             "Category": [ "Munition" ],
             "Collision": [ ],

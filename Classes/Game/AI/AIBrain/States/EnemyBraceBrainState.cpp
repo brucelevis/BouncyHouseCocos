@@ -10,6 +10,7 @@
 #include "../../../../Engine/Animation/AnimationSystem.h"
 #include "../../../../Engine/AI/AIComponent.h"
 #include "../../../../Engine/Entity/EntitySystem.h"
+#include "../../../../Engine/GroundDetect/GroundDetectComponent.h"
 #include "../../../../Engine/Munition/MunitionSystem.h"
 #include "../../../../Engine/Physics/PhysicsComponent.h"
 #include "../../../Level/LevelSystem.h"
@@ -54,8 +55,14 @@ void EnemyBraceBrainState::Update( float i_dt )
     Entity* pPlayer = LevelSystem::GetInstance()->GetLevel()->GetPlayer();
     if ( pPlayer )
     {
+        bool pOnGround = true;
+        GroundDetectComponent* pGroundDetectComponent = EntitySystem::GetInstance()->GetComponent<GroundDetectComponent>( pPlayer->m_entityHandle );
+        if ( pGroundDetectComponent && !pGroundDetectComponent->GetOnGround() )
+        {
+            pOnGround = false;
+        }
         float pDistanceToPlayerSquared = GetDistanceToEntitySquared( pPlayer->m_entityHandle );
-        if ( pDistanceToPlayerSquared >= 40000.0f )
+        if ( pDistanceToPlayerSquared >= 30000.0f || !pOnGround )
         {
             AIComponent* pAIComponent = EntitySystem::GetInstance()->GetComponent<AIComponent>( m_entityHandle );
             if ( pAIComponent )
